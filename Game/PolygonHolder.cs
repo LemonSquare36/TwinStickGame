@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace RPGame
+namespace TwinStick
 {
     public class PolygonHolder
     {

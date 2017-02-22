@@ -5,13 +5,10 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 
-namespace RPGame
+namespace TwinStick
 {
     public class Polygons : PolygonHolder
     {
-        // FilePath for the ShapeList and ShapePlace
-        protected static string SourceFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        string filePath = Path.Combine(SourceFolder, "Source/Repos/Dank-RPGame/Game1/Game1/Shapes/shapeplace.txt");
 
         // declaring texture 2D's
         protected Texture2D texture;
@@ -21,16 +18,9 @@ namespace RPGame
         private List<Vector2> realPos = new List<Vector2>();
         public Vector2 Movement = Vector2.Zero;
         protected Vector2 OldPosition = new Vector2();
-        protected Vector2 DashSpeed = new Vector2();
-
-        private bool isWall;
-        public bool getisWall()
-        {
-            return isWall;
-        }
-
-
         public Vector2 Placement;
+
+
         //Holds Shapes Verticies
         protected List<Vector2> verticies = new List<Vector2>();
 
@@ -69,8 +59,11 @@ namespace RPGame
         }
 
         //Loads the texture 2D's using image name
-        public void LoadContent(string ShapeName, string ShapeImage, bool iswall)
+        public void LoadContent(float X, float Y)
         {
+            Placement.X = X;
+            Placement.Y = Y;
+            texture = Main.GameContent.Load<Texture2D>("Sprites/Triangle");
         }
         //Draws the Images with current Texture
         public override void Draw(SpriteBatch spriteBatch)
@@ -111,6 +104,12 @@ namespace RPGame
             }
             OldPosition = Placement;
             Placement += Movement;
+        }
+
+        // returns the Normal Vector of a Line
+        public Vector2 NormalVector(int Vert1, int Vert2)
+        {
+            return new Vector2(getRealPos(Vert1).Y - getRealPos(Vert2).Y, -(getRealPos(Vert1).X - getRealPos(Vert2).X));
         }
 
         //Project the shape along its normals to check for gaps (Collision Detection)
@@ -190,29 +189,6 @@ namespace RPGame
                 realPosTemp.Add(Pos);
             }
             realPos = realPosTemp;
-        }
-        //Gets the shape Placement from a file
-        protected Vector2 SetShapePlacement(string ShapeName)
-        {
-            var PlaceReader = new StreamReader(Path.Combine(Main.GameContent.RootDirectory, "Shapes/shapeplace.txt"));
-
-            string line;
-            Vector2 Placement = new Vector2();
-            while (true)
-            {
-                line = PlaceReader.ReadLine();
-                if (line == ShapeName)
-                {
-                    line = PlaceReader.ReadLine();
-                    string[] VertCords = (line.Split(','));
-                    float xVert = (float)Convert.ToDouble(VertCords[0]);
-                    float yVert = (float)Convert.ToDouble(VertCords[1]);
-                    Placement = new Vector2(xVert, yVert);
-                    break;
-                }
-            }
-            PlaceReader.Close();
-            return Placement;
         }
     }
 }

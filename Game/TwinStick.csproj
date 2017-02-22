@@ -60,6 +60,8 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Camera.cs" />
+    <Compile Include="HighScores.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="PolygonHolder.cs" />
     <Compile Include="Polygons.cs" />
@@ -78,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Hold the Usings.txt" />
+    <Content Include="Content\Sprites\Triangle.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

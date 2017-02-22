@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RPGame
+namespace TwinStick
 {
 #if WINDOWS || LINUX
     /// <summary>
