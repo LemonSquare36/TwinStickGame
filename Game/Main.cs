@@ -90,7 +90,6 @@ namespace TwinStick
             Test.Update();
 
             Triangle1.MoveShape(key);
-
             Triangle1.RealPos();
             Triangle2.RealPos();
 

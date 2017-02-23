@@ -18,25 +18,35 @@ namespace TwinStick
 {
     class TestArea : TempCollisionHolder
     {
-        
+        private Character player;
+
         public void Initialize()
         {
-
+            
         }
 
         public void LoadContent()
         {
+            MakeShapes();
 
+            player.LoadContent(100,300);
         }
 
         public void Update()
         {
-
+            player.Rotate(.02f);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            player.Draw(spriteBatch);
+        }
 
+        private void MakeShapes()
+        {
+            RetrieveShapes();
+
+            player = CreateCharacter("player");
         }
     }
 }
