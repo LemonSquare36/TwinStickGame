@@ -92,7 +92,7 @@ namespace TwinStick
             }
             if (Key.IsKeyDown(Keys.S))
             {
-                Movement = new Vector2(Movement.X, Movement.Y + 1f);
+                Movement = new Vector2(Movement.X, Movement.Y + 2f);
             }
             if (Key.IsKeyDown(Keys.A))
             {
@@ -100,7 +100,7 @@ namespace TwinStick
             }
             if (Key.IsKeyDown(Keys.W))
             {
-                Movement = new Vector2(Movement.X, Movement.Y - 1f);
+                Movement = new Vector2(Movement.X, Movement.Y - 2f);
             }
             OldPosition = Placement;
             Placement += Movement;
@@ -198,7 +198,7 @@ namespace TwinStick
 
         public void Stop()
         {
-            Placement -= Movement;
+            Placement = OldPosition;
         }
     }
 }
