@@ -124,7 +124,7 @@ namespace TwinStick
             StreamReader shapeConfig = new StreamReader(Path.Combine(Main.GameContent.RootDirectory, Resource));
 
             string line;
-            string key = null;
+            string key = "triangle";
             List<Vector2> verticies = new List<Vector2>();
             while ((line = shapeConfig.ReadLine()) != null)
             {
