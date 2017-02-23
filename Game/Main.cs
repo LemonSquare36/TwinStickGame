@@ -23,6 +23,8 @@ namespace TwinStick
         Camera camera = new Camera();
         TestArea Test;
 
+        Texture2D Cube;
+
         //Hashtable for storing the verticies
         protected static Hashtable shapeVerts = new Hashtable();
 
@@ -63,6 +65,8 @@ namespace TwinStick
         //Loads Everything
         protected override void LoadContent()
         {
+            Cube = GameContent.Load<Texture2D>("Sprites/WhiteCube");
+
             MakeShapes();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -90,6 +94,11 @@ namespace TwinStick
 
             Triangle1.MoveShape(key);
             bool collide = Collision(Triangle1, Triangle2);
+            if (collide)
+            {
+                Triangle1.Stop();
+
+            }
             Debug.WriteLine(collide);
         }
 
@@ -102,6 +111,11 @@ namespace TwinStick
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, viewMatrix * Matrix.CreateScale(1));
             Triangle1.Draw(spriteBatch);
             Triangle2.Draw(spriteBatch);
+
+            spriteBatch.Draw(Cube, Triangle1.getRealPos(0), Color.White);
+            spriteBatch.Draw(Cube, Triangle1.getRealPos(1), Color.Red);
+            spriteBatch.Draw(Cube, Triangle1.getRealPos(2), Color.Blue);
+            spriteBatch.Draw(Cube, Triangle1.getRealPos(3), Color.Gray);
 
             Test.Draw(spriteBatch);
 
@@ -125,7 +139,7 @@ namespace TwinStick
             StreamReader shapeConfig = new StreamReader(Path.Combine(Main.GameContent.RootDirectory, Resource));
 
             string line;
-            string key = "triangle";
+            string key = "";
             List<Vector2> verticies = new List<Vector2>();
             while ((line = shapeConfig.ReadLine()) != null)
             {
@@ -140,12 +154,13 @@ namespace TwinStick
                 }
                 catch
                 {
-                    key = line;
+                    
                     if (key != null)
                     {
                         shapeVerts[key] = verticies;
                         verticies = new List<Vector2>();
                     }
+                    key = line;
                 }
             }
             shapeConfig.Close();

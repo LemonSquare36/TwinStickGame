@@ -85,6 +85,7 @@
   <ItemGroup>
     <Content Include="Content\Hold the Usings.txt" />
     <Content Include="Content\Sprites\Triangle.png" />
+    <Content Include="Content\Sprites\WhiteCube.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -68,12 +68,12 @@ namespace TwinStick
         //Draws the Images with current Texture
         public override void Draw(SpriteBatch spriteBatch)
         {
-                spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
+            spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
         }
 
         public void Draw(SpriteBatch spriteBatch, Color color)
         {
-                spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), color);
+            spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), color);
         }
 
         //Roatates the Shape
@@ -177,6 +177,12 @@ namespace TwinStick
                     realPosTemp.Add(Pos);
                     continue;
                 }
+
+                //if (vertTemp.X == verticies[0].X)
+                //{
+                //    vertTemp.X--;
+                //}
+
                 vertTemp.X = verts.X - getVerticies(0).X;
                 vertTemp.Y = verts.Y - getVerticies(0).Y;
 
@@ -189,6 +195,11 @@ namespace TwinStick
                 realPosTemp.Add(Pos);
             }
             realPos = realPosTemp;
+        }
+
+        public void Stop()
+        {
+            Placement -= Movement;
         }
     }
 }
