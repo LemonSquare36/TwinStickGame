@@ -28,7 +28,7 @@ namespace TwinStick
         //Hashtable for storing the verticies
         protected static Hashtable shapeVerts = new Hashtable();
 
-        Polygons Triangle1, Triangle2;
+        Polygons Triangle1, Triangle2, Triangle3;
 
         //Allows other classes to load code from content manager - Convient
         private static ContentManager content;
@@ -129,6 +129,7 @@ namespace TwinStick
 
             Triangle1 = CreateShape("triangle");
             Triangle2 = CreateShape("triangle");
+            Triangle3 = CreateShape("triangle");
         }
 
         //Gets the Hit boxes from Shape List or Enemy List
