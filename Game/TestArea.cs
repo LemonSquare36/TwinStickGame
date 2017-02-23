@@ -18,7 +18,7 @@ namespace TwinStick
 {
     class TestArea : TempCollisionHolder
     {
-
+        
         public void Initialize()
         {
 
@@ -28,15 +28,15 @@ namespace TwinStick
         {
 
         }
+
         public void Update()
         {
 
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
 
         }
-
-
     }
 }

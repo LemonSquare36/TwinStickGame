@@ -99,5 +99,11 @@ namespace TwinStick
             Polygons myPolygon = new Polygons(NewList);
             return myPolygon;
         }
+        protected Character CreateCharacter(string shapeName)
+        {
+            List<Vector2> NewList = (List<Vector2>)tempshapeVerts[shapeName];
+            Character myPolygon = new Character(NewList);
+            return myPolygon;
+        }
     }
 }
