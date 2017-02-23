@@ -21,6 +21,7 @@ namespace TwinStick
         static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Camera camera = new Camera();
+        TestArea Test;
 
         //Hashtable for storing the verticies
         protected static Hashtable shapeVerts = new Hashtable();
@@ -54,6 +55,8 @@ namespace TwinStick
         //Utilizes the crash manager and Initializes GameState
         protected override void Initialize()
         {
+            Test = new TestArea();
+            Test.Initialize();
             base.Initialize();
         }
 
@@ -63,6 +66,8 @@ namespace TwinStick
             MakeShapes();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            Test.LoadContent();
 
             Triangle1.LoadContent(100, 100);
             Triangle2.LoadContent(600, 100);
@@ -77,6 +82,8 @@ namespace TwinStick
             }
             base.Update(gameTime);
             camera.Move(key);
+
+            Test.Update();
 
             Triangle1.RealPos();
             Triangle2.RealPos();
@@ -95,6 +102,9 @@ namespace TwinStick
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, viewMatrix * Matrix.CreateScale(1));
             Triangle1.Draw(spriteBatch);
             Triangle2.Draw(spriteBatch);
+
+            Test.Draw(spriteBatch);
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
