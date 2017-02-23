@@ -177,14 +177,13 @@ namespace TwinStick
                     realPosTemp.Add(Pos);
                     continue;
                 }
-
-                //if (vertTemp.X == verticies[0].X)
-                //{
-                //    vertTemp.X--;
-                //}
-
+                
                 vertTemp.X = verts.X - getVerticies(0).X;
                 vertTemp.Y = verts.Y - getVerticies(0).Y;
+                if (verts.X == verticies[0].X)
+                {
+                    vertTemp.X--;
+                }
 
                 theta = (float)Math.Atan(vertTemp.Y / vertTemp.X);
                 H = (float)(vertTemp.X / Math.Cos(theta));
