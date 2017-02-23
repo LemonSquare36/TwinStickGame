@@ -11,5 +11,9 @@ namespace TwinStick
         {
 
         }
+        public virtual void LoadContent(float X, float Y)
+        {
+
+        }
     }
 }
