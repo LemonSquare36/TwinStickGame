@@ -9,8 +9,8 @@
     <ProjectGuid>{CE0883ED-1449-45EE-8E81-3ACA8CC2B1BB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RPGame</RootNamespace>
-    <AssemblyName>RPGame</AssemblyName>
+    <RootNamespace>TwinStick</RootNamespace>
+    <AssemblyName>TwinStick</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -59,16 +59,26 @@
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AreaManager.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="HighScores.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MenuManager.cs" />
     <Compile Include="PolygonHolder.cs" />
     <Compile Include="Polygons.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenManager.cs" />
     <Compile Include="TempCollisionHolder.cs" />
     <Compile Include="TestArea.cs" />
   </ItemGroup>
