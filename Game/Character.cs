@@ -46,7 +46,7 @@ namespace TwinStick
             {
                 rotation += rotate;
             }
-            if (keyState.IsKeyDown(Keys.E))
+            else if (keyState.IsKeyDown(Keys.E))
             {
                 rotation -= rotate;
             }
