@@ -18,7 +18,6 @@ namespace TwinStick
 {
     class TestArea : AreaManager
     {
-        KeyboardState key;
         private Character player;
         /*protected Vector2 position { get; set; }
         protected float scale { get; set; }
