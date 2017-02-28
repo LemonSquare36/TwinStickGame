@@ -75,7 +75,7 @@ namespace TwinStick
             KeyboardState key = Keyboard.GetState();
             camera.Move(key);
 
-            Test.Update();
+            Test.Update(key);
 
             Triangle1.MoveShape(key);
             Triangle1.RealPos();

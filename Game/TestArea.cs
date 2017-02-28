@@ -19,6 +19,10 @@ namespace TwinStick
     class TestArea : AreaManager
     {
         private Character player;
+        /*protected Vector2 position { get; set; }
+        protected float scale { get; set; }
+        protected Vector2 origin { get; set; }
+        public Color color { get; set; }*/
 
         public void Initialize()
         {
@@ -28,13 +32,13 @@ namespace TwinStick
         public void LoadContent()
         {
             MakeShapes();
-
+            
             player.LoadContent(100,300);
         }
 
-        public void Update()
+        public void Update(KeyboardState Key)
         {
-            player.Rotate(.02f);
+            player.Rotate(0.1f, Key);
         }
 
         public void Draw(SpriteBatch spriteBatch)
