@@ -19,6 +19,8 @@ namespace TwinStick
     {
         public enum gameState { Playing, Loading, Puased }
 
+        protected static Hashtable tempshapeVerts = new Hashtable();
+
         Camera camera = new Camera();
         Vector3 screenScale = Vector3.Zero;
         Color color = Color.Blue;
@@ -27,27 +29,39 @@ namespace TwinStick
         SpriteBatch spriteBatch;
         GraphicsDeviceManager graphicsManager;
 
-        TestArea Test;
         Polygons Triangle1, Triangle2, Triangle3;
         Texture2D Cube;
 
         int loadingInterval;
 
+        #region Declare the Screens
         ScreenManager CurrentScreen;
 
-        //Hashtable for storing the verticies
-        protected static Hashtable shapeVerts = new Hashtable();
+        //areas
+        TestArea Test;
+
+        //Menus
+
+        #endregion
 
         //Constructor
         public GameState()
         {
-            CurrentScreen = new ScreenManager();
+            #region Initialize the Screens
+            //areas
+            Test = new TestArea();
+
+            //Menus
+            #endregion
         }
 
         public void Initialize()
         {
-            Test = new TestArea();
-            Test.Initialize();
+            
+            if (CurrentScreen == null)
+            {
+                CurrentScreen = Test;
+            }
             CurrentScreen.Initialize();
         }
 
@@ -63,7 +77,7 @@ namespace TwinStick
 
             MakeShapes();
 
-            Test.LoadContent();
+            CurrentScreen.LoadContent(spriteBatch);
 
             Triangle1.LoadContent(100, 100);
             Triangle2.LoadContent(600, 100);
@@ -74,8 +88,6 @@ namespace TwinStick
         {
             KeyboardState key = Keyboard.GetState();
             camera.Move(key);
-
-            Test.Update(key);
 
             Triangle1.MoveShape(key);
             Triangle1.RealPos();
@@ -90,7 +102,7 @@ namespace TwinStick
             }
             Debug.WriteLine(collide);
 
-            CurrentScreen.Update(camera, graphicsManager, Main.graphicsDevice);
+            CurrentScreen.Update(camera, graphicsManager);
         }
 
         //Draws the images and textures we use
@@ -103,12 +115,7 @@ namespace TwinStick
             Triangle1.Draw(spriteBatch);
             Triangle2.Draw(spriteBatch);
 
-            spriteBatch.Draw(Cube, Triangle1.getRealPos(0), Color.White);
-            spriteBatch.Draw(Cube, Triangle1.getRealPos(1), Color.Red);
-            spriteBatch.Draw(Cube, Triangle1.getRealPos(2), Color.Blue);
-            spriteBatch.Draw(Cube, Triangle1.getRealPos(3), Color.Gray);
-
-            Test.Draw(spriteBatch);
+            CurrentScreen.Draw();
 
             spriteBatch.End();
         }
@@ -147,7 +154,7 @@ namespace TwinStick
 
                     if (key != null)
                     {
-                        shapeVerts[key] = verticies;
+                        tempshapeVerts[key] = verticies;
                         verticies = new List<Vector2>();
                     }
                     key = line;
@@ -198,7 +205,7 @@ namespace TwinStick
         //Creates the Shapes of Polygon Class
         protected Polygons CreateShape(string shapeName)
         {
-            List<Vector2> NewList = (List<Vector2>)shapeVerts[shapeName];
+            List<Vector2> NewList = (List<Vector2>)tempshapeVerts[shapeName];
             Polygons myPolygon = new Polygons(NewList);
             return myPolygon;
         }

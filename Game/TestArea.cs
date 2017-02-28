@@ -18,30 +18,34 @@ namespace TwinStick
 {
     class TestArea : AreaManager
     {
+        KeyboardState key;
         private Character player;
         /*protected Vector2 position { get; set; }
         protected float scale { get; set; }
         protected Vector2 origin { get; set; }
         public Color color { get; set; }*/
 
-        public void Initialize()
+        public override void Initialize()
         {
             
         }
 
-        public void LoadContent()
+        public override void LoadContent(SpriteBatch spriteBatchmain)
         {
+            spriteBatch = spriteBatchmain;
+
             MakeShapes();
             
             player.LoadContent(100,300);
         }
 
-        public void Update(KeyboardState Key)
+        public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
+            getKey();
             player.Rotate(0.1f, Key);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw()
         {
             player.Draw(spriteBatch);
         }

@@ -16,6 +16,9 @@ namespace TwinStick
 {
     class ScreenManager
     {
+        protected KeyboardState Key;
+        protected SpriteBatch spriteBatch;
+
         //Holds Initialize
         public virtual void Initialize()
         {
@@ -27,7 +30,7 @@ namespace TwinStick
             
         }
         //Holds Update
-        public virtual void Update(Camera camera, GraphicsDeviceManager graphicsManager, GraphicsDevice graphicsDevice)
+        public virtual void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
 
         }
@@ -35,6 +38,10 @@ namespace TwinStick
         public virtual void Draw()
         {
 
+        }
+        public void getKey()
+        {
+            Key = Keyboard.GetState();
         }
     }
 }

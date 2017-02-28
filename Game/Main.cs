@@ -45,6 +45,7 @@ namespace TwinStick
             set { graphics = value; }
         }
 
+
         //Constructor
         public Main()
         {

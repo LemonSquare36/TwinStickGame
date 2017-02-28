@@ -18,7 +18,7 @@ namespace TwinStick
 {
     class AreaManager : ScreenManager
     {
-        protected static Hashtable tempshapeVerts = new Hashtable();
+        protected static Hashtable shapeVerts = new Hashtable();
 
         //Gets the Hit boxes from Shape List or Enemy List
         protected void RetrieveShapes()
@@ -45,7 +45,7 @@ namespace TwinStick
                     key = line;
                     if (key != null)
                     {
-                        tempshapeVerts[key] = verticies;
+                        shapeVerts[key] = verticies;
                         verticies = new List<Vector2>();
                     }
                 }
@@ -95,13 +95,13 @@ namespace TwinStick
         //Creates the Shapes of Polygon Class
         protected Polygons CreateShape(string shapeName)
         {
-            List<Vector2> NewList = (List<Vector2>)tempshapeVerts[shapeName];
+            List<Vector2> NewList = (List<Vector2>)shapeVerts[shapeName];
             Polygons myPolygon = new Polygons(NewList);
             return myPolygon;
         }
         protected Character CreateCharacter(string shapeName)
         {
-            List<Vector2> NewList = (List<Vector2>)tempshapeVerts[shapeName];
+            List<Vector2> NewList = (List<Vector2>)shapeVerts[shapeName];
             Character myPolygon = new Character(NewList);
             return myPolygon;
         }
