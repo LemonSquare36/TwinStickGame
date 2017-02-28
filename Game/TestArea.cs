@@ -16,7 +16,7 @@ using System.Collections;
 
 namespace TwinStick
 {
-    class TestArea : TempCollisionHolder
+    class TestArea : AreaManager
     {
         private Character player;
 
