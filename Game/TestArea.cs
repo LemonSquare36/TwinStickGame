@@ -42,6 +42,7 @@ namespace TwinStick
         {
             getKey();
             player.Rotate(0.1f, Key);
+            player.MovePlayer(Key);
         }
 
         public override void Draw()

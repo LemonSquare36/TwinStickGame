@@ -50,6 +50,25 @@ namespace TwinStick
             {
                 rotation -= rotate;
             }
-        }
+        }  
+        public void MovePlayer(KeyboardState Key)
+        {
+            if (Key.IsKeyDown(Keys.K))
+            {
+                Placement.Y++;                
+            }
+            if (Key.IsKeyDown(Keys.I))
+            {
+                Placement.Y--;
+            }
+            if (Key.IsKeyDown(Keys.J))
+            {
+                Placement.X--;
+            }
+            if (Key.IsKeyDown(Keys.L))
+            {
+                Placement.X++;
+            }
+        }   
     }
 }
