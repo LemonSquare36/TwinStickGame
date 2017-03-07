@@ -26,6 +26,11 @@ namespace TwinStick
             }
         }
 
+        public void Initialize()
+        {
+            
+        }
+
         //Loads the texture 2D's using image name
         public override void LoadContent(float X, float Y)
         {
@@ -37,38 +42,61 @@ namespace TwinStick
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
+            
         }
 
         //Roatates the Shape
-        public void Rotate(float rotate, KeyboardState keyState)
+        public void Rotate(float rotate, KeyboardState keyState,Camera camera)
         {
-            if(keyState.IsKeyDown(Keys.Q))
+            MouseState curMouse = Mouse.GetState();
+            Vector2 mouseLoc = new Vector2(curMouse.X, curMouse.Y);
+            GetMousePosWorld(camera, ref mouseLoc);
+            Debug.WriteLine("mouse1: "+mouseLoc.X + " " + mouseLoc.Y);
+            Vector2 direction = mouseLoc - Placement;
+            rotation = (float)(Math.Atan2(direction.Y, direction.X))+(float)Math.PI/2;
+
+        
+
+            /*if(keyState.IsKeyDown(Keys.Q))
             {
                 rotation += rotate;
             }
             else if (keyState.IsKeyDown(Keys.E))
             {
                 rotation -= rotate;
-            }
+            }*/
         }  
-        public void MovePlayer(KeyboardState Key)
+        private void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
         {
+            float scaledMouseX = mouseLoc.X*2;//fixme
+            float scaledMouseY = mouseLoc.Y*2;//fixme
+            mouseLoc.X = scaledMouseX - camera.Position.X;
+            mouseLoc.Y = scaledMouseY - camera.Position.Y;
+            Debug.WriteLine("mouse1: "+mouseLoc.X + " " + mouseLoc.Y);
+        }
+        public void MovePlayer(KeyboardState Key, Camera camera)
+        {           
+            Movement = Vector2.Zero;
+            
             if (Key.IsKeyDown(Keys.K))
             {
-                Placement.Y++;                
+                Movement = new Vector2(Movement.X, Movement.Y + 12f);
             }
             if (Key.IsKeyDown(Keys.I))
             {
-                Placement.Y--;
+                Movement = new Vector2(Movement.X, Movement.Y - 12f);
             }
             if (Key.IsKeyDown(Keys.J))
             {
-                Placement.X--;
+                Movement = new Vector2(Movement.X - 12f, Movement.Y);
             }
             if (Key.IsKeyDown(Keys.L))
             {
-                Placement.X++;
+                Movement = new Vector2(Movement.X + 12f, Movement.Y);
             }
-        }   
+            OldPosition = Placement;
+            Placement += Movement;
+            Debug.WriteLine(Placement.X +" "+ Placement.Y);
+        }
     }
 }

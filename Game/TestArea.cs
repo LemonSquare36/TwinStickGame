@@ -41,8 +41,9 @@ namespace TwinStick
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
             getKey();
-            player.Rotate(0.1f, Key);
-            player.MovePlayer(Key);
+            player.Rotate(0.1f, Key,camera);
+            player.MovePlayer(Key,camera);
+
         }
 
         public override void Draw()

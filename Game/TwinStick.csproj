@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="AnotherTestArea.cs" />
     <Compile Include="AreaManager.cs" />
+    <Compile Include="Bullets.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="GameState.cs" />
@@ -94,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Hold the Usings.txt" />
+    <Content Include="Content\Sprites\TestSprites\Bullet.png" />
     <Content Include="Content\Sprites\TestSprites\tempPlayerSprite.png" />
     <Content Include="Content\Sprites\Triangle.png" />
     <Content Include="Content\Sprites\WhiteCube.png" />
