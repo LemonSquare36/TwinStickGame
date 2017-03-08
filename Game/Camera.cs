@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace TwinStick
 {
 
-    class Camera
+    public class Camera
     {
 
         public float Zoom { get; set; }

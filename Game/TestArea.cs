@@ -23,6 +23,7 @@ namespace TwinStick
         protected float scale { get; set; }
         protected Vector2 origin { get; set; }
         public Color color { get; set; }*/
+        Texture2D Cube;
 
         public override void Initialize()
         {
@@ -36,12 +37,15 @@ namespace TwinStick
             MakeShapes();
             
             player.LoadContent(100,300);
+
+            Cube = Main.GameContent.Load<Texture2D>("Sprites/WhiteCube");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
+            player.RealPos();
             getKey();
-            player.Rotate(0.1f, Key,camera);
+            player.Rotate(12, Key,camera);
             player.MovePlayer(Key,camera);
 
         }
@@ -49,6 +53,11 @@ namespace TwinStick
         public override void Draw()
         {
             player.Draw(spriteBatch);
+            spriteBatch.Draw(Cube, player.getRealPos(0), Color.Blue);
+            spriteBatch.Draw(Cube, player.getRealPos(1), Color.Blue);
+            spriteBatch.Draw(Cube, player.getRealPos(2), Color.Blue);
+            spriteBatch.Draw(Cube, player.getRealPos(3), Color.Blue);
+            spriteBatch.Draw(Cube, player.getRealPos(4), Color.Blue);
         }
 
         private void MakeShapes()

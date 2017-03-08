@@ -27,7 +27,7 @@ namespace TwinStick
             StreamReader shapeConfig = new StreamReader(Path.Combine(Main.GameContent.RootDirectory, Resource));
 
             string line;
-            string key = null;
+            string key = "";
             List<Vector2> verticies = new List<Vector2>();
             while ((line = shapeConfig.ReadLine()) != null)
             {
@@ -42,12 +42,13 @@ namespace TwinStick
                 }
                 catch
                 {
-                    key = line;
+
                     if (key != null)
                     {
                         shapeVerts[key] = verticies;
                         verticies = new List<Vector2>();
                     }
+                    key = line;
                 }
             }
             shapeConfig.Close();
