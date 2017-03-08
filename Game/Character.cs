@@ -41,8 +41,7 @@ namespace TwinStick
         //Draws the Images with current Texture
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
-            
+            spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);            
         }
 
         //Roatates the Shape
@@ -54,17 +53,6 @@ namespace TwinStick
             Debug.WriteLine("mouse1: "+mouseLoc.X + " " + mouseLoc.Y);
             Vector2 direction = mouseLoc - Placement;
             rotation = (float)(Math.Atan2(direction.Y, direction.X))+(float)Math.PI/2;
-
-        
-
-            /*if(keyState.IsKeyDown(Keys.Q))
-            {
-                rotation += rotate;
-            }
-            else if (keyState.IsKeyDown(Keys.E))
-            {
-                rotation -= rotate;
-            }*/
         }  
         private void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
         {
