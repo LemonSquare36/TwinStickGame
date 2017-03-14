@@ -18,6 +18,7 @@ namespace TwinStick
     {
         protected KeyboardState Key;
         protected SpriteBatch spriteBatch;
+        protected string nextScreen;
 
         //Holds Initialize
         public virtual void Initialize()
@@ -42,6 +43,17 @@ namespace TwinStick
         public void getKey()
         {
             Key = Keyboard.GetState();
+        }
+
+        //Holds the Function
+        public virtual void ButtonReset()
+        {
+
+        }
+        //Gets the next screen
+        public string getNextScreen()
+        {
+            return nextScreen;
         }
     }
 }

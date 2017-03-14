@@ -69,12 +69,14 @@
     <Compile Include="AnotherTestArea.cs" />
     <Compile Include="AreaManager.cs" />
     <Compile Include="Bullets.cs" />
+    <Compile Include="Button.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="HighScores.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="PolygonHolder.cs" />
     <Compile Include="Polygons.cs" />
@@ -94,6 +96,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Buttons\Play.png" />
+    <Content Include="Content\Buttons\PlayPressed.png" />
     <Content Include="Content\Hold the Usings.txt" />
     <Content Include="Content\Sprites\TestSprites\Bullet.png" />
     <Content Include="Content\Sprites\TestSprites\tempPlayerSprite.png" />

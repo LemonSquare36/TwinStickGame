@@ -38,7 +38,7 @@ namespace TwinStick
         TestArea Test;
         AnotherTestArea Atest;
         //Menus
-
+        MainMenu MainMenu;
         #endregion
 
         //Constructor
@@ -49,15 +49,18 @@ namespace TwinStick
             Test = new TestArea();
             Atest = new AnotherTestArea();
             //Menus
+            MainMenu = new MainMenu();
             #endregion
+
+            MainMenu.ChangeScreen += HandleScreenChanged;
         }
 
         public void Initialize()
         {
-            
+
             if (CurrentScreen == null)
             {
-                CurrentScreen = Test;
+                CurrentScreen = MainMenu;
             }
             CurrentScreen.Initialize();
         }
@@ -77,7 +80,7 @@ namespace TwinStick
         {
             KeyboardState key = Keyboard.GetState();
             camera.Move(key);
-            if(key.IsKeyDown(Keys.Q))
+            if (key.IsKeyDown(Keys.Q))
             {
                 if (CurrentScreen == Test)
                     CurrentScreen = Atest;
@@ -101,6 +104,31 @@ namespace TwinStick
             CurrentScreen.Draw();
 
             spriteBatch.End();
+        }
+
+        //The Event that Changes the Screens
+        public void HandleScreenChanged(object sender, EventArgs eventArgs)
+        {
+            bool Load = true;
+            //Next Screen is Based off the buttons Name (not garenteed to even load a new screen)
+            switch (CurrentScreen.getNextScreen())
+            {
+                case "Play":
+                    CurrentScreen = Test;
+                    break;
+
+                default:
+                    Load = false;
+                    break;
+            }
+            //Resets the button on the screen
+            CurrentScreen.ButtonReset();
+            //Loads if a new screen is activated
+            if (Load)
+            {
+                Initialize();
+                LoadContent(spriteBatch, graphicsManager);
+            }
         }
     }
 }

@@ -11,55 +11,50 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
-using System.IO;
-using System.Collections;
 
 namespace TwinStick
 {
-    class TestArea : AreaManager
+    class MainMenu : MenuManager
     {
-        private Character player;
-        /*protected Vector2 position { get; set; }
-        protected float scale { get; set; }
-        protected Vector2 origin { get; set; }
-        public Color color { get; set; }*/
-        Texture2D Cube;
+        Button Play;
+        Texture2D PlayUnpressed, PlayPressed;
 
         public override void Initialize()
         {
-            
+            base.Initialize();
         }
 
         public override void LoadContent(SpriteBatch spriteBatchmain)
         {
             spriteBatch = spriteBatchmain;
+            PlayUnpressed = Main.GameContent.Load<Texture2D>("Buttons/Play");
+            PlayPressed = Main.GameContent.Load<Texture2D>("Buttons/PlayPressed");
 
-            MakeShapes();
-            
-            player.LoadContent(100,300);
+            Play = new Button(new Vector2(300, 200), 600, 220, PlayUnpressed, PlayPressed, "Play");
 
-            Cube = Main.GameContent.Load<Texture2D>("Sprites/WhiteCube");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
-            player.RealPos();
-            getKey();
-            player.Rotate(12, Key,camera);
-            player.MovePlayer(Key,camera);
+            //Get current mouse state
+            Vector2 worldPosition = MousePos();
 
+            Play.Update(mouse, worldPosition);
+            Debug.WriteLine(worldPosition);
+            Debug.WriteLine(mouse.Position);
+            Play.ButtonClicked += ButtonClicked;
         }
 
         public override void Draw()
         {
-            player.Draw(spriteBatch);
+            Play.Draw(spriteBatch);
         }
 
-        private void MakeShapes()
+        //Used for edge detection
+        public override void ButtonReset()
         {
-            RetrieveShapes();
+            Play.ButtonReset();
 
-            player = CreateCharacter("player");
         }
     }
 }
