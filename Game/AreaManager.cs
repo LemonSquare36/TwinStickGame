@@ -59,38 +59,71 @@ namespace TwinStick
         protected bool Collision(Polygons Shape, Polygons Shape2)
         {
             bool collision = true;
+            bool inrange = false;
+            bool notinrange = false;
+            double Range = Shape.getRange() + Shape2.getRange();
 
-            // Y is for the verticies one higher than i; I named it Y since it rhymes with i;
-            int Y = 2;
-            // Z is the same as Y but for Shape2; Named that since it is after Y;
-            int Z = 2;
-
-            for (int i = 1; i < Shape.getNumVerticies(); i++)
+            if (Math.Abs(Distance(Shape.getRealPos(0), Shape2.getRealPos(0))) < Range)
             {
-                if (Y == Shape.getNumVerticies())
-                {
-                    Y = 1;
-                }
-                if (!Shape.Projection(Shape2, Shape.NormalVector(i, Y)))
-                {
-                    collision = false;
-                }
-                Y++;
+                inrange = true;
             }
 
-            for (int i = 1; i < Shape2.getNumVerticies(); i++)
+            if (inrange)
             {
-                if (Z == Shape2.getNumVerticies())
+                // Y is for the verticies one higher than i; I named it Y since it rhymes with i;
+                int Y = 2;
+                // Z is the same as Y but for Shape2; Named that since it is after Y;
+                int Z = 2;
+
+                for (int i = 1; i < Shape.getNumVerticies(); i++)
                 {
-                    Z = 1;
+                    if (Y == Shape.getNumVerticies())
+                    {
+                        Y = 1;
+                    }
+                    if (!Shape.Projection(Shape2, Shape.NormalVector(i, Y)))
+                    {
+                        collision = false;
+                    }
+                    Y++;
                 }
-                if (!Shape2.Projection(Shape, Shape2.NormalVector(i, Z)))
+
+                for (int i = 1; i < Shape2.getNumVerticies(); i++)
                 {
-                    collision = false;
+                    if (Z == Shape2.getNumVerticies())
+                    {
+                        Z = 1;
+                    }
+                    if (!Shape2.Projection(Shape, Shape2.NormalVector(i, Z)))
+                    {
+                        collision = false;
+                    }
+                    Z++;
                 }
-                Z++;
+
+                return collision;
             }
-            return collision;
+            return notinrange;
+        }
+        //allows the enemies to chase the player
+        protected double Distance(Vector2 point1, Vector2 point2)
+        {
+            double D = point2.X - point1.X;
+
+            double X = Math.Pow((point2.X - point1.X), 2);
+            double Y = Math.Pow((point2.Y - point1.Y), 2);
+
+            double unit = Math.Sqrt(X + Y);
+
+            if (D < 0)
+            {
+                return -unit;
+            }
+            else if (D > 0)
+            {
+                return unit;
+            }
+            return 0;
         }
 
         //Creates the Shapes of Polygon Class

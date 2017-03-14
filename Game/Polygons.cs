@@ -19,6 +19,7 @@ namespace TwinStick
         public Vector2 Movement = Vector2.Zero;
         protected Vector2 OldPosition = new Vector2();
         public Vector2 Placement;
+        double range = 0;
 
 
         //Holds Shapes Verticies
@@ -48,6 +49,10 @@ namespace TwinStick
         {
             return verticies[vertNumber];
         }
+        public double getRange()
+        {
+            return range;
+        }
         //Gets how many verticies there are 
         public int getNumVerticies()
         {
@@ -64,6 +69,20 @@ namespace TwinStick
             Placement.X = X;
             Placement.Y = Y;
             texture = Main.GameContent.Load<Texture2D>("Sprites/Triangle");
+
+
+
+            foreach (Vector2 vert in getVerticiesList())
+            {
+                double temprange = 0;
+                temprange = Distance(getVerticies(0), vert);
+
+                temprange = Math.Abs(temprange);
+                if (temprange > range)
+                {
+                    range = temprange;
+                }
+            }
         }
         //Draws the Images with current Texture
         public override void Draw(SpriteBatch spriteBatch)
@@ -199,6 +218,27 @@ namespace TwinStick
         public void Stop()
         {
             Placement = OldPosition;
+        }
+
+        //allows the enemies to chase the player
+        protected double Distance(Vector2 point1, Vector2 point2)
+        {
+            double D = point2.X - point1.X;
+
+            double X = Math.Pow((point2.X - point1.X), 2);
+            double Y = Math.Pow((point2.Y - point1.Y), 2);
+
+            double unit = Math.Sqrt(X + Y);
+
+            if (D < 0)
+            {
+                return -unit;
+            }
+            else if (D > 0)
+            {
+                return unit;
+            }
+            return 0;
         }
     }
 }
