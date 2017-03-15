@@ -30,7 +30,7 @@ namespace TwinStick
             PlayUnpressed = Main.GameContent.Load<Texture2D>("Buttons/Play");
             PlayPressed = Main.GameContent.Load<Texture2D>("Buttons/PlayPressed");
 
-            Play = new Button(new Vector2(300, 200), 600, 220, PlayUnpressed, PlayPressed, "Play");
+            Play = new Button(new Vector2(500, 350), 600, 220, PlayPressed, PlayUnpressed, "Play");
 
         }
 

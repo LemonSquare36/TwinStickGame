@@ -68,10 +68,13 @@
   <ItemGroup>
     <Compile Include="AnotherTestArea.cs" />
     <Compile Include="AreaManager.cs" />
+    <Compile Include="BasicEnemey.cs" />
     <Compile Include="Bullets.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Enemies.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="HighScores.cs" />

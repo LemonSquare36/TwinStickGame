@@ -46,8 +46,6 @@ namespace TwinStick
             pressed = Pressed;
             Bname = ButtonName;
             Texture = unPressed;
-
-            Cube = Main.GameContent.Load<Texture2D>("Sprites/WhiteCube");
         }
         //Reads for inputs of the mouse in correspondence for the button
 
@@ -71,10 +69,6 @@ namespace TwinStick
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Pos, null, null, null, 0, null, Color.White);
-            spriteBatch.Draw(Cube, new Vector2(rectangle.Right, rectangle.Top), Color.Aqua);
-            spriteBatch.Draw(Cube, new Vector2(rectangle.Right, rectangle.Bottom), Color.Aqua);
-            spriteBatch.Draw(Cube, new Vector2(rectangle.Left, rectangle.Top), Color.Aqua);
-            spriteBatch.Draw(Cube, new Vector2(rectangle.Left, rectangle.Bottom), Color.Aqua);
         }
 
         //Button Event
