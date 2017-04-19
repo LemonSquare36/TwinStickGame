@@ -117,6 +117,15 @@ namespace TwinStick
                     CurrentScreen = Test;
                     break;
 
+                case "Exit":
+                    Environment.Exit(0);
+                    break;
+
+                case "FullScreen":
+                    camera.ChangeScreenSize(graphicsManager);
+                    Load = false;
+                    break;
+
                 default:
                     Load = false;
                     break;
