@@ -18,6 +18,7 @@ namespace TwinStick
     {
         public BasicEnemey(List<Vector2> numbers) : base(numbers)
         {
+
         }
     }
 }
