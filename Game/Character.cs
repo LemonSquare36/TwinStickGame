@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace TwinStick
 {
-    class Character : Polygons
+    class Character : Entity
     {
         //Constructor
         public Character(List<Vector2> numbers) : base(numbers)
@@ -66,19 +66,19 @@ namespace TwinStick
         {           
             Movement = Vector2.Zero;
             
-            if (Key.IsKeyDown(Keys.K))
+            if (Key.IsKeyDown(Keys.S))
             {
                 Movement = new Vector2(Movement.X, Movement.Y + 12f);
             }
-            if (Key.IsKeyDown(Keys.I))
+            if (Key.IsKeyDown(Keys.W))
             {
                 Movement = new Vector2(Movement.X, Movement.Y - 12f);
             }
-            if (Key.IsKeyDown(Keys.J))
+            if (Key.IsKeyDown(Keys.A))
             {
                 Movement = new Vector2(Movement.X - 12f, Movement.Y);
             }
-            if (Key.IsKeyDown(Keys.L))
+            if (Key.IsKeyDown(Keys.D))
             {
                 Movement = new Vector2(Movement.X + 12f, Movement.Y);
             }

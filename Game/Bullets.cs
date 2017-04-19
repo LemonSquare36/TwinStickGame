@@ -16,13 +16,17 @@ namespace TwinStick
 {
     class Bullets : Polygons
     {
-        public Bullets(List<Vector2> numbers) : base(numbers)
+        protected Texture2D bullet;
+        protected Vector2 velocity;
+        protected Vector2 origin;
+        protected bool isVisible;
+        protected const float tangentialVelocity = 0f;
+        
+
+
+        public Bullets(List<Vector2> bullets) : base(bullets)
         {
-            /*rotation = 0;
-            foreach (Vector2 num in numbers)
-            {
-                verticies.Add(num);
-            }*/
+            
         }
 
         public void Initialize()
@@ -62,11 +66,6 @@ namespace TwinStick
             mouseLoc.X = scaledMouseX - camera.Position.X;
             mouseLoc.Y = scaledMouseY - camera.Position.Y;
             Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
-        }
-
-        public void ShootBullet(KeyboardState Key, Camera camera)
-        {
-            Movement = Vector2.Zero;
         }
     }
 }

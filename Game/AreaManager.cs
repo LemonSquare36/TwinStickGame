@@ -139,5 +139,14 @@ namespace TwinStick
             Character myPolygon = new Character(NewList);
             return myPolygon;
         }
+        protected Bullets CreateBullet(string shapeName, Vector2 pos, Vector2 pos2)
+        {
+            List<Vector2> NewList = (List<Vector2>)shapeVerts[shapeName];
+            Bullets bullet = new Bullets(NewList);
+            bullet.RealPos();
+            bullet.LoadContent(pos.X, pos.Y);
+            return bullet;
+        }
+
     }
 }
