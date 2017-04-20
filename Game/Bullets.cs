@@ -18,7 +18,6 @@ namespace TwinStick
     {
         protected Texture2D bullet;
         protected Vector2 velocity;
-        protected Vector2 origin;
         protected bool isVisible;
         protected const float tangentialVelocity = 0f;
         
@@ -33,7 +32,13 @@ namespace TwinStick
         {
 
         }
-
+        public void SetVelocity(Vector2 mousePos)
+        {
+            velocity.X = mousePos.X - Placement.X;
+            velocity.Y = mousePos.Y - Placement.Y;
+            velocity.Normalize();
+            velocity *= 20;
+        }
         //Loads the texture 2D's using image name
         public override void LoadContent(float X, float Y)
         {
@@ -59,13 +64,13 @@ namespace TwinStick
             rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;*/
         }
 
-        private void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
+        public void MoveBullet(Camera camera)
         {
-            float scaledMouseX = mouseLoc.X * 2;
-            float scaledMouseY = mouseLoc.Y * 2;
-            mouseLoc.X = scaledMouseX - camera.Position.X;
-            mouseLoc.Y = scaledMouseY - camera.Position.Y;
-            Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
+            Placement += velocity;
+
+
         }
+
+       
     }
 }
