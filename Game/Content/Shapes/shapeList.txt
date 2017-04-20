@@ -3,7 +3,7 @@ triangle
 133,0
 265,233
 0,233
-bullets
+bullet
 20,17
 0,0
 39,0

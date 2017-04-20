@@ -21,6 +21,7 @@ namespace TwinStick
         Polygons Triangle1;
         private List<Bullets> bulletsList = new List<Bullets>();
         private Character player;
+        MouseState mouse = new MouseState();
         /*protected Vector2 position { get; set; }
         protected float scale { get; set; }
         protected Vector2 origin { get; set; }
@@ -40,6 +41,7 @@ namespace TwinStick
             
             player.LoadContent(100,300);
             Triangle1.LoadContent(100, 100);
+            
 
             Cube = Main.GameContent.Load<Texture2D>("Sprites/WhiteCube");
         }
@@ -50,13 +52,14 @@ namespace TwinStick
             getKey();
             player.Rotate(12, Key,camera);
             player.MovePlayer(Key,camera);
+            mouse = Mouse.GetState();
+            ShootBullet(mouse);
 
             foreach(Bullets bullet in bulletsList)
             {
                 bullet.RealPos();
-                bullet.Draw(spriteBatch);
             }
-            foreach (Bullets bullet in bulletsList)
+            foreach(Bullets bullet in bulletsList)
             {
                 bullet.RealPos();
                 bool collide = Collision(bullet, Triangle1);
@@ -66,7 +69,6 @@ namespace TwinStick
                     bulletsList.Remove(bullet);
                 }
             }
-
         }
 
         public override void Draw()
@@ -93,7 +95,7 @@ namespace TwinStick
             bulletsList.Add(CreateBullet("bullet", player.Placement, player.Placement));
         }
 
-        public void ShootBullet(MouseState mouse, KeyboardState Key, Camera camera)
+        public void ShootBullet(MouseState mouse)
         {
             if (mouse.LeftButton == ButtonState.Pressed)
             {
