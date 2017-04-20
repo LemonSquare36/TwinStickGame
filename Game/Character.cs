@@ -53,14 +53,14 @@ namespace TwinStick
             worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
 
             Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
-            GetMousePosWorld(camera, ref worldPosition);
+            GetMousePosWorld(camera, ref mouseLoc);
             Vector2 direction = mouseLoc - Placement;
             rotation = (float)(Math.Atan2(direction.Y, direction.X))+(float)Math.PI/2;
         }  
         private void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
         {
-            float scaledMouseX = mouseLoc.X*2;//fixme
-            float scaledMouseY = mouseLoc.Y*2;//fixme
+            float scaledMouseX = mouseLoc.X;
+            float scaledMouseY = mouseLoc.Y;
             mouseLoc.X = scaledMouseX - camera.Position.X;
             mouseLoc.Y = scaledMouseY - camera.Position.Y;
             Debug.WriteLine("mouse1: "+mouseLoc.X + " " + mouseLoc.Y);

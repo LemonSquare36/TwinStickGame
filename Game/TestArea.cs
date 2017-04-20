@@ -60,13 +60,9 @@ namespace TwinStick
             mouse = Mouse.GetState();
             ShootBullet(mouse);
 
-            foreach(Bullets bullet in bulletsList)
+            foreach (Bullets bullet in bulletsList.ToList())
             {
-                bullet.RealPos();
                 bullet.MoveBullet(camera);
-            }
-            foreach(Bullets bullet in bulletsList)
-            {
                 bullet.RealPos();
                 bool collide = Collision(bullet, Triangle1);
                 if (collide)
