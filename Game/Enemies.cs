@@ -18,6 +18,7 @@ namespace TwinStick
     {
         public Enemies(List<Vector2> numbers) : base(numbers)
         {
+
         }
     }
 }

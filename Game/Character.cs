@@ -47,10 +47,13 @@ namespace TwinStick
         //Roatates the Shape
         public void Rotate(float rotate, KeyboardState keyState,Camera camera)
         {
+            Vector2 worldPosition = Vector2.Zero;
             MouseState curMouse = Mouse.GetState();
-            Vector2 mouseLoc = new Vector2(curMouse.X, curMouse.Y);
-            GetMousePosWorld(camera, ref mouseLoc);
-            Debug.WriteLine("mouse1: "+mouseLoc.X + " " + mouseLoc.Y);
+            worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
+            worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
+
+            Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
+            GetMousePosWorld(camera, ref worldPosition);
             Vector2 direction = mouseLoc - Placement;
             rotation = (float)(Math.Atan2(direction.Y, direction.X))+(float)Math.PI/2;
         }  
