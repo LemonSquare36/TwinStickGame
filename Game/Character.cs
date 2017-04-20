@@ -49,8 +49,12 @@ namespace TwinStick
         {
             Vector2 worldPosition = Vector2.Zero;
             MouseState curMouse = Mouse.GetState();
-            worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
-            worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
+            try
+            {
+                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
+                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
+            }
+            catch { }
 
             Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
             GetMousePosWorld(camera, ref mouseLoc);

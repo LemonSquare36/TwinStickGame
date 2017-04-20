@@ -94,8 +94,16 @@ namespace TwinStick
 
         protected void addnewbullet(Camera camera)
         {
+            Vector2 worldPosition = Vector2.Zero;
             MouseState curMouse = Mouse.GetState();
-            Vector2 mouseLoc = new Vector2(curMouse.X, curMouse.Y);
+            try
+            {
+                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
+                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
+            }
+            catch { }
+
+            Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
             GetMousePosWorld(camera, ref mouseLoc);
             Bullets newBullet = CreateBullet("bullet", player.Placement, mouseLoc);
      
@@ -103,8 +111,8 @@ namespace TwinStick
         }
         public void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
         {
-            float scaledMouseX = mouseLoc.X * 2;
-            float scaledMouseY = mouseLoc.Y * 2;
+            float scaledMouseX = mouseLoc.X;
+            float scaledMouseY = mouseLoc.Y;
             mouseLoc.X = scaledMouseX - camera.Position.X;
             mouseLoc.Y = scaledMouseY - camera.Position.Y;
             Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
