@@ -11,46 +11,37 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
-using System.IO;
-using System.Collections;
 
 namespace TwinStick
 {
-    class TestArea : AreaManager
+    class Level1 : AreaManager
     {
-        Polygons Triangle1;
         private List<Bullets> bulletsList = new List<Bullets>();
+        private List<Polygons> polyList = new List<Polygons>();
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
-        Texture2D Cube;
 
         public override void Initialize()
         {
             TimerSetUp();
         }
 
-
         public override void LoadContent(SpriteBatch spriteBatchmain)
         {
             spriteBatch = spriteBatchmain;
 
             MakeShapes();
-            
-            player.LoadContent(100,500);
-            Triangle1.LoadContent(100, 100);
-            
 
-            Cube = Main.GameContent.Load<Texture2D>("Sprites/WhiteCube");
+            player.LoadContent(100, 300);
+
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
             cam = camera;
-            camera.Follow(new Vector2 (-player.Placement.X + 350, -player.Placement.Y + 200));
-            Triangle1.RealPos();
             getKey();
-            player.Rotate(12, Key,camera);
+            player.Rotate(12, Key, camera);
             player.MovePlayer(Key, camera);
             mouse = Mouse.GetState();
             ShootBullet(mouse, cam, player.Placement, ref bulletsList);
@@ -59,19 +50,12 @@ namespace TwinStick
             {
                 bullet.MoveBullet(camera);
                 bullet.RealPos();
-                bool collide = Collision(Triangle1, bullet);
-                if (collide)
-                {
-                    bullet.Stop();
-                    bulletsList.Remove(bullet);
-                }
             }
         }
 
         public override void Draw()
         {
             player.Draw(spriteBatch);
-            Triangle1.Draw(spriteBatch);
 
             foreach (Bullets bullet in bulletsList)
             {
@@ -84,9 +68,6 @@ namespace TwinStick
             RetrieveShapes();
 
             player = CreateCharacter("player");
-            Triangle1 = CreateShape("triangle");
         }
-
-        
     }
 }

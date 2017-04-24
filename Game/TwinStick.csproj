@@ -79,6 +79,7 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="HighScores.cs" />
+    <Compile Include="Level1.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MenuManager.cs" />
@@ -120,6 +121,9 @@
     <Content Include="Content\Sprites\TestSprites\tempPlayerSprite.png" />
     <Content Include="Content\Sprites\Triangle.png" />
     <Content Include="Content\Sprites\WhiteCube.png" />
+    <Content Include="Content\Sprites\WorldSprites\Floor.png" />
+    <Content Include="Content\Sprites\WorldSprites\Pit.png" />
+    <Content Include="Content\Sprites\WorldSprites\Wall %281%29.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

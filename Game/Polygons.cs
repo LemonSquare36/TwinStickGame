@@ -191,8 +191,8 @@ namespace TwinStick
             {
                 if (verts == getVerticies(0))
                 {
-                    Pos.X = verts.X + Placement.X;
-                    Pos.Y = verts.Y + Placement.Y;
+                    Pos.X = Placement.X;
+                    Pos.Y = Placement.Y;
                     realPosTemp.Add(Pos);
                     continue;
                 }
