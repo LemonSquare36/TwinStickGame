@@ -101,12 +101,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Buttons\Exit.png" />
-    <Content Include="Content\Buttons\ExitPresssed.png" />
+    <Content Include="Content\Buttons\ExitHighlight.png" />
     <Content Include="Content\Buttons\FullScreen.png" />
     <Content Include="Content\Buttons\FullScreenPressed.png" />
     <Content Include="Content\Buttons\Play.png" />
     <Content Include="Content\Buttons\PlayPressed.png" />
     <Content Include="Content\Hold the Usings.txt" />
+    <Content Include="Content\Sprites\Bullets\Enemy Bullet.png" />
+    <Content Include="Content\Sprites\Character\Topdown Char Final Pistol.png" />
+    <Content Include="Content\Sprites\Character\Topdown Char Final Rifle.png" />
+    <Content Include="Content\Sprites\Character\Topdown Char Final Shotgun.png" />
+    <Content Include="Content\Sprites\Enemies\Enemy Claymore.png" />
+    <Content Include="Content\Sprites\Enemies\Enemy Gun.png" />
+    <Content Include="Content\Sprites\Enemies\Enemy Knife.png" />
+    <Content Include="Content\Sprites\Enemies\Enemy Minigun.png" />
+    <Content Include="Content\Sprites\Enemies\Enemy Rifle.png" />
     <Content Include="Content\Sprites\TestSprites\Bullet.png" />
     <Content Include="Content\Sprites\TestSprites\tempPlayerSprite.png" />
     <Content Include="Content\Sprites\Triangle.png" />
