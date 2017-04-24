@@ -37,7 +37,7 @@ namespace TwinStick
 
             MakeShapes();
             
-            player.LoadContent(100,300);
+            player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100);
             
 
@@ -47,10 +47,11 @@ namespace TwinStick
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
             cam = camera;
+            camera.Follow(new Vector2 (-player.Placement.X + 350, -player.Placement.Y + 200));
             Triangle1.RealPos();
             getKey();
             player.Rotate(12, Key,camera);
-            player.MovePlayer(Key,camera);
+            player.MovePlayer(Key, camera);
             mouse = Mouse.GetState();
             ShootBullet(mouse, cam, player.Placement, ref bulletsList);
 

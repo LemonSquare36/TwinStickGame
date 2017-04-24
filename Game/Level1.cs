@@ -17,6 +17,7 @@ namespace TwinStick
     class Level1 : AreaManager
     {
         private List<Bullets> bulletsList = new List<Bullets>();
+        private List<Polygons> polyList = new List<Polygons>();
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
