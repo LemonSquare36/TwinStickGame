@@ -66,10 +66,6 @@ namespace TwinStick
         public void MoveBullet(Camera camera)
         {
             Placement += velocity;
-
-
         }
-
-       
     }
 }

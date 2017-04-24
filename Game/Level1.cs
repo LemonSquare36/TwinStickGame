@@ -41,8 +41,8 @@ namespace TwinStick
         {
             cam = camera;
             getKey();
-            player.Rotate(12, Key, camera);
-            player.MovePlayer(Key, camera);
+            player.Rotate(Key, camera);
+            player.MovePlayer(Key);
             mouse = Mouse.GetState();
             ShootBullet(mouse, cam, player.Placement, ref bulletsList);
 

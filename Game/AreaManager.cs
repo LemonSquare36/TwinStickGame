@@ -21,6 +21,9 @@ namespace TwinStick
         protected static Hashtable shapeVerts = new Hashtable();
         Timer bulletaddtime = new Timer();
         bool elapsed = true;
+        bool canfire = true;
+
+        MouseState oldMouse = new MouseState();
 
         
 
@@ -151,19 +154,30 @@ namespace TwinStick
         //add a bullet to the list
         protected void ShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList)
         {
-            if (mouse.LeftButton == ButtonState.Pressed && elapsed == true)
+            if (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
+            {
+                canfire = true;
+            }
+            else
+            {
+                canfire = false;
+            }
+
+            if (elapsed == true && canfire == true)
             {
                 addnewbullet(cam, startpoint, ref bulletList);
                 elapsed = false;
                 bulletaddtime.Stop();
                 bulletaddtime.Start();
             }
+
+            oldMouse = mouse;
         }
         //Timer code
         protected void TimerSetUp()
         {
             bulletaddtime.Elapsed += BulletTimerElasped;
-            bulletaddtime.Interval = 500;
+            bulletaddtime.Interval = 150;
         }
         //Elapsed functuon for timer
         private void BulletTimerElasped(object source, ElapsedEventArgs e)

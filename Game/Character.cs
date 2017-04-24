@@ -45,7 +45,7 @@ namespace TwinStick
         }
 
         //Roatates the Shape
-        public void Rotate(float rotate, KeyboardState keyState,Camera camera)
+        public void Rotate(KeyboardState keyState, Camera camera)
         {
             Vector2 worldPosition = Vector2.Zero;
             MouseState curMouse = Mouse.GetState();
@@ -69,7 +69,7 @@ namespace TwinStick
             mouseLoc.Y = scaledMouseY - camera.Position.Y;
             Debug.WriteLine("mouse1: "+mouseLoc.X + " " + mouseLoc.Y);
         }
-        public void MovePlayer(KeyboardState Key, Camera camera)
+        public void MovePlayer(KeyboardState Key)
         {           
             Movement = Vector2.Zero;
             
