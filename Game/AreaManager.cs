@@ -106,7 +106,7 @@ namespace TwinStick
             return notinrange;
         }
         //distance calc
-        protected double Distance(Vector2 point1, Vector2 point2)
+     /*   protected double Distance(Vector2 point1, Vector2 point2)
         {
             double X = Math.Pow((point2.X - point1.X), 2);
             double Y = Math.Pow((point2.Y - point1.Y), 2);
@@ -114,6 +114,43 @@ namespace TwinStick
             double unit = Math.Sqrt(X + Y);
             return unit;
         }
+
+        protected void addnewbullet(Camera camera)
+        {
+            Vector2 worldPosition = Vector2.Zero;
+            MouseState curMouse = Mouse.GetState();
+            try
+            {
+                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
+                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
+            }
+            catch { }
+
+            Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
+            GetMousePosWorld(camera, ref mouseLoc);
+            Bullets newBullet = CreateBullet("bullet", player.Placement, mouseLoc);
+
+            bulletsList.Add(newBullet);
+        }
+
+        public void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
+        {
+            float scaledMouseX = mouseLoc.X;
+            float scaledMouseY = mouseLoc.Y;
+            mouseLoc.X = scaledMouseX - camera.Position.X;
+            mouseLoc.Y = scaledMouseY - camera.Position.Y;
+            Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
+        }
+        public void ShootBullet(MouseState mouse)
+        {
+            if (mouse.LeftButton == ButtonState.Pressed && elapsed == true)
+            {
+                addnewbullet(cam);
+                elapsed = false;
+                bulletaddtime.Stop();
+                bulletaddtime.Start();
+            }
+        }*/
 
         //Creates the Shapes of Polygon Class
         protected Polygons CreateShape(string shapeName)
