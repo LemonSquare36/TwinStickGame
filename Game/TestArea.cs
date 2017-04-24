@@ -22,20 +22,14 @@ namespace TwinStick
         private List<Bullets> bulletsList = new List<Bullets>();
         private Character player;
         MouseState mouse = new MouseState();
-        Timer bulletaddtime = new Timer();
-        bool elapsed = true;
         Camera cam = new Camera();
-        /*protected Vector2 position { get; set; }
-        protected float scale { get; set; }
-        protected Vector2 origin { get; set; }
-        public Color color { get; set; }*/
         Texture2D Cube;
 
         public override void Initialize()
         {
-            bulletaddtime.Elapsed += BulletTimerElasped;
-            bulletaddtime.Interval = 500;
+            TimerSetUp();
         }
+
 
         public override void LoadContent(SpriteBatch spriteBatchmain)
         {
@@ -58,7 +52,7 @@ namespace TwinStick
             player.Rotate(12, Key,camera);
             player.MovePlayer(Key,camera);
             mouse = Mouse.GetState();
-            ShootBullet(mouse);
+            ShootBullet(mouse, cam, player.Placement, ref bulletsList);
 
             foreach (Bullets bullet in bulletsList.ToList())
             {
@@ -92,45 +86,6 @@ namespace TwinStick
             Triangle1 = CreateShape("triangle");
         }
 
-        protected void addnewbullet(Camera camera)
-        {
-            Vector2 worldPosition = Vector2.Zero;
-            MouseState curMouse = Mouse.GetState();
-            try
-            {
-                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
-                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
-            }
-            catch { }
-
-            Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
-            GetMousePosWorld(camera, ref mouseLoc);
-            Bullets newBullet = CreateBullet("bullet", player.Placement, mouseLoc);
-     
-            bulletsList.Add(newBullet);
-        }
-        public void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
-        {
-            float scaledMouseX = mouseLoc.X;
-            float scaledMouseY = mouseLoc.Y;
-            mouseLoc.X = scaledMouseX - camera.Position.X;
-            mouseLoc.Y = scaledMouseY - camera.Position.Y;
-            Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
-        }
-        public void ShootBullet(MouseState mouse)
-        {
-            if (mouse.LeftButton == ButtonState.Pressed && elapsed == true)
-            {
-                addnewbullet(cam);
-                elapsed = false;
-                bulletaddtime.Stop();
-                bulletaddtime.Start();
-            }
-        }
-        private void BulletTimerElasped(object source, ElapsedEventArgs e)
-        {
-            elapsed = true;
-        }
         
     }
 }

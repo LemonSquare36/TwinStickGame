@@ -19,14 +19,11 @@ namespace TwinStick
         private List<Bullets> bulletsList = new List<Bullets>();
         private Character player;
         MouseState mouse = new MouseState();
-        Timer bulletaddtime = new Timer();
-        bool elapsed = true;
         Camera cam = new Camera();
 
         public override void Initialize()
         {
-            bulletaddtime.Elapsed += BulletTimerElasped;
-            bulletaddtime.Interval = 500;
+            TimerSetUp();
         }
 
         public override void LoadContent(SpriteBatch spriteBatchmain)
@@ -46,7 +43,7 @@ namespace TwinStick
             player.Rotate(12, Key, camera);
             player.MovePlayer(Key, camera);
             mouse = Mouse.GetState();
-            ShootBullet(mouse);
+            ShootBullet(mouse, cam, player.Placement, ref bulletsList);
 
             foreach (Bullets bullet in bulletsList.ToList())
             {
@@ -70,13 +67,6 @@ namespace TwinStick
             RetrieveShapes();
 
             player = CreateCharacter("player");
-        }
-
-       
-
-        private void BulletTimerElasped(object source, ElapsedEventArgs e)
-        {
-            elapsed = true;
         }
     }
 }

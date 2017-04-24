@@ -19,6 +19,10 @@ namespace TwinStick
     class AreaManager : ScreenManager
     {
         protected static Hashtable shapeVerts = new Hashtable();
+        Timer bulletaddtime = new Timer();
+        bool elapsed = true;
+
+        
 
         //Gets the Hit boxes from Shape List or Enemy List
         protected void RetrieveShapes()
@@ -105,8 +109,9 @@ namespace TwinStick
             }
             return notinrange;
         }
+
         //distance calc
-     /*   protected double Distance(Vector2 point1, Vector2 point2)
+        protected double Distance(Vector2 point1, Vector2 point2)
         {
             double X = Math.Pow((point2.X - point1.X), 2);
             double Y = Math.Pow((point2.Y - point1.Y), 2);
@@ -115,7 +120,9 @@ namespace TwinStick
             return unit;
         }
 
-        protected void addnewbullet(Camera camera)
+        #region bulletcode
+        //Add new bullet
+        private void addnewbullet(Camera camera, Vector2 startpoint, ref List<Bullets> bulletList)
         {
             Vector2 worldPosition = Vector2.Zero;
             MouseState curMouse = Mouse.GetState();
@@ -128,12 +135,12 @@ namespace TwinStick
 
             Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
             GetMousePosWorld(camera, ref mouseLoc);
-            Bullets newBullet = CreateBullet("bullet", player.Placement, mouseLoc);
+            Bullets newBullet = CreateBullet("bullet", startpoint, mouseLoc);
 
-            bulletsList.Add(newBullet);
+            bulletList.Add(newBullet);
         }
-
-        public void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
+        //get the pos in game for the mouse
+        private void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
         {
             float scaledMouseX = mouseLoc.X;
             float scaledMouseY = mouseLoc.Y;
@@ -141,16 +148,29 @@ namespace TwinStick
             mouseLoc.Y = scaledMouseY - camera.Position.Y;
             Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
         }
-        public void ShootBullet(MouseState mouse)
+        //add a bullet to the list
+        protected void ShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList)
         {
             if (mouse.LeftButton == ButtonState.Pressed && elapsed == true)
             {
-                addnewbullet(cam);
+                addnewbullet(cam, startpoint, ref bulletList);
                 elapsed = false;
                 bulletaddtime.Stop();
                 bulletaddtime.Start();
             }
-        }*/
+        }
+        //Timer code
+        protected void TimerSetUp()
+        {
+            bulletaddtime.Elapsed += BulletTimerElasped;
+            bulletaddtime.Interval = 500;
+        }
+        //Elapsed functuon for timer
+        private void BulletTimerElasped(object source, ElapsedEventArgs e)
+        {
+            elapsed = true;
+        }
+        #endregion
 
         //Creates the Shapes of Polygon Class
         protected Polygons CreateShape(string shapeName)
