@@ -28,7 +28,17 @@ namespace TwinStick
 
         public override void LoadContent(float X, float Y)
         {
-            base.LoadContent(X, Y);    
+            texture = Main.GameContent.Load<Texture2D>("Sprites/TestSprites/tempPlayerSprite");
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
+        }
+
+        public void MoveEnemy()
+        {
+
         }
     }
 }
