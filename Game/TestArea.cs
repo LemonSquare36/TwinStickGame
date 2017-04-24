@@ -64,7 +64,7 @@ namespace TwinStick
             {
                 bullet.MoveBullet(camera);
                 bullet.RealPos();
-                bool collide = Collision(bullet, Triangle1);
+                bool collide = Collision(Triangle1, bullet);
                 if (collide)
                 {
                     bullet.Stop();

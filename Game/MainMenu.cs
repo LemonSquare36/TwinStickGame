@@ -30,12 +30,12 @@ namespace TwinStick
             PlayUnpressed = Main.GameContent.Load<Texture2D>("Buttons/Play");
             PlayPressed = Main.GameContent.Load<Texture2D>("Buttons/PlayPressed");
             ExitUnpressed = Main.GameContent.Load<Texture2D>("Buttons/Exit");
-            ExitPressed = Main.GameContent.Load<Texture2D>("Buttons/ExitPresssed");
+            ExitPressed = Main.GameContent.Load<Texture2D>("Buttons/ExitHighlight");
             FullScreenUnpressed = Main.GameContent.Load<Texture2D>("Buttons/FullScreen");
             FullScreenPressed = Main.GameContent.Load<Texture2D>("Buttons/FullScreenPressed");
 
             Play = new Button(new Vector2(500, 350), 600, 220, PlayPressed, PlayUnpressed, "Play");
-            Exit = new Button(new Vector2(500, 700), 600, 220, ExitPressed, ExitUnpressed, "Exit");
+            Exit = new Button(new Vector2(500, 700), 600, 220, ExitUnpressed, ExitPressed, "Exit");
             FullScreen = new Button(new Vector2(500, 50), 600, 220, FullScreenPressed, FullScreenUnpressed, "FullScreen");
 
             Play.ButtonClicked += ButtonClicked;
