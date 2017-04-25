@@ -32,7 +32,7 @@ namespace TwinStick
         }
 
         //Loads the texture 2D's using image name
-        public override void LoadContent(float X, float Y)
+        public void LoadContent(float X, float Y)
         {
             Placement.X = X;
             Placement.Y = Y;

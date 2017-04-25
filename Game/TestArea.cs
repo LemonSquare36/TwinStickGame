@@ -39,7 +39,7 @@ namespace TwinStick
             MakeShapes();
             
             player.LoadContent(100,500);
-            Triangle1.LoadContent(100, 100);
+            Triangle1.LoadContent(100, 100, "Triangle");
             
 
             Cube = Main.GameContent.Load<Texture2D>("Sprites/WhiteCube");

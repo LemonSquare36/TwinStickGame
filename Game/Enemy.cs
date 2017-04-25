@@ -28,7 +28,7 @@ namespace TwinStick
 
         }
 
-        public override void LoadContent(float X, float Y)
+        public void LoadContent(float X, float Y)
         {
             texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
         }
