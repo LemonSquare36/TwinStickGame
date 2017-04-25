@@ -19,7 +19,6 @@ namespace TwinStick
         protected Texture2D bullet;
         protected Vector2 velocity;
         protected bool isVisible;
-        protected const float tangentialVelocity = 0f;
         
 
 
@@ -37,7 +36,7 @@ namespace TwinStick
             velocity.X = mousePos.X - Placement.X;
             velocity.Y = mousePos.Y - Placement.Y;
             velocity.Normalize();
-            velocity *= 20;
+            velocity *= 40;
         }
         //Loads the texture 2D's using image name
         public override void LoadContent(float X, float Y)

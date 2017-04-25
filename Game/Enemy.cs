@@ -16,6 +16,8 @@ namespace TwinStick
 {
     class Enemy : Entity
     {
+        protected Vector2 velocity;
+
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
 
@@ -28,7 +30,7 @@ namespace TwinStick
 
         public override void LoadContent(float X, float Y)
         {
-            texture = Main.GameContent.Load<Texture2D>("Sprites/TestSprites/tempPlayerSprite");
+            texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -38,7 +40,15 @@ namespace TwinStick
 
         public void MoveEnemy()
         {
+            Placement += velocity;
+        }
 
+        public void MoveEnemyPlacement(Vector2 placement)
+        {
+            velocity.X = placement.X - Placement.X;
+            velocity.Y = placement.Y - Placement.Y;
+            velocity.Normalize();
+            velocity *= 40;
         }
     }
 }

@@ -208,6 +208,11 @@ namespace TwinStick
             bullet.SetVelocity(mousePos);
             return bullet;
         }
-
+        protected Enemy CreateEnemy(string shapeName)
+        {
+            List<Vector2> NewList = (List<Vector2>)shapeVerts[shapeName];
+            Enemy myPolygon = new Enemy(NewList);
+            return myPolygon;
+        }
     }
 }

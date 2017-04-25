@@ -18,6 +18,7 @@ namespace TwinStick
     {
         public Entity(List<Vector2> numbers) : base(numbers)
         {
+
         }
     }
 }

@@ -24,6 +24,7 @@ namespace TwinStick
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
         Texture2D Cube;
+        Enemy Bonzai;
 
         public override void Initialize()
         {
@@ -66,6 +67,7 @@ namespace TwinStick
                     bulletsList.Remove(bullet);
                 }
             }
+            Bonzai.MoveEnemyPlacement(player.Placement);
         }
 
         public override void Draw()
