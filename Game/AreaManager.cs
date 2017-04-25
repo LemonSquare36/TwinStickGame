@@ -152,7 +152,7 @@ namespace TwinStick
             Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
         }
         //add a bullet to the list
-        protected void ShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList)
+        protected void ShootBullet(MouseState mouse, Camera cam, ref Vector2 startpoint, ref List<Bullets> bulletList)
         {
             if (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
             {
@@ -160,7 +160,7 @@ namespace TwinStick
             }
             else
             {
-                canfire = false;
+                canfire = true;
             }
 
             if (elapsed == true && canfire == true)
@@ -169,6 +169,7 @@ namespace TwinStick
                 elapsed = false;
                 bulletaddtime.Stop();
                 bulletaddtime.Start();
+                startpoint.X+= 20;
             }
 
             oldMouse = mouse;
@@ -177,7 +178,7 @@ namespace TwinStick
         protected void TimerSetUp()
         {
             bulletaddtime.Elapsed += BulletTimerElasped;
-            bulletaddtime.Interval = 150;
+            bulletaddtime.Interval = 1;
         }
         //Elapsed functuon for timer
         private void BulletTimerElasped(object source, ElapsedEventArgs e)
