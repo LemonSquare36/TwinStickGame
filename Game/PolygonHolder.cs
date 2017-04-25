@@ -11,7 +11,7 @@ namespace TwinStick
         {
 
         }
-        public virtual void LoadContent(float X, float Y)
+        public virtual void LoadContent(float X, float Y, string shapeFile)
         {
 
         }

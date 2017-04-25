@@ -21,10 +21,12 @@ namespace TwinStick
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
+        Polygons wall1;
 
         public override void Initialize()
         {
             TimerSetUp();
+
         }
 
         public override void LoadContent(SpriteBatch spriteBatchmain)
@@ -34,12 +36,17 @@ namespace TwinStick
             MakeShapes();
 
             player.LoadContent(100, 300);
+            wall1.LoadContent(200, 300, "WorldSprites/Wall (1)");
 
+            #region polylistAdd
+            polyList.Add(wall1);
+            #endregion
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
             cam = camera;
+            camera.Follow(new Vector2(-player.Placement.X + 372, -player.Placement.Y + 220));
             getKey();
             player.Rotate(Key, camera);
             player.MovePlayer(Key);
@@ -50,6 +57,15 @@ namespace TwinStick
             {
                 bullet.MoveBullet(camera);
                 bullet.RealPos();
+                foreach (Polygons poly in polyList)
+                {
+                    poly.RealPos();
+                    bool collide = Collision(bullet, poly);
+                    if (collide)
+                    {
+                        bulletsList.Remove(bullet);
+                    }
+                }
             }
         }
 
@@ -61,6 +77,10 @@ namespace TwinStick
             {
                 bullet.Draw(spriteBatch);
             }
+            foreach (Polygons poly in polyList)
+            {
+                poly.Draw(spriteBatch);
+            }
         }
 
         private void MakeShapes()
@@ -68,6 +88,7 @@ namespace TwinStick
             RetrieveShapes();
 
             player = CreateCharacter("player");
+            wall1 = CreateShape("basewall");
         }
     }
 }

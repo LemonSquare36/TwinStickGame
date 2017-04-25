@@ -63,14 +63,17 @@ namespace TwinStick
             return realPos;
         }
 
-        //Loads the texture 2D's using image name
-        public override void LoadContent(float X, float Y)
+        /// <summary>
+        /// Loads the texture 2D's using image name
+        /// </summary>
+        /// <param name="X">X pos of shape start</param>
+        /// <param name="Y">Y pos of shape start</param>
+        /// <param name="shapeFile"> Sprites/*SpiteLocation*</param>
+        public override void LoadContent(float X, float Y, string shapeFile)
         {
             Placement.X = X;
             Placement.Y = Y;
-            texture = Main.GameContent.Load<Texture2D>("Sprites/Triangle");
-
-
+            texture = Main.GameContent.Load<Texture2D>("Sprites/" + shapeFile);
 
             foreach (Vector2 vert in getVerticiesList())
             {

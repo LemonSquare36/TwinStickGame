@@ -47,7 +47,7 @@ namespace TwinStick
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
             cam = camera;
-            camera.Follow(new Vector2 (-player.Placement.X + 350, -player.Placement.Y + 200));
+            camera.Follow(new Vector2 (-player.Placement.X + 372, -player.Placement.Y + 220));
             Triangle1.RealPos();
             getKey();
             player.Rotate(Key,camera);

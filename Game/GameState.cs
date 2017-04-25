@@ -36,7 +36,7 @@ namespace TwinStick
 
         //areas
         TestArea Test;
-        AnotherTestArea Atest;
+        Level1 LevelOne;
         //Menus
         MainMenu MainMenu;
         #endregion
@@ -47,7 +47,7 @@ namespace TwinStick
             #region Initialize the Screens
             //areas
             Test = new TestArea();
-            Atest = new AnotherTestArea();
+            LevelOne = new Level1();
             //Menus
             MainMenu = new MainMenu();
             #endregion
@@ -80,16 +80,6 @@ namespace TwinStick
         {
             KeyboardState key = Keyboard.GetState();
             camera.Move(key);
-            if (key.IsKeyDown(Keys.Q))
-            {
-                if (CurrentScreen == Test)
-                    CurrentScreen = Atest;
-                else if (CurrentScreen == Atest)
-                    CurrentScreen = Test;
-
-                Initialize();
-                LoadContent(spriteBatch, graphicsManager);
-            }
 
             CurrentScreen.Update(camera, graphicsManager);
         }
@@ -114,7 +104,7 @@ namespace TwinStick
             switch (CurrentScreen.getNextScreen())
             {
                 case "Play":
-                    CurrentScreen = Test;
+                    CurrentScreen = LevelOne;
                     break;
 
                 case "Exit":

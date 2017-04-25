@@ -37,12 +37,13 @@ namespace TwinStick
             velocity.X = mousePos.X - Placement.X;
             velocity.Y = mousePos.Y - Placement.Y;
             velocity.Normalize();
-            velocity *= 20;
+            velocity *= 40;
         }
         //Loads the texture 2D's using image name
-        public override void LoadContent(float X, float Y)
+        public void LoadContent(float X, float Y)
         {
-            base.LoadContent(X, Y);
+            Placement.X = X;
+            Placement.Y = Y;
             texture = Main.GameContent.Load<Texture2D>("Sprites/TestSprites/Bullet");
         }
 
