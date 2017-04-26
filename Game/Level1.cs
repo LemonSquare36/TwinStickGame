@@ -56,7 +56,7 @@ namespace TwinStick
             player.Rotate(Key, camera);
             mouse = Mouse.GetState();
 
-            ShootBullet(mouse, cam, ref player.Placement, ref bulletsList);
+            ShootBullet(mouse, cam, player.Placement, ref bulletsList);
 
             foreach (Polygons poly in polyList)
             {
