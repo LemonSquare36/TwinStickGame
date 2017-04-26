@@ -20,6 +20,7 @@ namespace TwinStick
     {
         Polygons Triangle1;
         private List<Bullets> bulletsList = new List<Bullets>();
+        private List<Enemy> enemyList = new List<Enemy>();
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
@@ -37,10 +38,16 @@ namespace TwinStick
             spriteBatch = spriteBatchmain;
 
             MakeShapes();
-            
+            #region Add Enemies to List
+            enemyList.Add(Bonzai);
+            #endregion
+
+            #region LoadContents
             player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100, "Triangle");
-            
+            Bonzai.LoadContent(150, 150);
+            #endregion
+
 
             Cube = Main.GameContent.Load<Texture2D>("Sprites/WhiteCube");
         }
@@ -74,6 +81,7 @@ namespace TwinStick
         {
             player.Draw(spriteBatch);
             Triangle1.Draw(spriteBatch);
+            Bonzai.Draw(spriteBatch);
 
             foreach (Bullets bullet in bulletsList)
             {
@@ -84,12 +92,9 @@ namespace TwinStick
         private void MakeShapes()
         {
             RetrieveShapes();
-
             player = CreateCharacter("player");
             Triangle1 = CreateShape("triangle");
-            Bonzai = CreateEnemy("");
+            Bonzai = CreateEnemy("bonzaienemy");
         }
-
-        
     }
 }
