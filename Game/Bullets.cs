@@ -52,17 +52,6 @@ namespace TwinStick
             spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
         }
 
-        //Roatates the Shape
-        public void Rotate(float rotate, KeyboardState keyState, Camera camera)
-        {
-            /*MouseState curMouse = Mouse.GetState();
-            Vector2 mouseLoc = new Vector2(curMouse.X, curMouse.Y);
-            GetMousePosWorld(camera, ref mouseLoc);
-            Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
-            Vector2 direction = mouseLoc - Placement;
-            rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;*/
-        }
-
         public void MoveBullet(Camera camera)
         {
             Placement += velocity;

@@ -17,8 +17,8 @@ namespace TwinStick
     class Enemy : Entity
     {
         protected Vector2 velocity;
-
-        string enemyType;
+        public int enemyHp;
+        public string enemyType;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
@@ -36,25 +36,30 @@ namespace TwinStick
 
             Placement.X = X;
             Placement.Y = Y;
-            if(enemytype == "Enemy Claymore")
+            if(enemytype == "Bonzai")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
+                enemyHp = 4;
             }
-            if(enemytype == "Enemy Gun")
+            if(enemytype == "Goon")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Gun");
+                enemyHp = 2;
             }
-            if(enemytype == "Enemy Knife")
+            if(enemytype == "Assassin")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Knife");
+                enemyHp = 3;
             }
-            if(enemytype == "Enemy Minigun")
+            if(enemytype == "Angry Josh")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Minigun");
+                enemyHp = 8;
             }
-            if(enemytype == "Enemy Rifle")
+            if(enemytype == "Rambo")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Rifle");
+                enemyHp = 5;
             }
         }
 
@@ -63,9 +68,12 @@ namespace TwinStick
                 spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
         }
 
-        public void MoveEnemy()
+        public void MoveEnemy(Vector2 placement)
         {
             Placement += velocity;
+
+            Vector2 direction =  placement - Placement;
+            rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
         }
 
         public void MoveEnemyPlacement(Vector2 placement)

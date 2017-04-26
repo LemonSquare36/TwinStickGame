@@ -45,7 +45,7 @@ namespace TwinStick
             #region LoadContents
             player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100, "Triangle");
-            Bonzai.LoadContent(150, 150, "Enemy Claymore");
+            Bonzai.LoadContent(150, 150, "Bonzai");
             #endregion
 
 
@@ -75,7 +75,7 @@ namespace TwinStick
                 }
             }
             Bonzai.MoveEnemyPlacement(player.Placement);
-            Bonzai.MoveEnemy();
+            Bonzai.MoveEnemy(player.Placement);
         }
 
         public override void Draw()

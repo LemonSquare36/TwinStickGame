@@ -36,7 +36,7 @@ namespace TwinStick
         {
             Placement.X = X;
             Placement.Y = Y;
-            texture = Main.GameContent.Load<Texture2D>("Sprites/TestSprites/tempPlayerSprite");
+            texture = Main.GameContent.Load<Texture2D>("Sprites/Character/Topdown Char Final Pistol");
         }
         //Draws the Images with current Texture
         public override void Draw(SpriteBatch spriteBatch)
