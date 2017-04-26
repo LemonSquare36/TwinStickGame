@@ -91,7 +91,6 @@ namespace TwinStick
             }
             OldPosition = Placement;
             Placement += Movement;
-            Debug.WriteLine(Placement.X +" "+ Placement.Y);
         }
     }
 }

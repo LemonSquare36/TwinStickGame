@@ -152,7 +152,7 @@ namespace TwinStick
             Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
         }
         //add a bullet to the list
-        protected void ShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList)
+        protected void ShootBullet(MouseState mouse, Camera cam, ref Vector2 startpoint, ref List<Bullets> bulletList)
         {
             if (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
             {

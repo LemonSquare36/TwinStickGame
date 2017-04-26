@@ -13,7 +13,6 @@ namespace TwinStick
         // declaring texture 2D's
         protected Texture2D texture;
 
-
         protected float rotation;
         private List<Vector2> realPos = new List<Vector2>();
         public Vector2 Movement = Vector2.Zero;
