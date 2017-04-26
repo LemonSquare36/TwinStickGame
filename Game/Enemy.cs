@@ -18,6 +18,8 @@ namespace TwinStick
     {
         protected Vector2 velocity;
 
+        string enemyType;
+
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
 
@@ -28,16 +30,37 @@ namespace TwinStick
 
         }
 
-        public void LoadContent(float X, float Y)
+        public override void LoadContent(float X, float Y, string enemytype)
         {
+            enemyType = enemytype;
+
             Placement.X = X;
             Placement.Y = Y;
-            texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
+            if(enemytype == "Enemy Claymore")
+            {
+                texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
+            }
+            if(enemytype == "Enemy Gun")
+            {
+                texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Gun");
+            }
+            if(enemytype == "Enemy Knife")
+            {
+                texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Knife");
+            }
+            if(enemytype == "Enemy Minigun")
+            {
+                texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Minigun");
+            }
+            if(enemytype == "Enemy Rifle")
+            {
+                texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Rifle");
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
+                spriteBatch.Draw(texture, Placement, null, null, verticies[0], rotation, new Vector2(1, 1), Color.White);
         }
 
         public void MoveEnemy()
@@ -51,6 +74,11 @@ namespace TwinStick
             velocity.Y = placement.Y - Placement.Y;
             velocity.Normalize();
             velocity *= 10;
+        }
+
+        public void AI(string aitype)
+        {
+
         }
 
         //Fix rotation code for enemy little by little

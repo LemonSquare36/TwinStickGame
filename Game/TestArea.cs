@@ -45,7 +45,7 @@ namespace TwinStick
             #region LoadContents
             player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100, "Triangle");
-            Bonzai.LoadContent(150, 150);
+            Bonzai.LoadContent(150, 150, "Enemy Claymore");
             #endregion
 
 
@@ -55,7 +55,7 @@ namespace TwinStick
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
             cam = camera;
-            camera.Follow(new Vector2 (-player.Placement.X + 372, -player.Placement.Y + 220));
+            camera.Follow(new Vector2 (-player.Placement.X, -player.Placement.Y));
             Triangle1.RealPos();
             getKey();
             player.Rotate(Key,camera);
@@ -75,6 +75,7 @@ namespace TwinStick
                 }
             }
             Bonzai.MoveEnemyPlacement(player.Placement);
+            Bonzai.MoveEnemy();
         }
 
         public override void Draw()
