@@ -51,8 +51,8 @@ namespace TwinStick
             MouseState curMouse = Mouse.GetState();
             try
             {
-                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
-                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
+                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 2000f);
+                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 1200f);
             }
             catch { }
 

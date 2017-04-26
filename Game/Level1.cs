@@ -51,7 +51,7 @@ namespace TwinStick
         {
             player.RealPos();
             cam = camera;
-            camera.Follow(new Vector2(-player.Placement.X + 372, -player.Placement.Y + 220));
+            camera.Follow(new Vector2(-player.Placement.X, -player.Placement.Y));
             getKey();
             player.Rotate(Key, camera);
             mouse = Mouse.GetState();
