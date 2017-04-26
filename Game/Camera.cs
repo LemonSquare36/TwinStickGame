@@ -46,8 +46,8 @@ namespace TwinStick
         public Matrix Transform(GraphicsDevice graphicsDevice)
         {
             //game is scaled to these amounts yo
-            var scaleX = (float)graphicsDevice.Viewport.Width / 1600;
-            var scaleY = (float)graphicsDevice.Viewport.Height / 960;
+            var scaleX = (float)graphicsDevice.Viewport.Width / 2000;
+            var scaleY = (float)graphicsDevice.Viewport.Height / 1200;
 
             var translationMatrix = Matrix.CreateTranslation(new Vector3(Position.X, Position.Y, 0));
             var rotationMatrix = Matrix.CreateRotationZ(Rotation);
@@ -68,7 +68,7 @@ namespace TwinStick
         //Camera Follows the position provide (inteneded for character)
         public void Follow(Vector2 characterPosition)
         {
-            Position = new Vector2(characterPosition.X + 400f, characterPosition.Y + 240f);
+            Position = new Vector2(characterPosition.X + 1040f, characterPosition.Y + 600f);
         }
         public void posReset()
         {
