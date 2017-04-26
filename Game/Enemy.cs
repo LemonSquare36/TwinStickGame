@@ -50,7 +50,33 @@ namespace TwinStick
             velocity.X = placement.X - Placement.X;
             velocity.Y = placement.Y - Placement.Y;
             velocity.Normalize();
-            velocity *= 40;
+            velocity *= 10;
         }
+
+        //Fix rotation code for enemy little by little
+        /*public void RotateEnemy(KeyboardState keyState, Camera camera)
+        {
+            Vector2 worldPosition = Vector2.Zero;
+            MouseState curMouse = Mouse.GetState();
+            try
+            {
+                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
+                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
+            }
+            catch { }
+
+            Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
+            GetPlayerPosWorld(camera, ref mouseLoc);
+            Vector2 direction = mouseLoc - Placement;
+            rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
+        }
+        private void GetPlayerPosWorld(Camera camera, ref Vector2 mouseLoc)
+        {
+            float scaledMouseX = Placement.X;
+            float scaledMouseY = Placement.Y;
+            Placement.X = scaledMouseX - camera.Position.X;
+            Placement.Y = scaledMouseY - camera.Position.Y;
+            Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
+        }*/
     }
 }
