@@ -23,7 +23,7 @@ namespace TwinStick
 
         Camera camera = new Camera();
         Vector3 screenScale = Vector3.Zero;
-        Color color = Color.Blue;
+        Color color = Color.DarkRed;
         Color prevColor;
 
         SpriteBatch spriteBatch;
@@ -89,7 +89,7 @@ namespace TwinStick
         {
             var viewMatrix = camera.Transform(Main.graphicsDevice);
 
-            Main.graphicsDevice.Clear(Color.CornflowerBlue);
+            Main.graphicsDevice.Clear(color);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, viewMatrix * Matrix.CreateScale(1));
             CurrentScreen.Draw();
 
@@ -105,6 +105,7 @@ namespace TwinStick
             {
                 case "Play":
                     CurrentScreen = Test;
+                    color = Color.CornflowerBlue;
                     break;
 
                 case "Exit":
