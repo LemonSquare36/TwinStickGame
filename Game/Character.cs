@@ -36,7 +36,7 @@ namespace TwinStick
         {
             Placement.X = X;
             Placement.Y = Y;
-            texture = Main.GameContent.Load<Texture2D>("Sprites/TestSprites/tempPlayerSprite");
+            texture = Main.GameContent.Load<Texture2D>("Sprites/Character/Topdown Char Final Pistol");
         }
         //Draws the Images with current Texture
         public override void Draw(SpriteBatch spriteBatch)
@@ -51,8 +51,8 @@ namespace TwinStick
             MouseState curMouse = Mouse.GetState();
             try
             {
-                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 2000f);
-                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 1200f);
+                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600f);
+                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960f);
             }
             catch { }
 

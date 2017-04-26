@@ -43,8 +43,8 @@ namespace TwinStick
             mouse = Mouse.GetState();
             try
             {
-                worldPosition.X = mouse.X / (float)(Main.gameWindow.ClientBounds.Width / 2000f);
-                worldPosition.Y = mouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 1200f);
+                worldPosition.X = mouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600.0);
+                worldPosition.Y = mouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960.0);
             }
             catch { }
             return worldPosition;

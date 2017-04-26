@@ -18,6 +18,7 @@ namespace TwinStick
     {
         Button Play, Exit, FullScreen;
         Texture2D PlayUnpressed, PlayPressed, ExitUnpressed, ExitPressed, FullScreenUnpressed, FullScreenPressed;
+        Texture2D Background, Background2;
 
         public override void Initialize()
         {
@@ -41,6 +42,9 @@ namespace TwinStick
             Play.ButtonClicked += ButtonClicked;
             Exit.ButtonClicked += ButtonClicked;
             FullScreen.ButtonClicked += ButtonClicked;
+
+            Background = Main.GameContent.Load<Texture2D>("Backgrounds/MenuBackground");
+            Background2 = Main.GameContent.Load<Texture2D>("Backgrounds/MenuBackground2");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
@@ -59,9 +63,11 @@ namespace TwinStick
 
         public override void Draw()
         {
+            spriteBatch.Draw(Background, new Vector2(0, 0), Color.White);
             Play.Draw(spriteBatch);
             Exit.Draw(spriteBatch);
             FullScreen.Draw(spriteBatch);
+            spriteBatch.Draw(Background2, new Vector2(0, 0), Color.White);
         }
 
         //Used for edge detection

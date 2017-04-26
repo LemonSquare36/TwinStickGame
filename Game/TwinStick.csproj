@@ -100,6 +100,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Backgrounds\MenuBackground.png" />
+    <Content Include="Content\Backgrounds\MenuBackground2.png" />
     <Content Include="Content\Buttons\Exit.png" />
     <Content Include="Content\Buttons\ExitHighlight.png" />
     <Content Include="Content\Buttons\FullScreen.png" />
