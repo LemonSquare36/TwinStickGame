@@ -30,6 +30,8 @@ namespace TwinStick
 
         public void LoadContent(float X, float Y)
         {
+            Placement.X = X;
+            Placement.Y = Y;
             texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
         }
 

@@ -87,6 +87,7 @@ namespace TwinStick
 
             player = CreateCharacter("player");
             Triangle1 = CreateShape("triangle");
+            Bonzai = CreateEnemy("");
         }
 
         
