@@ -160,7 +160,7 @@ namespace TwinStick
             }
             else
             {
-                canfire = true;
+                canfire = false;
             }
 
             if (elapsed == true && canfire == true)
@@ -169,7 +169,6 @@ namespace TwinStick
                 elapsed = false;
                 bulletaddtime.Stop();
                 bulletaddtime.Start();
-                startpoint.X+= 20;
             }
 
             oldMouse = mouse;
@@ -178,7 +177,7 @@ namespace TwinStick
         protected void TimerSetUp()
         {
             bulletaddtime.Elapsed += BulletTimerElasped;
-            bulletaddtime.Interval = 1;
+            bulletaddtime.Interval = 150;
         }
         //Elapsed functuon for timer
         private void BulletTimerElasped(object source, ElapsedEventArgs e)
