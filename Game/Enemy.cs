@@ -17,8 +17,8 @@ namespace TwinStick
     class Enemy : Entity
     {
         protected Vector2 velocity;
-        public int enemyHp;
         public string enemyType;
+        int enemyHp;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
@@ -40,6 +40,7 @@ namespace TwinStick
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
                 enemyHp = 4;
+                //enemytype.AI("Stupid");
             }
             if(enemytype == "Goon")
             {
@@ -86,7 +87,20 @@ namespace TwinStick
 
         public void AI(string aitype)
         {
+            if(aitype == "Stupid")
+            {
 
+            }
+
+            if(aitype == "Ranged")
+            {
+
+            }
+        }
+
+        public void removeHp(int amount)
+        {
+            enemyHp -= amount;
         }
 
         //Fix rotation code for enemy little by little
