@@ -46,6 +46,7 @@ namespace TwinStick
             player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100, "Triangle");
             Bonzai.LoadContent(150, 150, "Bonzai");
+
             #endregion
 
 
@@ -83,7 +84,7 @@ namespace TwinStick
                 bool collide = Collision(player, enemy);
                 if (collide)
                 {
-                    player.Stop();
+                    //player.removehp()
                     enemy.Stop();
                 }
                 foreach (Bullets bullet in bulletsList.ToList())
@@ -93,6 +94,10 @@ namespace TwinStick
                     {
                         bulletsList.Remove(bullet);
                         enemy.removeHp(1);
+                        if(enemy.getHP() <= 0)
+                        {
+                            enemyList.Remove(enemy);
+                        }
                     }
                 }
 

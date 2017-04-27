@@ -42,6 +42,7 @@ namespace TwinStick
             Placement.X = X;
             Placement.Y = Y;
             texture = Main.GameContent.Load<Texture2D>("Sprites/TestSprites/Bullet");
+            setrange();
         }
 
         //Draws the Images with current Texture
