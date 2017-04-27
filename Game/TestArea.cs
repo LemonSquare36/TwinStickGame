@@ -46,6 +46,7 @@ namespace TwinStick
             player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100, "Triangle");
             Bonzai.LoadContent(150, 150, "Bonzai");
+
             #endregion
 
 
@@ -62,7 +63,7 @@ namespace TwinStick
             player.Rotate(Key,camera);
             player.MovePlayer(Key);
             mouse = Mouse.GetState();
-            ShootBullet(mouse, cam, player.Placement, ref bulletsList);
+            ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList);
 
             foreach (Bullets bullet in bulletsList.ToList())
             {
@@ -75,7 +76,6 @@ namespace TwinStick
                     bulletsList.Remove(bullet);
                 }
             }
-
             foreach (Enemy enemy in enemyList)
             {
                 enemy.RealPos();
@@ -92,7 +92,6 @@ namespace TwinStick
                         }
                     }
                 }
-                
             }
             Bonzai.MoveEnemyPlacement(player.Placement);
             Bonzai.MoveEnemy(player.Placement);
