@@ -36,6 +36,8 @@ namespace TwinStick
 
             Placement.X = X;
             Placement.Y = Y;
+            setrange();
+
             if(enemytype == "Bonzai")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
