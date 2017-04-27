@@ -84,6 +84,7 @@ namespace TwinStick
                 if (collide)
                 {
                     player.Stop();
+                    enemy.Stop();
                 }
                 foreach (Bullets bullet in bulletsList.ToList())
                 {
@@ -104,6 +105,7 @@ namespace TwinStick
         {
             player.Draw(spriteBatch);
             Triangle1.Draw(spriteBatch);
+
             foreach (Enemy enemy in enemyList)
             {
                 enemy.Draw(spriteBatch);
