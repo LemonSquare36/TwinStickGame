@@ -71,13 +71,14 @@ namespace TwinStick
 
         public void MoveEnemy(Vector2 placement)
         {
+            MoveEnemyPlacement(placement);
             Placement += velocity;
 
             Vector2 direction =  placement - Placement;
             rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
         }
 
-        public void MoveEnemyPlacement(Vector2 placement)
+        private void MoveEnemyPlacement(Vector2 placement)
         {
             velocity.X = placement.X - Placement.X;
             velocity.Y = placement.Y - Placement.Y;
