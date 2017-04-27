@@ -16,6 +16,7 @@ namespace TwinStick
 {
     class Entity : Polygons
     {
+        protected int HP;
         public Entity(List<Vector2> numbers) : base(numbers)
         {
 

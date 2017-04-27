@@ -92,5 +92,9 @@ namespace TwinStick
             OldPosition = Placement;
             Placement += Movement;
         }
+        public void DrawHud()
+        {
+
+        }
     }
 }
