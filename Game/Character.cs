@@ -16,10 +16,16 @@ namespace TwinStick
 {
     class Character : Entity
     {
+
+        Rectangle HPbar = new Rectangle();
+        Texture2D cube;
+        SpriteFont font;
+        Color clr = new Color(198, 34, 5);
         //Constructor
         public Character(List<Vector2> numbers) : base(numbers)
         {
             rotation = 0;
+            HP = 200;
             foreach (Vector2 num in numbers)
             {
                 verticies.Add(num);
@@ -37,6 +43,9 @@ namespace TwinStick
             Placement.X = X;
             Placement.Y = Y;
             texture = Main.GameContent.Load<Texture2D>("Sprites/Character/Topdown Char Final Rifle");
+            cube = Main.GameContent.Load<Texture2D>("Sprites/WhiteCube");
+            font = Main.GameContent.Load<SpriteFont>("myFont");
+            setrange();
         }
         //Draws the Images with current Texture
         public override void Draw(SpriteBatch spriteBatch)
@@ -92,8 +101,12 @@ namespace TwinStick
             OldPosition = Placement;
             Placement += Movement;
         }
-        public void DrawHud()
+        public void DrawHud(SpriteBatch spritebatch)
         {
+            HPbar.Width = HP * 2;
+            HPbar.Height = 50;
+            spritebatch.Draw(cube, new Vector2(-650, -300) + Placement, HPbar, clr);
+            spritebatch.DrawString(font, "HP", Placement + new Vector2(-765, -315), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
 
         }
     }
