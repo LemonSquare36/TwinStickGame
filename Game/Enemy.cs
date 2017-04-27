@@ -19,7 +19,6 @@ namespace TwinStick
         protected Vector2 velocity;
         public string enemyType;
         string aiType;
-        int HP;
         int enemyDamage;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
@@ -32,7 +31,7 @@ namespace TwinStick
 
         }
 
-        public void LoadContent(float X, float Y, string enemytype, string aiType)
+        public override void LoadContent(float X, float Y, string enemytype)
         {
             enemyType = enemytype;
 
