@@ -109,6 +109,7 @@ namespace TwinStick
         public override void Draw()
         {
             player.Draw(spriteBatch);
+            player.DrawHud(spriteBatch);
             Triangle1.Draw(spriteBatch);
 
             foreach (Enemy enemy in enemyList)
