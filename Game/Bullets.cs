@@ -19,8 +19,6 @@ namespace TwinStick
         protected Texture2D bullet;
         protected Vector2 velocity;
         protected bool isVisible;
-        
-
 
         public Bullets(List<Vector2> bullets) : base(bullets)
         {
