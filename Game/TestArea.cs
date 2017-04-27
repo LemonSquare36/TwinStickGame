@@ -54,6 +54,7 @@ namespace TwinStick
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
+            player.RealPos();
             cam = camera;
             camera.Follow(new Vector2 (-player.Placement.X, -player.Placement.Y));
             Triangle1.RealPos();
@@ -61,7 +62,7 @@ namespace TwinStick
             player.Rotate(Key,camera);
             player.MovePlayer(Key);
             mouse = Mouse.GetState();
-            ShootBullet(mouse, cam, player.Placement, ref bulletsList);
+            ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList);
 
             foreach (Bullets bullet in bulletsList.ToList())
             {
@@ -74,7 +75,6 @@ namespace TwinStick
                     bulletsList.Remove(bullet);
                 }
             }
-            Bonzai.MoveEnemyPlacement(player.Placement);
             Bonzai.MoveEnemy(player.Placement);
         }
 
