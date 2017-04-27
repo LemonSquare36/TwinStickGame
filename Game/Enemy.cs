@@ -117,15 +117,6 @@ namespace TwinStick
             }
         }
 
-        public void removeHp(int amount)
-        {
-            HP -= amount;
-        }
-        public int getHP()
-        {
-            return HP;
-        }
-
         //Fix rotation code for enemy little by little
         /*public void RotateEnemy(KeyboardState keyState, Camera camera)
         {

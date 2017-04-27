@@ -93,7 +93,7 @@ namespace TwinStick
                     if (collide)
                     {
                         bulletsList.Remove(bullet);
-                        enemy.removeHp(1);
+                        enemy.removeHP(1);
                         if(enemy.getHP() <= 0)
                         {
                             enemyList.Remove(enemy);
