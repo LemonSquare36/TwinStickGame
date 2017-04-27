@@ -74,6 +74,10 @@ namespace TwinStick
             Placement.Y = Y;
             texture = Main.GameContent.Load<Texture2D>("Sprites/" + shapeFile);
 
+            setrange();
+        }
+        protected void setrange()
+        {
             foreach (Vector2 vert in getVerticiesList())
             {
                 double temprange = 0;
@@ -85,6 +89,7 @@ namespace TwinStick
                     range = temprange;
                 }
             }
+
         }
         //Draws the Images with current Texture
         public override void Draw(SpriteBatch spriteBatch)
