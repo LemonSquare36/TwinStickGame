@@ -18,7 +18,8 @@ namespace TwinStick
     {
         protected Vector2 velocity;
         public string enemyType;
-        int enemyHp;
+        string aiType;
+        int HP;
         int enemyDamage;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
@@ -31,7 +32,7 @@ namespace TwinStick
 
         }
 
-        public override void LoadContent(float X, float Y, string enemytype)
+        public void LoadContent(float X, float Y, string enemytype, string aiType)
         {
             enemyType = enemytype;
 
@@ -42,29 +43,32 @@ namespace TwinStick
             if(enemytype == "Bonzai")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
-                enemyHp = 4;
-
-                //enemytype.AI("Stupid");
+                aiType = "Stupid";
+                HP = 4;
             }
             if(enemytype == "Goon")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Gun");
-                enemyHp = 2;
+                aiType = "Ranged";
+                HP = 2;
             }
             if(enemytype == "Assassin")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Knife");
-                enemyHp = 3;
+                aiType = "Stupid";
+                HP = 3;
             }
             if(enemytype == "Angry Josh")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Minigun");
-                enemyHp = 8;
+                aiType = "Ranged";
+                HP = 8;
             }
             if(enemytype == "Rambo")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Rifle");
-                enemyHp = 5;
+                aiType = "Ranged";
+                HP = 5;
             }
         }
 
@@ -75,10 +79,18 @@ namespace TwinStick
 
         public void MoveEnemy(Vector2 placement)
         {
-            MoveEnemyPlacement(placement);
-            OldPosition = Placement;
-            Placement += velocity;
-
+            if(aiType == "Stupid")
+            {
+                MoveEnemyPlacement(placement);
+                OldPosition = Placement;
+                Placement += velocity;
+            }
+            if(aiType == "Ranged")
+            {
+                MoveEnemyPlacement(placement);
+                OldPosition = Placement;
+                Placement += velocity;
+            }
             Vector2 direction =  placement - Placement;
             rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
         }
@@ -91,8 +103,9 @@ namespace TwinStick
             velocity *= 10;
         }
 
-        public void AI(string aitype)
+        public void GetAI(string aitype)
         {
+            aitype = aiType;
             if(aitype == "Stupid")
             {
 
@@ -106,11 +119,11 @@ namespace TwinStick
 
         public void removeHp(int amount)
         {
-            enemyHp -= amount;
+            HP -= amount;
         }
         public int getHP()
         {
-            return enemyHp;
+            return HP;
         }
 
         //Fix rotation code for enemy little by little
