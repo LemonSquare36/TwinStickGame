@@ -66,7 +66,7 @@ namespace TwinStick
         protected bool Collision(Polygons Shape, Polygons Shape2)
         {
             bool collision = true;
-            bool inrange = false;
+            bool inrange = true;
             bool notinrange = false;
             double Range = Shape.getRange() + Shape2.getRange();
 

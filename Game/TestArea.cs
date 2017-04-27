@@ -60,9 +60,8 @@ namespace TwinStick
             Triangle1.RealPos();
             getKey();
             player.Rotate(Key,camera);
-            player.MovePlayer(Key);
             mouse = Mouse.GetState();
-            ShootBullet(mouse, cam, player.Placement, ref bulletsList);
+            ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList);
 
             foreach (Bullets bullet in bulletsList.ToList())
             {
@@ -76,33 +75,39 @@ namespace TwinStick
                 }
             }
 
-            foreach (Enemy enemy in enemyList)
+            foreach (Enemy enemy in enemyList.ToList())
             {
+                enemy.MoveEnemy(player.getRealPos(2));
+
                 enemy.RealPos();
-                bool collide = Collision(enemy, player);
+                bool collide = Collision(player, enemy);
                 if (collide)
                 {
-                    foreach (Bullets bullet in bulletsList)
+                    player.Stop();
+                }
+                foreach (Bullets bullet in bulletsList.ToList())
+                {
+                    collide = Collision(enemy, bullet);
+                    if (collide)
                     {
-                        collide = Collision(enemy, bullet);
-                        if (collide)
-                        {
-                            bulletsList.Remove(bullet);
-                            enemy.removeHp(1);
-                        }
+                        bulletsList.Remove(bullet);
+                        enemy.removeHp(1);
                     }
                 }
-                
+
             }
-            Bonzai.MoveEnemyPlacement(player.Placement);
-            Bonzai.MoveEnemy(player.Placement);
+            
+            player.MovePlayer(Key);
         }
 
         public override void Draw()
         {
             player.Draw(spriteBatch);
             Triangle1.Draw(spriteBatch);
-            Bonzai.Draw(spriteBatch);
+            foreach (Enemy enemy in enemyList)
+            {
+                enemy.Draw(spriteBatch);
+            }
 
             foreach (Bullets bullet in bulletsList)
             {
