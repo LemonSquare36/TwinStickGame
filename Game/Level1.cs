@@ -21,7 +21,7 @@ namespace TwinStick
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
-        Polygons wall1, wall2, wall3, wall4;
+        Polygons treeborderB, treeborderT, treeborderL;
 
         public override void Initialize()
         {
@@ -34,17 +34,15 @@ namespace TwinStick
 
             MakeShapes();
             #region polylistAdd
-            polyList.Add(wall1);
-            polyList.Add(wall2);
-            polyList.Add(wall3);
-            polyList.Add(wall4);
+            polyList.Add(treeborderB);
+            polyList.Add(treeborderT);
+            polyList.Add(treeborderL);
             #endregion
 
             player.LoadContent(100, 300);
-            wall1.LoadContent(200, 300, "WorldSprites/Wall (1)");
-            wall2.LoadContent(400, 200, "WorldSprites/Wall (1)");
-            wall3.LoadContent(600, 300, "WorldSprites/Wall (1)");
-            wall4.LoadContent(200, 100, "WorldSprites/Wall (1)");
+            treeborderB.LoadContent(-414, 1790, "WorldSprites/Treeborder bottom");
+            treeborderT.LoadContent(-356, -1586, "WorldSprites/Treeborder top");
+            treeborderL.LoadContent(-2000, 0, "WorldSprites/Treeborder left");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
@@ -104,10 +102,9 @@ namespace TwinStick
             RetrieveShapes();
 
             player = CreateCharacter("player");
-            wall1 = CreateShape("basewall");
-            wall2 = CreateShape("basewall");
-            wall3 = CreateShape("basewall");
-            wall4 = CreateShape("basewall");
+            treeborderB = CreateShape("treeborderb");
+            treeborderT = CreateShape("treebordert");
+            treeborderL = CreateShape("treeborderl");
         }
     }
 }
