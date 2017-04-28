@@ -127,6 +127,7 @@ namespace TwinStick
         //Add new bullet
         private void addnewbullet(Camera camera, Vector2 startpoint, ref List<Bullets> bulletList)
         {
+            float rotation;
             Vector2 worldPosition = Vector2.Zero;
             MouseState curMouse = Mouse.GetState();
             try
@@ -138,7 +139,11 @@ namespace TwinStick
 
             Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
             GetMousePosWorld(camera, ref mouseLoc);
-            Bullets newBullet = CreateBullet("bullet", startpoint, mouseLoc);
+
+            Vector2 direction = mouseLoc - startpoint;
+            rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
+
+            Bullets newBullet = CreateBullet("bullet", startpoint, mouseLoc, rotation);
 
             bulletList.Add(newBullet);
         }
@@ -199,11 +204,12 @@ namespace TwinStick
             Character myPolygon = new Character(NewList);
             return myPolygon;
         }
-        protected Bullets CreateBullet(string shapeName, Vector2 pos, Vector2 mousePos)
+        protected Bullets CreateBullet(string shapeName, Vector2 pos, Vector2 mousePos, float rotation)
         {
             List<Vector2> NewList = (List<Vector2>)shapeVerts[shapeName];
             Bullets bullet = new Bullets(NewList);
             bullet.RealPos();
+            bullet.rotation = rotation;
             bullet.LoadContent(pos.X, pos.Y);
             bullet.SetVelocity(mousePos);
             return bullet;
