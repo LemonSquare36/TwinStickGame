@@ -19,6 +19,7 @@ namespace TwinStick
         protected Vector2 velocity;
         public string enemyType;
         string aiType;
+        bool agro;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
