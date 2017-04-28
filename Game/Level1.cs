@@ -22,6 +22,7 @@ namespace TwinStick
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
         Polygons treeborderB, treeborderT, treeborderL, destroyedCabin, burnedRemains;
+        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9;
 
         public override void Initialize()
         {
@@ -39,6 +40,15 @@ namespace TwinStick
             polyList.Add(treeborderL);
             polyList.Add(burnedRemains);
             polyList.Add(destroyedCabin);
+            polyList.Add(tree1);
+            polyList.Add(tree2);
+            polyList.Add(tree3);
+            polyList.Add(tree4);
+            polyList.Add(tree5);
+            polyList.Add(tree6);
+            polyList.Add(tree7);
+            polyList.Add(tree8);
+            polyList.Add(tree9);
             #endregion
 
             player.LoadContent(100, 300);
@@ -47,6 +57,15 @@ namespace TwinStick
             treeborderL.LoadContent(-2000, 0, "WorldSprites/Treeborder left");
             destroyedCabin.LoadContent(-1050, -700, "WorldSprites/Destroyed Cabin");
             burnedRemains.LoadContent( 800, -600, "WorldSprites/Burned Remains");
+            tree1.LoadContent(790, -200, "WorldSprites/Tree");
+            tree2.LoadContent(850, 200, "WorldSprites/Tree");
+            tree3.LoadContent(-300, 0, "WorldSprites/Tree");
+            tree4.LoadContent(500, 800, "WorldSprites/Tree");
+            tree5.LoadContent(-500, 1150, "WorldSprites/Tree");
+            tree6.LoadContent(-1500, 1300, "WorldSprites/Tree");
+            tree7.LoadContent(-1050, 550, "WorldSprites/Tree");
+            tree8.LoadContent(-1150, 950, "WorldSprites/Tree");
+            tree9.LoadContent(875, 1200, "WorldSprites/Tree");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
@@ -111,6 +130,15 @@ namespace TwinStick
             treeborderL = CreateShape("treeborderl");
             destroyedCabin = CreateShape("destroyedcabin");
             burnedRemains = CreateShape("burnedremains");
+            tree1 = CreateShape("tree");
+            tree2 = CreateShape("tree");
+            tree3 = CreateShape("tree");
+            tree4 = CreateShape("tree");
+            tree5 = CreateShape("tree");
+            tree6 = CreateShape("tree");
+            tree7 = CreateShape("tree");
+            tree8 = CreateShape("tree");
+            tree9 = CreateShape("tree");
         }
     }
 }
