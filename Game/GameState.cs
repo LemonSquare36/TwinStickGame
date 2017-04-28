@@ -105,7 +105,7 @@ namespace TwinStick
             {
                 case "Play":
                     CurrentScreen = Test;
-                    color = Color.CornflowerBlue;
+                    color = Color.ForestGreen;
                     break;
 
                 case "Exit":

@@ -37,12 +37,16 @@ namespace TwinStick
             polyList.Add(treeborderB);
             polyList.Add(treeborderT);
             polyList.Add(treeborderL);
+            polyList.Add(burnedRemains);
+            polyList.Add(destroyedCabin);
             #endregion
 
             player.LoadContent(100, 300);
             treeborderB.LoadContent(-414, 1790, "WorldSprites/Treeborder bottom");
             treeborderT.LoadContent(-356, -1586, "WorldSprites/Treeborder top");
             treeborderL.LoadContent(-2000, 0, "WorldSprites/Treeborder left");
+            destroyedCabin.LoadContent(-1050, -700, "WorldSprites/Destroyed Cabin");
+            burnedRemains.LoadContent( 800, -600, "WorldSprites/Burned Remains");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
@@ -106,6 +110,7 @@ namespace TwinStick
             treeborderT = CreateShape("treebordert");
             treeborderL = CreateShape("treeborderl");
             destroyedCabin = CreateShape("destroyedcabin");
+            burnedRemains = CreateShape("burnedremains");
         }
     }
 }
