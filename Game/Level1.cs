@@ -21,7 +21,7 @@ namespace TwinStick
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
-        Polygons treeborderB, treeborderT, treeborderL;
+        Polygons treeborderB, treeborderT, treeborderL, destroyedCabin, burnedRemains;
 
         public override void Initialize()
         {
@@ -105,6 +105,7 @@ namespace TwinStick
             treeborderB = CreateShape("treeborderb");
             treeborderT = CreateShape("treebordert");
             treeborderL = CreateShape("treeborderl");
+            destroyedCabin = CreateShape("destroyedcabin");
         }
     }
 }
