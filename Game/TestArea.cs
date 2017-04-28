@@ -78,7 +78,10 @@ namespace TwinStick
 
             foreach (Enemy enemy in enemyList.ToList())
             {
-                enemy.MoveEnemy(player.getRealPos(2));
+                if (Distance(enemy.Placement, player.Placement) < 800)
+                {
+                    enemy.MoveEnemy(player.getRealPos(2));
+                }
 
                 enemy.RealPos();
                 bool collide = Collision(player, enemy);
