@@ -18,11 +18,13 @@ namespace TwinStick
     {
         private List<Bullets> bulletsList = new List<Bullets>();
         private List<Polygons> polyList = new List<Polygons>();
+        private List<Enemy> enemyList = new List<Enemy>();
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
         Polygons treeborderB, treeborderT, treeborderL, destroyedCabin, burnedRemains;
         Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9;
+        Enemy bonzia1, bonzia2, bonzia3, bonzia4;
 
         public override void Initialize()
         {
@@ -50,13 +52,19 @@ namespace TwinStick
             polyList.Add(tree8);
             polyList.Add(tree9);
             #endregion
+            #region enemyListAdd
+            enemyList.Add(bonzia1);
+            enemyList.Add(bonzia2);
+            enemyList.Add(bonzia3);
+            enemyList.Add(bonzia4);
+            #endregion
 
             player.LoadContent(100, 300);
             treeborderB.LoadContent(-414, 1790, "WorldSprites/Treeborder bottom");
             treeborderT.LoadContent(-356, -1586, "WorldSprites/Treeborder top");
             treeborderL.LoadContent(-2000, 0, "WorldSprites/Treeborder left");
             destroyedCabin.LoadContent(-1050, -700, "WorldSprites/Destroyed Cabin");
-            burnedRemains.LoadContent( 800, -600, "WorldSprites/Burned Remains");
+            burnedRemains.LoadContent(800, -600, "WorldSprites/Burned Remains");
             tree1.LoadContent(790, -200, "WorldSprites/Tree");
             tree2.LoadContent(850, 200, "WorldSprites/Tree");
             tree3.LoadContent(-300, 0, "WorldSprites/Tree");
@@ -66,6 +74,10 @@ namespace TwinStick
             tree7.LoadContent(-1050, 550, "WorldSprites/Tree");
             tree8.LoadContent(-1150, 950, "WorldSprites/Tree");
             tree9.LoadContent(875, 1200, "WorldSprites/Tree");
+            bonzia1.LoadContent(500, -100, "Bonzai");
+            bonzia2.LoadContent(500, 100, "Bonzai");
+            bonzia3.LoadContent(100, 100, "Bonzai");
+            bonzia4.LoadContent(100, -100, "Bonzai");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
@@ -87,6 +99,15 @@ namespace TwinStick
                 {
                     player.Stop();
                 }
+                foreach (Enemy enemy in enemyList)
+                {
+                    enemy.RealPos();
+                    collide = Collision(enemy, poly);
+                    if (collide)
+                    {
+                        enemy.Stop();
+                    }
+                }
             }
 
             foreach (Bullets bullet in bulletsList.ToList())
@@ -101,10 +122,36 @@ namespace TwinStick
                         bulletsList.Remove(bullet);
                     }
                 }
+                foreach (Enemy enemy in enemyList.ToList())
+                {
+                    bool collide = Collision(enemy, bullet);
+                    if (collide)
+                    {
+                        bulletsList.Remove(bullet);
+                        enemy.removeHP(1);
+                        if (enemy.getHP() <= 0)
+                        {
+                            enemyList.Remove(enemy);
+                        }
+                    }
+                }
             }
+
+            foreach (Enemy enemy in enemyList.ToList())
+            {
+                if (Distance(enemy.Placement, player.Placement) < 800)
+                {
+                    enemy.MoveEnemy(player.getRealPos(2));
+                }
+                bool collide = Collision(enemy, player);
+                if(collide)
+                {
+                    player.removeHP(enemy.GetDamage());
+                    enemy.Stop();
+                }            
+            } 
             player.MovePlayer(Key);
         }
-
 
         public override void Draw()
         {
@@ -118,6 +165,11 @@ namespace TwinStick
             {
                 poly.Draw(spriteBatch);
             }
+            foreach (Enemy enemy in enemyList.ToList())
+            {
+                enemy.Draw(spriteBatch);           
+            }
+            player.DrawHud(spriteBatch);
         }
 
         private void MakeShapes()
@@ -139,6 +191,10 @@ namespace TwinStick
             tree7 = CreateShape("tree");
             tree8 = CreateShape("tree");
             tree9 = CreateShape("tree");
+            bonzia1 = CreateEnemy("bonzaienemy");
+            bonzia2 = CreateEnemy("bonzaienemy");
+            bonzia3 = CreateEnemy("bonzaienemy");
+            bonzia4 = CreateEnemy("bonzaienemy");
         }
     }
 }
