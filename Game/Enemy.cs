@@ -19,7 +19,6 @@ namespace TwinStick
         protected Vector2 velocity;
         public string enemyType;
         string aiType;
-        int enemyDamage;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
@@ -44,30 +43,35 @@ namespace TwinStick
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
                 aiType = "Stupid";
                 HP = 4;
+                Damage = 2;
             }
             if(enemytype == "Goon")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Gun");
                 aiType = "Ranged";
                 HP = 2;
+                Damage = 8;
             }
             if(enemytype == "Assassin")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Knife");
                 aiType = "Stupid";
                 HP = 3;
+                Damage = 8;
             }
             if(enemytype == "Angry Josh")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Minigun");
                 aiType = "Ranged";
                 HP = 8;
+                Damage = 6;
             }
             if(enemytype == "Rambo")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Rifle");
                 aiType = "Ranged";
                 HP = 5;
+                Damage = 10;
             }
         }
 

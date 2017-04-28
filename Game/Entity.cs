@@ -17,13 +17,19 @@ namespace TwinStick
     class Entity : Polygons
     {
         protected int HP;
+        protected int Damage;
 
         public int getHP()
         {
             return HP;
         }
+        public int GetDamage()
+        {
+            return Damage;
+        }
         public void removeHP(int damage)
         {
+           
             HP -= damage;
         }
         public Entity(List<Vector2> numbers) : base(numbers)

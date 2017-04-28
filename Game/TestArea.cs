@@ -84,7 +84,7 @@ namespace TwinStick
                 bool collide = Collision(player, enemy);
                 if (collide)
                 {
-                    //player.removehp()
+                    player.removeHP(enemy.GetDamage());
                     enemy.Stop();
                 }
                 foreach (Bullets bullet in bulletsList.ToList())
@@ -101,8 +101,7 @@ namespace TwinStick
                     }
                 }
 
-            }
-            
+            } 
             player.MovePlayer(Key);
         }
 

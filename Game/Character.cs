@@ -25,7 +25,7 @@ namespace TwinStick
         public Character(List<Vector2> numbers) : base(numbers)
         {
             rotation = 0;
-            HP = 200;
+            HP = 400;
             foreach (Vector2 num in numbers)
             {
                 verticies.Add(num);
@@ -103,7 +103,7 @@ namespace TwinStick
         }
         public void DrawHud(SpriteBatch spritebatch)
         {
-            HPbar.Width = HP * 2;
+            HPbar.Width = HP;
             HPbar.Height = 50;
             spritebatch.Draw(cube, new Vector2(-650, -300) + Placement, HPbar, clr);
             spritebatch.DrawString(font, "HP", Placement + new Vector2(-765, -315), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
