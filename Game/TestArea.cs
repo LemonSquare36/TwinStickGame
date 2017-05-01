@@ -85,6 +85,10 @@ namespace TwinStick
                 if (Distance(enemy.Placement, player.Placement) < 900)
                 {
                     enemy.MoveEnemy(player.getRealPos(2));
+                    if (enemy.aiType == "Ranged")
+                    {
+                        
+                    }
                 }
 
                 enemy.RealPos();
