@@ -53,10 +53,10 @@ namespace TwinStick
             polyList.Add(tree9);
             #endregion
             #region enemyListAdd
-            enemyList.Add(bonzia1);
+            /*enemyList.Add(bonzia1);
             enemyList.Add(bonzia2);
             enemyList.Add(bonzia3);
-            enemyList.Add(bonzia4);
+            enemyList.Add(bonzia4);*/
             #endregion
 
             player.LoadContent(100, 300);
