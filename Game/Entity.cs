@@ -19,6 +19,7 @@ namespace TwinStick
         protected int HP;
         protected int Damage;
 
+
         public int getHP()
         {
             return HP;

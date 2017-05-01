@@ -22,6 +22,7 @@ namespace TwinStick
         Timer bulletaddtime = new Timer();
         bool elapsed = true;
         bool canfire = true;
+        
 
         MouseState oldMouse = new MouseState();
 
@@ -125,7 +126,7 @@ namespace TwinStick
 
         #region bulletcode
         //Add new bullet
-        private void addnewbullet(Camera camera, Vector2 startpoint, ref List<Bullets> bulletList)
+        private void addnewbullet(Camera camera, Vector2 startpoint, ref List<Bullets> bulletList, string type)
         {
             float rotation;
             Vector2 worldPosition = Vector2.Zero;
@@ -143,7 +144,7 @@ namespace TwinStick
             Vector2 direction = mouseLoc - startpoint;
             rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
 
-            Bullets newBullet = CreateBullet("bullet", startpoint, mouseLoc, rotation);
+            Bullets newBullet = CreateBullet("bullet", startpoint, mouseLoc, rotation, type);
 
             bulletList.Add(newBullet);
         }
@@ -157,7 +158,7 @@ namespace TwinStick
             Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
         }
         //add a bullet to the list
-        protected void ShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList)
+        protected void ShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, string type)
         {
             if (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
             {
@@ -170,7 +171,7 @@ namespace TwinStick
 
             if (elapsed == true && canfire == true)
             {
-                addnewbullet(cam, startpoint, ref bulletList);
+                addnewbullet(cam, startpoint, ref bulletList, type);
                 elapsed = false;
                 bulletaddtime.Stop();
                 bulletaddtime.Start();
@@ -204,13 +205,13 @@ namespace TwinStick
             Character myPolygon = new Character(NewList);
             return myPolygon;
         }
-        protected Bullets CreateBullet(string shapeName, Vector2 pos, Vector2 mousePos, float rotation)
+        protected Bullets CreateBullet(string shapeName, Vector2 pos, Vector2 mousePos, float rotation, string type)
         {
             List<Vector2> NewList = (List<Vector2>)shapeVerts[shapeName];
             Bullets bullet = new Bullets(NewList);
             bullet.RealPos();
             bullet.rotation = rotation;
-            bullet.LoadContent(pos.X, pos.Y);
+            bullet.LoadContent(pos.X, pos.Y, type);
             bullet.SetVelocity(mousePos);
             return bullet;
         }

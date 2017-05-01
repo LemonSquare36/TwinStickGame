@@ -19,6 +19,7 @@ namespace TwinStick
         protected Texture2D bullet;
         protected Vector2 velocity;
         protected bool isVisible;
+        public string type;
 
         public Bullets(List<Vector2> bullets) : base(bullets)
         {
@@ -29,6 +30,7 @@ namespace TwinStick
         {
 
         }
+
         public void SetVelocity(Vector2 mousePos)
         {
             velocity.X = mousePos.X - Placement.X;
@@ -37,11 +39,18 @@ namespace TwinStick
             velocity *= 40;
         }
         //Loads the texture 2D's using image name
-        public void LoadContent(float X, float Y)
+        public override void LoadContent(float X, float Y, string type)
         {
             Placement.X = X;
             Placement.Y = Y;
-            texture = Main.GameContent.Load<Texture2D>("Sprites/Bullets/Enemy Bullet");
+            if(type == "Red")
+            {
+                texture = Main.GameContent.Load<Texture2D>("Sprites/Bullets/Enemy Bullet");
+            }
+            if(type == "Blue")
+            {
+                texture = Main.GameContent.Load<Texture2D>("Sprites/Bullets/Player Bullet");
+            }
             setrange();
         }
 

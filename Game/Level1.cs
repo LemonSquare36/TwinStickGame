@@ -89,7 +89,7 @@ namespace TwinStick
             player.Rotate(Key, camera);
             mouse = Mouse.GetState();
 
-            ShootBullet(mouse, cam, player.Placement, ref bulletsList);
+            ShootBullet(mouse, cam, player.Placement, ref bulletsList, "Blue");
 
             foreach (Polygons poly in polyList)
             {

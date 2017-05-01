@@ -24,8 +24,10 @@ namespace TwinStick
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
+        List<Bullets> enemyBullets = new List<Bullets>();
         Texture2D Cube;
         Enemy Bonzai;
+        Enemy Assassin;
 
         public override void Initialize()
         {
@@ -40,12 +42,14 @@ namespace TwinStick
             MakeShapes();
             #region Add Enemies to List
             enemyList.Add(Bonzai);
+            enemyList.Add(Assassin);
             #endregion
 
             #region LoadContents
             player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100, "Triangle");
             Bonzai.LoadContent(150, 150, "Bonzai");
+            Assassin.LoadContent(0, 300, "Assassin");
 
             #endregion
 
@@ -62,7 +66,7 @@ namespace TwinStick
             getKey();
             player.Rotate(Key,camera);
             mouse = Mouse.GetState();
-            ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList);
+            ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList, "Blue");
 
             foreach (Bullets bullet in bulletsList.ToList())
             {
@@ -78,7 +82,7 @@ namespace TwinStick
 
             foreach (Enemy enemy in enemyList.ToList())
             {
-                if (Distance(enemy.Placement, player.Placement) < 800)
+                if (Distance(enemy.Placement, player.Placement) < 900)
                 {
                     enemy.MoveEnemy(player.getRealPos(2));
                 }
@@ -131,6 +135,7 @@ namespace TwinStick
             player = CreateCharacter("player");
             Triangle1 = CreateShape("triangle");
             Bonzai = CreateEnemy("bonzaienemy");
+            Assassin = CreateEnemy("assassinenemy");
         }
     }
 }
