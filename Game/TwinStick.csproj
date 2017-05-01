@@ -110,6 +110,7 @@
     <Content Include="Content\Buttons\PlayPressed.png" />
     <Content Include="Content\Hold the Usings.txt" />
     <Content Include="Content\Sprites\Bullets\Enemy Bullet.png" />
+    <Content Include="Content\Sprites\Bullets\Player Bullet.png" />
     <Content Include="Content\Sprites\Character\Topdown Char Final Pistol.png" />
     <Content Include="Content\Sprites\Character\Topdown Char Final Rifle.png" />
     <Content Include="Content\Sprites\Character\Topdown Char Final Shotgun.png" />
