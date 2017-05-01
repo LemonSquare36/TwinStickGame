@@ -22,7 +22,7 @@ namespace TwinStick
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
-        Polygons treeborderB, treeborderT, treeborderL, destroyedCabin, burnedRemains;
+        Polygons treeborderB, treeborderT, treeborderL, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2;
         Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9;
         Enemy bonzia1, bonzia2, bonzia3, bonzia4;
 
@@ -42,6 +42,9 @@ namespace TwinStick
             polyList.Add(treeborderL);
             polyList.Add(burnedRemains);
             polyList.Add(destroyedCabin);
+            polyList.Add(well);
+            polyList.Add(tavern1);
+            polyList.Add(tavern2);
             polyList.Add(tree1);
             polyList.Add(tree2);
             polyList.Add(tree3);
@@ -63,8 +66,11 @@ namespace TwinStick
             treeborderB.LoadContent(-414, 1790, "WorldSprites/Treeborder bottom");
             treeborderT.LoadContent(-356, -1586, "WorldSprites/Treeborder top");
             treeborderL.LoadContent(-2000, 0, "WorldSprites/Treeborder left");
-            destroyedCabin.LoadContent(-1050, -700, "WorldSprites/Destroyed Cabin");
+            destroyedCabin.LoadContent(-1150, -700, "WorldSprites/Destroyed Cabin");
             burnedRemains.LoadContent(800, -600, "WorldSprites/Burned Remains");
+            well.LoadContent(-800, -200, "WorldSprites/well");
+            tavern1.LoadContent(-1100, 200, "WorldSprites/Tavern1");
+            tavern2.LoadContent(-866, 430, "WorldSprites/Tavern2");
             tree1.LoadContent(790, -200, "WorldSprites/Tree");
             tree2.LoadContent(850, 200, "WorldSprites/Tree");
             tree3.LoadContent(-300, 0, "WorldSprites/Tree");
@@ -74,6 +80,7 @@ namespace TwinStick
             tree7.LoadContent(-1050, 550, "WorldSprites/Tree");
             tree8.LoadContent(-1150, 950, "WorldSprites/Tree");
             tree9.LoadContent(875, 1200, "WorldSprites/Tree");
+
             bonzia1.LoadContent(500, -100, "Bonzai");
             bonzia2.LoadContent(500, 100, "Bonzai");
             bonzia3.LoadContent(100, 100, "Bonzai");
@@ -182,6 +189,9 @@ namespace TwinStick
             treeborderL = CreateShape("treeborderl");
             destroyedCabin = CreateShape("destroyedcabin");
             burnedRemains = CreateShape("burnedremains");
+            well = CreateShape("well");
+            tavern1 = CreateShape("tavern1");
+            tavern2 = CreateShape("tavern2");
             tree1 = CreateShape("tree");
             tree2 = CreateShape("tree");
             tree3 = CreateShape("tree");
