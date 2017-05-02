@@ -126,6 +126,7 @@
     <Content Include="Content\Sprites\WorldSprites\Burned Remains.png" />
     <Content Include="Content\Sprites\WorldSprites\Destroyed Cabin.png" />
     <Content Include="Content\Sprites\WorldSprites\destroyedtower.png" />
+    <Content Include="Content\Sprites\WorldSprites\Extended brush.png" />
     <Content Include="Content\Sprites\WorldSprites\mountainThing.png" />
     <Content Include="Content\Sprites\WorldSprites\stump.png" />
     <Content Include="Content\Sprites\WorldSprites\Tavern.png" />

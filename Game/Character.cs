@@ -84,19 +84,19 @@ namespace TwinStick
             
             if (Key.IsKeyDown(Keys.S))
             {
-                Movement = new Vector2(Movement.X, Movement.Y + 12f);
+                Movement = new Vector2(Movement.X, Movement.Y + 7f);
             }
             if (Key.IsKeyDown(Keys.W))
             {
-                Movement = new Vector2(Movement.X, Movement.Y - 12f);
+                Movement = new Vector2(Movement.X, Movement.Y - 7f);
             }
             if (Key.IsKeyDown(Keys.A))
             {
-                Movement = new Vector2(Movement.X - 12f, Movement.Y);
+                Movement = new Vector2(Movement.X - 7f, Movement.Y);
             }
             if (Key.IsKeyDown(Keys.D))
             {
-                Movement = new Vector2(Movement.X + 12f, Movement.Y);
+                Movement = new Vector2(Movement.X + 7f, Movement.Y);
             }
             OldPosition = Placement;
             Placement += Movement;

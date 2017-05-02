@@ -22,9 +22,10 @@ namespace TwinStick
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
-        Polygons treeborderB, treeborderT, treeborderL, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2;
-        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9;
+        Polygons treeborderB, treeborderT, treeborderL, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2, tower;
+        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, stump1;
         Enemy bonzia1, bonzia2, bonzia3, bonzia4;
+        Texture2D singlebrush;
 
         public override void Initialize()
         {
@@ -37,6 +38,9 @@ namespace TwinStick
 
             MakeShapes();
             #region polylistAdd
+            polyList.Add(wallTop);
+            polyList.Add(wallBottom);
+            polyList.Add(tower);
             polyList.Add(treeborderB);
             polyList.Add(treeborderT);
             polyList.Add(treeborderL);
@@ -54,6 +58,7 @@ namespace TwinStick
             polyList.Add(tree7);
             polyList.Add(tree8);
             polyList.Add(tree9);
+            polyList.Add(stump1);
             #endregion
             #region enemyListAdd
             /*enemyList.Add(bonzia1);
@@ -63,6 +68,9 @@ namespace TwinStick
             #endregion
 
             player.LoadContent(100, 300);
+            wallTop.LoadContent(1375, -710, "WorldSprites/Wall Top");
+            wallBottom.LoadContent(1375, 1100, "WorldSprites/wall bottom");
+            tower.LoadContent(2100, 1010, "WorldSprites/destroyedtower");
             treeborderB.LoadContent(-414, 1790, "WorldSprites/Treeborder bottom");
             treeborderT.LoadContent(-356, -1586, "WorldSprites/Treeborder top");
             treeborderL.LoadContent(-2000, 0, "WorldSprites/Treeborder left");
@@ -80,11 +88,14 @@ namespace TwinStick
             tree7.LoadContent(-1050, 550, "WorldSprites/Tree");
             tree8.LoadContent(-1150, 950, "WorldSprites/Tree");
             tree9.LoadContent(875, 1200, "WorldSprites/Tree");
+            stump1.LoadContent(1800, 1800, "WorldSprites/stump");
 
             bonzia1.LoadContent(500, -100, "Bonzai");
             bonzia2.LoadContent(500, 100, "Bonzai");
             bonzia3.LoadContent(100, 100, "Bonzai");
             bonzia4.LoadContent(100, -100, "Bonzai");
+
+            singlebrush = Main.GameContent.Load<Texture2D>("Sprites/WorldSprites/Extended brush");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
@@ -177,6 +188,7 @@ namespace TwinStick
                 enemy.Draw(spriteBatch);           
             }
             player.DrawHud(spriteBatch);
+            spriteBatch.Draw(singlebrush, new Vector2(1150, 1700), Color.White);
         }
 
         private void MakeShapes()
@@ -184,6 +196,9 @@ namespace TwinStick
             RetrieveShapes();
 
             player = CreateCharacter("player");
+            wallTop = CreateShape("walltop");
+            wallBottom = CreateShape("wallbottom");
+            tower = CreateShape("tower");
             treeborderB = CreateShape("treeborderb");
             treeborderT = CreateShape("treebordert");
             treeborderL = CreateShape("treeborderl");
@@ -201,6 +216,7 @@ namespace TwinStick
             tree7 = CreateShape("tree");
             tree8 = CreateShape("tree");
             tree9 = CreateShape("tree");
+            stump1 = CreateShape("stump");
             bonzia1 = CreateEnemy("bonzaienemy");
             bonzia2 = CreateEnemy("bonzaienemy");
             bonzia3 = CreateEnemy("bonzaienemy");
