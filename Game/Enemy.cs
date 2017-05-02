@@ -107,7 +107,7 @@ namespace TwinStick
             velocity.X = placement.X - Placement.X;
             velocity.Y = placement.Y - Placement.Y;
             velocity.Normalize();
-            velocity *= 10;
+            velocity *= 8;
         }
     }
 }

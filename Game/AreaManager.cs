@@ -23,7 +23,8 @@ namespace TwinStick
         Timer bulletaddtime = new Timer();
         bool elapsed = true;
         bool canfire = true;
-        
+        public List<Bullets> enemyBullets = new List<Bullets>();
+
 
         MouseState oldMouse = new MouseState();
 
@@ -177,7 +178,6 @@ namespace TwinStick
                 bulletaddtime.Stop();
                 bulletaddtime.Start();
             }
-
             oldMouse = mouse;
         }
         //Timer code
@@ -203,7 +203,7 @@ namespace TwinStick
 
             Bullets newBullet = CreateBullet("bullet", startpoint, player.Placement, rotation, type);
 
-            bulletList.Add(newBullet);
+            enemyBullets.Add(newBullet);
         }
 
         protected void EnemyShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, string type)
@@ -212,7 +212,7 @@ namespace TwinStick
 
             if (elapsed == true)
             {
-                addnewbullet(cam, startpoint, ref bulletList, type);
+                AddNewEnemyBullet(cam, startpoint, ref bulletList, type);
                 elapsed = false;
                 bulletaddtime.Stop();
                 bulletaddtime.Start();

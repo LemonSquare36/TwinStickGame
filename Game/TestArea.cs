@@ -24,10 +24,10 @@ namespace TwinStick
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
-        List<Bullets> enemyBullets = new List<Bullets>();
         Texture2D Cube;
         Enemy Bonzai;
         Enemy Assassin;
+        Enemy AngryJosh;
 
         public override void Initialize()
         {
@@ -41,15 +41,17 @@ namespace TwinStick
 
             MakeShapes();
             #region Add Enemies to List
-            enemyList.Add(Bonzai);
-            enemyList.Add(Assassin);
+            //enemyList.Add(Bonzai);
+            //enemyList.Add(Assassin);
+            enemyList.Add(AngryJosh);
             #endregion
 
             #region LoadContents
             player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100, "Triangle");
-            Bonzai.LoadContent(150, 150, "Bonzai");
-            Assassin.LoadContent(0, 300, "Assassin");
+            //Bonzai.LoadContent(150, 150, "Bonzai");
+            //Assassin.LoadContent(0, 300, "Assassin");
+            AngryJosh.LoadContent(300, 300, "Rambo");
 
             #endregion
 
@@ -66,6 +68,7 @@ namespace TwinStick
             getKey();
             player.Rotate(Key,camera);
             mouse = Mouse.GetState();
+            string type;
             ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList, "Blue");
 
             foreach (Bullets bullet in bulletsList.ToList())
@@ -82,14 +85,24 @@ namespace TwinStick
 
             foreach (Enemy enemy in enemyList.ToList())
             {
-                if (Distance(enemy.Placement, player.Placement) < 900)
+
+                enemy.MoveEnemy(player.getRealPos(2));
+                if (enemy.aiType == "Ranged")
                 {
-                    enemy.MoveEnemy(player.getRealPos(2));
-                    if (enemy.aiType == "Ranged")
+                    if (Distance(enemy.Placement, player.Placement) < 1200 && Distance(enemy.Placement, player.Placement) > 600)
                     {
-                        
+                        enemy.MoveEnemy(player.getRealPos(2));
+                    }
+                    EnemyShootBullet(mouse, cam, enemy.Placement, ref bulletsList, "Red");
+                }
+                if (enemy.aiType == "Stupid")
+                {
+                    if (Distance(enemy.Placement, player.Placement) < 1200)
+                    {
+                        enemy.MoveEnemy(player.getRealPos(2));
                     }
                 }
+               
 
                 enemy.RealPos();
                 bool collide = Collision(player, enemy);
@@ -100,8 +113,9 @@ namespace TwinStick
                 }
                 foreach (Bullets bullet in bulletsList.ToList())
                 {
+                    type = "Red";
                     collide = Collision(enemy, bullet);
-                    if (collide)
+                    if (collide && type == "Blue")
                     {
                         bulletsList.Remove(bullet);
                         enemy.removeHP(1);
@@ -109,6 +123,16 @@ namespace TwinStick
                         {
                             enemyList.Remove(enemy);
                         }
+                    }
+                }
+                foreach(Bullets bullet in enemyBullets.ToList())
+                {
+                    type = "Blue";
+                    collide = Collision(player, bullet);
+                    if (collide && type == "Red")
+                    {
+                        bulletsList.Remove(bullet);
+                        player.removeHP(enemy.GetDamage());
                     }
                 }
 
@@ -140,6 +164,7 @@ namespace TwinStick
             Triangle1 = CreateShape("triangle");
             Bonzai = CreateEnemy("bonzaienemy");
             Assassin = CreateEnemy("assassinenemy");
+            AngryJosh = CreateEnemy("angryjosh");
         }
     }
 }
