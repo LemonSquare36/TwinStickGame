@@ -18,8 +18,11 @@ namespace TwinStick
     {
         protected Vector2 velocity;
         public string enemyType;
-        string aiType;
+        public string aiType;
         bool agro;
+        Timer bulletaddtime = new Timer();
+        bool elapsed = true;
+        bool canfire = true;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
@@ -105,20 +108,6 @@ namespace TwinStick
             velocity.Y = placement.Y - Placement.Y;
             velocity.Normalize();
             velocity *= 10;
-        }
-
-        public void GetAI(string aitype)
-        {
-            aitype = aiType;
-            if(aitype == "Stupid")
-            {
-
-            }
-
-            if(aitype == "Ranged")
-            {
-
-            }
         }
     }
 }
