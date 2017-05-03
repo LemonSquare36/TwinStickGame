@@ -22,6 +22,8 @@ namespace TwinStick
         Timer bulletaddtime = new Timer();
         bool elapsed = true;
         bool canfire = true;
+        Timer enemybulletaddtime = new Timer();
+        bool enemyelapsed = true;
         public List<Bullets> enemyBullets = new List<Bullets>();
 
 
@@ -209,12 +211,12 @@ namespace TwinStick
         {
             type = "Red";
 
-            if (elapsed == true)
+            if (enemyelapsed == true)
             {
                 AddNewEnemyBullet(cam, startpoint, ref bulletList, type, shootat);
-                elapsed = false;
-                bulletaddtime.Stop();
-                bulletaddtime.Start();
+                enemyelapsed = false;
+                enemybulletaddtime.Stop();
+                enemybulletaddtime.Start();
             }
         }
         #endregion

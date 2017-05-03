@@ -20,9 +20,9 @@ namespace TwinStick
         public string enemyType;
         public string aiType;
         bool agro;
-        Timer bulletaddtime = new Timer();
-        bool elapsed = true;
-        bool canfire = true;
+        Timer enemybulletaddtime = new Timer();
+        bool enemyelapsed = true;
+        bool enemycanfire = true;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {

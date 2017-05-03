@@ -68,7 +68,6 @@ namespace TwinStick
             getKey();
             player.Rotate(Key,camera);
             mouse = Mouse.GetState();
-            string type;
             ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList, "Blue");
 
             foreach (Bullets bullet in bulletsList.ToList())
