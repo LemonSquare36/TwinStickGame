@@ -23,7 +23,7 @@ namespace TwinStick
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
         Polygons treeborderB, treeborderT, treeborderL, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2, tower;
-        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, stump1;
+        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, stump1, stump2, stump3, stump4, stump5;
         Enemy bonzia1, bonzia2, bonzia3, bonzia4;
         Texture2D singlebrush;
 
@@ -59,6 +59,11 @@ namespace TwinStick
             polyList.Add(tree8);
             polyList.Add(tree9);
             polyList.Add(stump1);
+            polyList.Add(stump2);
+            polyList.Add(stump3);
+            polyList.Add(stump4);
+            polyList.Add(stump5);
+
             #endregion
             #region enemyListAdd
             /*enemyList.Add(bonzia1);
@@ -88,7 +93,11 @@ namespace TwinStick
             tree7.LoadContent(-1050, 550, "WorldSprites/Tree");
             tree8.LoadContent(-1150, 950, "WorldSprites/Tree");
             tree9.LoadContent(875, 1200, "WorldSprites/Tree");
-            stump1.LoadContent(1800, 1800, "WorldSprites/stump");
+            stump1.LoadContent(1900, 1800, "WorldSprites/stump");
+            stump2.LoadContent(1200, 2400, "WorldSprites/stump");
+            stump3.LoadContent(3000, 1000, "WorldSprites/stump");
+            stump4.LoadContent(1900, 1800, "WorldSprites/stump");
+            stump5.LoadContent(1900, 1800, "WorldSprites/stump");
 
             bonzia1.LoadContent(500, -100, "Bonzai");
             bonzia2.LoadContent(500, 100, "Bonzai");
@@ -217,6 +226,10 @@ namespace TwinStick
             tree8 = CreateShape("tree");
             tree9 = CreateShape("tree");
             stump1 = CreateShape("stump");
+            stump2 = CreateShape("stump");
+            stump3 = CreateShape("stump");
+            stump4 = CreateShape("stump");
+            stump5 = CreateShape("stump");
             bonzia1 = CreateEnemy("bonzaienemy");
             bonzia2 = CreateEnemy("bonzaienemy");
             bonzia3 = CreateEnemy("bonzaienemy");
