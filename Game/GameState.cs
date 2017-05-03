@@ -25,6 +25,7 @@ namespace TwinStick
         Vector3 screenScale = Vector3.Zero;
         Color color = Color.DarkRed;
         Color prevColor;
+        Color borderColor1 = Color.FromNonPremultiplied(0, 53, 18, 255);
 
         SpriteBatch spriteBatch;
         GraphicsDeviceManager graphicsManager;
@@ -104,8 +105,8 @@ namespace TwinStick
             switch (CurrentScreen.getNextScreen())
             {
                 case "Play":
-                    CurrentScreen = Test;
-                    color = Color.ForestGreen;
+                    CurrentScreen = LevelOne;
+                    color = borderColor1;
                     break;
 
                 case "Exit":

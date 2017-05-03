@@ -22,10 +22,11 @@ namespace TwinStick
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
-        Polygons treeborderB, treeborderB2, treeborderB3, treeborderT, treeborderL, treeborderL2, treeborderR, treeborderR2, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2, tower;
-        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12, stump1, stump2, stump3, stump4, stump5, stump6, stump7, stump8, stump9, stump10, stump11;
+        Polygons treeborderB, treeborderB2, treeborderB3, treeborderT, treeborderL, treeborderL2, treeborderR, treeborderR2, mountain, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2, tower;
+        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12, tree13, stump1, stump2, stump3, stump4, stump5, stump6, stump7, stump8, stump9, stump10, stump11;
         Enemy bonzia1, bonzia2, bonzia3, bonzia4;
-        Texture2D singlebrush;
+        Texture2D singlebrush, groundtex;
+
 
         public override void Initialize()
         {
@@ -47,8 +48,9 @@ namespace TwinStick
             polyList.Add(treeborderT);
             polyList.Add(treeborderL);
             polyList.Add(treeborderL2);
+            polyList.Add(mountain);
             polyList.Add(treeborderR);
-            polyList.Add(treeborderR2);
+            polyList.Add(treeborderR2);          
             polyList.Add(burnedRemains);
             polyList.Add(destroyedCabin);
             polyList.Add(well);
@@ -66,6 +68,7 @@ namespace TwinStick
             polyList.Add(tree10);
             polyList.Add(tree11);
             polyList.Add(tree12);
+            polyList.Add(tree13);
             polyList.Add(stump1);
             polyList.Add(stump2);
             polyList.Add(stump3);
@@ -80,10 +83,10 @@ namespace TwinStick
 
             #endregion
             #region enemyListAdd
-            enemyList.Add(bonzia1);
+            /*enemyList.Add(bonzia1);
             enemyList.Add(bonzia2);
             enemyList.Add(bonzia3);
-            enemyList.Add(bonzia4);
+            enemyList.Add(bonzia4);*/
             #endregion
 
             player.LoadContent(100, 300);
@@ -96,8 +99,9 @@ namespace TwinStick
             treeborderT.LoadContent(-356, -1586, "WorldSprites/Treeborder top");
             treeborderL.LoadContent(-2000, 0, "WorldSprites/Treeborder left");
             treeborderL2.LoadContent(-2030, 3350, "WorldSprites/Treeborder left");
-            treeborderR.LoadContent(5030, 0, "WorldSprites/Treeborder Right");
-            treeborderR2.LoadContent(5030, 3350, "WorldSprites/Treeborder Right");
+            treeborderR.LoadContent(4700, 0, "WorldSprites/Treeborder Right");
+            treeborderR2.LoadContent(4700, 3350, "WorldSprites/Treeborder Right");
+            mountain.LoadContent(3100, -1586, "WorldSprites/mountainThing");
             destroyedCabin.LoadContent(-1150, -700, "WorldSprites/Destroyed Cabin");
             burnedRemains.LoadContent(800, -600, "WorldSprites/Burned Remains");
             well.LoadContent(-800, -200, "WorldSprites/well");
@@ -115,6 +119,7 @@ namespace TwinStick
             tree10.LoadContent(2290, - 794, "WorldSprites/Tree");
             tree11.LoadContent(3200, -1170, "WorldSprites/Tree");
             tree12.LoadContent(3750, -70, "WorldSprites/Tree");
+            tree13.LoadContent(4745, 1820, "WorldSprites/Tree");
             stump1.LoadContent(1900, 1500, "WorldSprites/stump");
             stump2.LoadContent(1200, 2400, "WorldSprites/stump");
             stump3.LoadContent(3000, 1000, "WorldSprites/stump");
@@ -133,6 +138,7 @@ namespace TwinStick
             bonzia4.LoadContent(100, -100, "Bonzai");
 
             singlebrush = Main.GameContent.Load<Texture2D>("Sprites/WorldSprites/Extended brush");
+            groundtex = Main.GameContent.Load<Texture2D>("Sprites/WorldSprites/GroundTexture1");
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
@@ -210,6 +216,7 @@ namespace TwinStick
 
         public override void Draw()
         {
+            spriteBatch.Draw(groundtex, new Vector2(-2120, -1600), Color.White);
             player.Draw(spriteBatch);
 
             foreach (Bullets bullet in bulletsList)
@@ -227,6 +234,8 @@ namespace TwinStick
             player.DrawHud(spriteBatch);
             spriteBatch.Draw(singlebrush, new Vector2(1150, 1700), Color.White);
             spriteBatch.Draw(singlebrush, new Vector2(1150, 4910), Color.White);
+            spriteBatch.Draw(singlebrush, new Vector2(4600, 1650), Color.White);
+            
         }
 
         private void MakeShapes()
@@ -245,6 +254,7 @@ namespace TwinStick
             treeborderL2 = CreateShape("treeborderl");
             treeborderR = CreateShape("treeborderr");
             treeborderR2 = CreateShape("treeborderr");
+            mountain = CreateShape("mountain");
             destroyedCabin = CreateShape("destroyedcabin");
             burnedRemains = CreateShape("burnedremains");
             well = CreateShape("well");
@@ -262,6 +272,7 @@ namespace TwinStick
             tree10 = CreateShape("tree");
             tree11 = CreateShape("tree");
             tree12 = CreateShape("tree");
+            tree13 = CreateShape("tree");
             stump1 = CreateShape("stump");
             stump2 = CreateShape("stump");
             stump3 = CreateShape("stump");
