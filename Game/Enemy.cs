@@ -101,6 +101,12 @@ namespace TwinStick
             Vector2 direction =  placement - Placement;
             rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
         }
+        public void Retreat(Vector2 placement, Vector2 playerPosition)
+        {
+            MoveEnemyPlacement(placement);
+            OldPosition = Placement;
+            Placement -= velocity;
+        }
 
         private void MoveEnemyPlacement(Vector2 placement)
         {

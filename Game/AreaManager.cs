@@ -19,7 +19,6 @@ namespace TwinStick
     class AreaManager : ScreenManager
     {
         protected static Hashtable shapeVerts = new Hashtable();
-        private Character player;
         Timer bulletaddtime = new Timer();
         bool elapsed = true;
         bool canfire = true;
@@ -194,31 +193,29 @@ namespace TwinStick
         #endregion
 
         #region Enemy Bullet Code
-        private void AddNewEnemyBullet(Camera camera, Vector2 startpoint, ref List<Bullets> bulletList, string type)
+        private void AddNewEnemyBullet(Camera camera, Vector2 startpoint, ref List<Bullets> bulletList, string type, Vector2 shootat)
         {
             float rotation;
             
-            Vector2 direction = player.Placement - startpoint;
+            Vector2 direction = shootat - startpoint;
             rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
 
-            Bullets newBullet = CreateBullet("bullet", startpoint, player.Placement, rotation, type);
+            Bullets newBullet = CreateBullet("bullet", startpoint, shootat, rotation, type);
 
             enemyBullets.Add(newBullet);
         }
 
-        protected void EnemyShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, string type)
+        protected void EnemyShootBullet(Vector2 shootat, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, string type)
         {
             type = "Red";
 
             if (elapsed == true)
             {
-                AddNewEnemyBullet(cam, startpoint, ref bulletList, type);
+                AddNewEnemyBullet(cam, startpoint, ref bulletList, type, shootat);
                 elapsed = false;
                 bulletaddtime.Stop();
                 bulletaddtime.Start();
             }
-
-            oldMouse = mouse;
         }
         #endregion
         //Creates the Shapes of Polygon Class

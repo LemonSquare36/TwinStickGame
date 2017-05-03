@@ -85,6 +85,7 @@ namespace TwinStick
 
             foreach (Enemy enemy in enemyList.ToList())
             {
+                enemy.RealPos();
 
                 enemy.MoveEnemy(player.getRealPos(2));
                 if (enemy.aiType == "Ranged")
@@ -93,7 +94,12 @@ namespace TwinStick
                     {
                         enemy.MoveEnemy(player.getRealPos(2));
                     }
-                    EnemyShootBullet(mouse, cam, enemy.Placement, ref bulletsList, "Red");
+                    else if(Distance(enemy.Placement, player.Placement) < 600)
+                    {
+                        enemy.Retreat(enemy.Placement, player.Placement);
+                    }
+                    EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref bulletsList, "Red");
+                    //Have Josh show you where getRealPos and [Index] from error is to try to fix "Out of Range" exception
                 }
                 if (enemy.aiType == "Stupid")
                 {
@@ -104,7 +110,7 @@ namespace TwinStick
                 }
                
 
-                enemy.RealPos();
+                
                 bool collide = Collision(player, enemy);
                 if (collide)
                 {
@@ -113,9 +119,8 @@ namespace TwinStick
                 }
                 foreach (Bullets bullet in bulletsList.ToList())
                 {
-                    type = "Red";
                     collide = Collision(enemy, bullet);
-                    if (collide && type == "Blue")
+                    if (collide)
                     {
                         bulletsList.Remove(bullet);
                         enemy.removeHP(1);
@@ -127,9 +132,8 @@ namespace TwinStick
                 }
                 foreach(Bullets bullet in enemyBullets.ToList())
                 {
-                    type = "Blue";
                     collide = Collision(player, bullet);
-                    if (collide && type == "Red")
+                    if (collide)
                     {
                         bulletsList.Remove(bullet);
                         player.removeHP(enemy.GetDamage());
