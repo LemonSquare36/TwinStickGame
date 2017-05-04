@@ -24,7 +24,6 @@ namespace TwinStick
         bool canfire = true;
         Timer enemybulletaddtime = new Timer();
         bool enemyelapsed = true;
-        public List<Bullets> enemyBullets = new List<Bullets>();
 
 
         MouseState oldMouse = new MouseState();
@@ -195,7 +194,7 @@ namespace TwinStick
         #endregion
 
         #region Enemy Bullet Code
-        private void AddNewEnemyBullet(Camera camera, Vector2 startpoint, ref List<Bullets> bulletList, string type, Vector2 shootat)
+        private void AddNewEnemyBullet(Camera camera, Vector2 startpoint, ref List<Bullets> enemyBullets, string type, Vector2 shootat)
         {
             float rotation;
             
@@ -203,7 +202,6 @@ namespace TwinStick
             rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
 
             Bullets newBullet = CreateBullet("bullet", startpoint, shootat, rotation, type);
-
             enemyBullets.Add(newBullet);
         }
 
@@ -218,6 +216,15 @@ namespace TwinStick
                 enemybulletaddtime.Stop();
                 enemybulletaddtime.Start();
             }
+        }
+        protected void enemyTimerSetUp()
+        {
+            enemybulletaddtime.Elapsed += enemyBulletTimerElasped;
+            enemybulletaddtime.Interval = 300;
+        }
+        private void enemyBulletTimerElasped(object source, ElapsedEventArgs e)
+        {
+            enemyelapsed = true;
         }
         #endregion
         //Creates the Shapes of Polygon Class
