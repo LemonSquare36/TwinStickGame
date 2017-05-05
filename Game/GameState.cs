@@ -105,7 +105,7 @@ namespace TwinStick
             switch (CurrentScreen.getNextScreen())
             {
                 case "Play":
-                    CurrentScreen = Test;
+                    CurrentScreen = LevelOne;
                     color = borderColor1;
                     break;
 
