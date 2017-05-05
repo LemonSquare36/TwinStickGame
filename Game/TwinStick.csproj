@@ -124,6 +124,7 @@
     <Content Include="Content\Sprites\Triangle.png" />
     <Content Include="Content\Sprites\WhiteCube.png" />
     <Content Include="Content\Sprites\WorldSprites\Burned Remains.png" />
+    <Content Include="Content\Sprites\WorldSprites\Cave Entrance.png" />
     <Content Include="Content\Sprites\WorldSprites\Destroyed Cabin.png" />
     <Content Include="Content\Sprites\WorldSprites\destroyedtower.png" />
     <Content Include="Content\Sprites\WorldSprites\Extended brush.png" />

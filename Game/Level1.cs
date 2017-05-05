@@ -25,8 +25,11 @@ namespace TwinStick
         Polygons treeborderB, treeborderB2, treeborderB3, treeborderT, treeborderL, treeborderL2, treeborderR, treeborderR2, mountain, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2, tower;
         Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12, tree13, tree14, tree15, tree16, tree17, tree18, tree19,tree20, tree21, tree22, tree23;
         Polygons stump1, stump2, stump3, stump4, stump5, stump6, stump7, stump8, stump9, stump10, stump11, stump12, stump14, stump15, stump16;
+        Polygons caveEntrance;
         Enemy bonzia1, bonzia2, bonzia3, bonzia4;
         Texture2D singlebrush, groundtex;
+
+        bool cavecollide;
 
 
         public override void Initialize()
@@ -165,6 +168,8 @@ namespace TwinStick
             stump15.LoadContent(4070, 3700, "WorldSprites/stump");
             stump16.LoadContent(-950, 2960, "WorldSprites/stump");
 
+            caveEntrance.LoadContent(3120, -1400, "WorldSprites/Cave Entrance");
+
             bonzia1.LoadContent(500, -100, "Bonzai");
             bonzia2.LoadContent(500, 100, "Bonzai");
             bonzia3.LoadContent(100, 100, "Bonzai");
@@ -230,7 +235,6 @@ namespace TwinStick
                     }
                 }
             }
-
             foreach (Enemy enemy in enemyList.ToList())
             {
                 if (Distance(enemy.Placement, player.Placement) < 800)
@@ -243,7 +247,13 @@ namespace TwinStick
                     player.removeHP(enemy.GetDamage());
                     enemy.Stop();
                 }            
-            } 
+            }
+            cavecollide = Collision(player, caveEntrance);
+            if (cavecollide)
+            {
+                player.Stop();
+            }
+
             player.MovePlayer(Key);
         }
 
@@ -264,6 +274,12 @@ namespace TwinStick
             {
                 enemy.Draw(spriteBatch);           
             }
+
+            if (cavecollide)
+            {
+
+            }
+            caveEntrance.Draw(spriteBatch);
             player.DrawHud(spriteBatch);
             spriteBatch.Draw(singlebrush, new Vector2(1150, 1700), Color.White);
             spriteBatch.Draw(singlebrush, new Vector2(1150, 4910), Color.White);
@@ -333,6 +349,8 @@ namespace TwinStick
             stump14 = CreateShape("stump");
             stump15 = CreateShape("stump");
             stump16 = CreateShape("stump");
+
+            caveEntrance = CreateShape("cave");
 
             bonzia1 = CreateEnemy("bonzaienemy");
             bonzia2 = CreateEnemy("bonzaienemy");
