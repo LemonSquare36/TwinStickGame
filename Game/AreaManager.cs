@@ -205,7 +205,7 @@ namespace TwinStick
             enemyBullets.Add(newBullet);
         }
 
-        protected void EnemyShootBullet(Vector2 shootat, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, string type)
+        protected void EnemyShootBullet(Vector2 shootat, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, int enemyInterval,string type)
         {
             type = "Red";
 
@@ -214,13 +214,14 @@ namespace TwinStick
                 AddNewEnemyBullet(cam, startpoint, ref bulletList, type, shootat);
                 enemyelapsed = false;
                 enemybulletaddtime.Stop();
+                enemybulletaddtime.Interval = enemyInterval;
                 enemybulletaddtime.Start();
             }
         }
         protected void enemyTimerSetUp()
         {
             enemybulletaddtime.Elapsed += enemyBulletTimerElasped;
-            enemybulletaddtime.Interval = 300;
+            enemybulletaddtime.Interval = 150;
         }
         private void enemyBulletTimerElasped(object source, ElapsedEventArgs e)
         {

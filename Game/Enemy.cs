@@ -19,6 +19,7 @@ namespace TwinStick
         protected Vector2 velocity;
         public string enemyType;
         public string aiType;
+        public int enemyInterval;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
@@ -51,6 +52,7 @@ namespace TwinStick
                 aiType = "Ranged";
                 HP = 2;
                 Damage = 8;
+                enemyInterval = 500;
             }
             if(enemytype == "Assassin")
             {
@@ -63,6 +65,7 @@ namespace TwinStick
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Minigun");
                 aiType = "Ranged";
+                enemyInterval = 50;
                 HP = 8;
                 Damage = 6;
             }
@@ -71,6 +74,7 @@ namespace TwinStick
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Rifle");
                 aiType = "Ranged";
                 HP = 5;
+                enemyInterval = 150;
                 Damage = 10;
             }
         }
@@ -101,7 +105,7 @@ namespace TwinStick
         {
             MoveEnemyPlacement(placement);
             OldPosition = Placement;
-            Placement -= velocity;
+            Placement -= velocity*1.75f;
         }
 
         private void MoveEnemyPlacement(Vector2 placement)
@@ -110,6 +114,10 @@ namespace TwinStick
             velocity.Y = placement.Y - Placement.Y;
             velocity.Normalize();
             velocity *= 4;
+        }
+        public int GetEnemyInterval()
+        {
+            return enemyInterval;
         }
     }
 }

@@ -109,5 +109,12 @@ namespace TwinStick
             spritebatch.DrawString(font, "HP", Placement + new Vector2(-765, -315), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
 
         }
+        public void Died(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            Placement = OldPosition;
+            spriteBatch.DrawString(font, "YOU HAVE DIED", Placement + new Vector2(-765, -315), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
+            spriteBatch.End();
+        }
     }
 }

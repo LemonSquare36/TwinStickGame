@@ -48,13 +48,13 @@ namespace TwinStick
             enemyList.Add(Assassin);
             enemyList.Add(AngryJosh);
             #endregion
-        
+
             #region LoadContents
-            player.LoadContent(100,500);
+            player.LoadContent(100, 500);
             Triangle1.LoadContent(100, 100, "Triangle");
             Bonzai.LoadContent(150, 150, "Bonzai");
             Assassin.LoadContent(0, 300, "Assassin");
-            AngryJosh.LoadContent(300, 300, "Rambo");
+            AngryJosh.LoadContent(300, 300, "Angry Josh");
 
             #endregion
 
@@ -66,10 +66,10 @@ namespace TwinStick
         {
             player.RealPos();
             cam = camera;
-            camera.Follow(new Vector2 (-player.Placement.X, -player.Placement.Y));
+            camera.Follow(new Vector2(-player.Placement.X, -player.Placement.Y));
             Triangle1.RealPos();
             getKey();
-            player.Rotate(Key,camera);
+            player.Rotate(Key, camera);
             mouse = Mouse.GetState();
             ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList, "Blue");
 
@@ -92,16 +92,20 @@ namespace TwinStick
                 enemy.MoveEnemy(player.getRealPos(2));
                 if (enemy.aiType == "Ranged")
                 {
-                    if (Distance(enemy.Placement, player.Placement) < 1200 && Distance(enemy.Placement, player.Placement) > 600)
+                    if (Distance(enemy.Placement, player.Placement) < 1200)
                     {
                         enemy.MoveEnemy(player.getRealPos(2));
+                        EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets,enemy.enemyInterval, "Red");
                     }
-                    else if (Distance(enemy.Placement, player.Placement) < 600)
+
+                    if (Distance(enemy.Placement, player.Placement) < 600)
                     {
                         enemy.Retreat(player.getRealPos(2));
+                        if (Distance(enemy.Placement, player.Placement) < 600)
+                        {
+                            enemy.Retreat(player.getRealPos(2));
+                        }
                     }
-                    EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets, "Red");
-
                     if (oldcount != enemyBullets.Count)
                     {
                         if (enemyBullets.Count > 0)
@@ -118,9 +122,9 @@ namespace TwinStick
                         enemy.MoveEnemy(player.getRealPos(2));
                     }
                 }
-               
 
-                
+
+
                 bool collide = Collision(player, enemy);
                 if (collide)
                 {
@@ -134,7 +138,7 @@ namespace TwinStick
                     {
                         bulletsList.Remove(bullet);
                         enemy.removeHP(1);
-                        if(enemy.getHP() <= 0)
+                        if (enemy.getHP() <= 0)
                         {
                             enemyList.Remove(enemy);
                         }
