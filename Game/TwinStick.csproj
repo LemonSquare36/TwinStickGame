@@ -104,10 +104,10 @@
     <Content Include="Content\Backgrounds\MenuBackground2.png" />
     <Content Include="Content\Buttons\Exit.png" />
     <Content Include="Content\Buttons\ExitHighlight.png" />
+    <Content Include="Content\Buttons\Fullscreen Highlight.png" />
     <Content Include="Content\Buttons\FullScreen.png" />
-    <Content Include="Content\Buttons\FullScreenPressed.png" />
+    <Content Include="Content\Buttons\Play Highlight.png" />
     <Content Include="Content\Buttons\Play.png" />
-    <Content Include="Content\Buttons\PlayPressed.png" />
     <Content Include="Content\Hold the Usings.txt" />
     <Content Include="Content\Sprites\Bullets\Enemy Bullet.png" />
     <Content Include="Content\Sprites\Bullets\Player Bullet.png" />

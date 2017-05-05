@@ -29,15 +29,15 @@ namespace TwinStick
         {
             spriteBatch = spriteBatchmain;
             PlayUnpressed = Main.GameContent.Load<Texture2D>("Buttons/Play");
-            PlayPressed = Main.GameContent.Load<Texture2D>("Buttons/PlayPressed");
+            PlayPressed = Main.GameContent.Load<Texture2D>("Buttons/Play Highlight");
             ExitUnpressed = Main.GameContent.Load<Texture2D>("Buttons/Exit");
             ExitPressed = Main.GameContent.Load<Texture2D>("Buttons/ExitHighlight");
             FullScreenUnpressed = Main.GameContent.Load<Texture2D>("Buttons/FullScreen");
-            FullScreenPressed = Main.GameContent.Load<Texture2D>("Buttons/FullScreenPressed");
+            FullScreenPressed = Main.GameContent.Load<Texture2D>("Buttons/Fullscreen Highlight");
 
-            Play = new Button(new Vector2(500, 350), 600, 220, PlayPressed, PlayUnpressed, "Play");
+            Play = new Button(new Vector2(500, 350), 600, 220, PlayUnpressed, PlayPressed, "Play");
             Exit = new Button(new Vector2(500, 700), 600, 220, ExitUnpressed, ExitPressed, "Exit");
-            FullScreen = new Button(new Vector2(500, 50), 600, 220, FullScreenPressed, FullScreenUnpressed, "FullScreen");
+            FullScreen = new Button(new Vector2(500, 50), 600, 220, FullScreenUnpressed, FullScreenPressed, "FullScreen");
 
             Play.ButtonClicked += ButtonClicked;
             Exit.ButtonClicked += ButtonClicked;
@@ -67,7 +67,7 @@ namespace TwinStick
             Play.Draw(spriteBatch);
             Exit.Draw(spriteBatch);
             FullScreen.Draw(spriteBatch);
-            spriteBatch.Draw(Background2, new Vector2(0, 0), Color.White);
+           // spriteBatch.Draw(Background2, new Vector2(0, 0), Color.White);
         }
 
         //Used for edge detection
