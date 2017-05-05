@@ -23,7 +23,8 @@ namespace TwinStick
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
         Polygons treeborderB, treeborderB2, treeborderB3, treeborderT, treeborderL, treeborderL2, treeborderR, treeborderR2, mountain, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2, tower;
-        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12, tree13, stump1, stump2, stump3, stump4, stump5, stump6, stump7, stump8, stump9, stump10, stump11;
+        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12, tree13, tree14, tree15, tree16, tree17, tree18, tree19,tree20, tree21, tree22, tree23;
+        Polygons stump1, stump2, stump3, stump4, stump5, stump6, stump7, stump8, stump9, stump10, stump11, stump12, stump14, stump15, stump16;
         Enemy bonzia1, bonzia2, bonzia3, bonzia4;
         Texture2D singlebrush, groundtex;
 
@@ -56,6 +57,7 @@ namespace TwinStick
             polyList.Add(well);
             polyList.Add(tavern1);
             polyList.Add(tavern2);
+
             polyList.Add(tree1);
             polyList.Add(tree2);
             polyList.Add(tree3);
@@ -69,6 +71,17 @@ namespace TwinStick
             polyList.Add(tree11);
             polyList.Add(tree12);
             polyList.Add(tree13);
+            polyList.Add(tree14);
+            polyList.Add(tree15);
+            polyList.Add(tree16);
+            polyList.Add(tree17);
+            polyList.Add(tree18);
+            polyList.Add(tree19);
+            polyList.Add(tree20);
+            polyList.Add(tree21);
+            polyList.Add(tree22);
+            polyList.Add(tree23);
+
             polyList.Add(stump1);
             polyList.Add(stump2);
             polyList.Add(stump3);
@@ -80,6 +93,10 @@ namespace TwinStick
             polyList.Add(stump9);
             polyList.Add(stump10);
             polyList.Add(stump11);
+            polyList.Add(stump12);
+            polyList.Add(stump14);
+            polyList.Add(stump15);
+            polyList.Add(stump16);
 
             #endregion
             #region enemyListAdd
@@ -107,6 +124,7 @@ namespace TwinStick
             well.LoadContent(-800, -200, "WorldSprites/well");
             tavern1.LoadContent(-1100, 200, "WorldSprites/Tavern1");
             tavern2.LoadContent(-866, 430, "WorldSprites/Tavern2");
+
             tree1.LoadContent(790, -200, "WorldSprites/Tree");
             tree2.LoadContent(850, 200, "WorldSprites/Tree");
             tree3.LoadContent(-300, 0, "WorldSprites/Tree");
@@ -120,6 +138,17 @@ namespace TwinStick
             tree11.LoadContent(3200, -1170, "WorldSprites/Tree");
             tree12.LoadContent(3750, -70, "WorldSprites/Tree");
             tree13.LoadContent(4745, 1820, "WorldSprites/Tree");
+            tree14.LoadContent(-1140, 2490, "WorldSprites/Tree");
+            tree15.LoadContent(110, 2640, "WorldSprites/Tree");
+            tree16.LoadContent(-980, 4360, "WorldSprites/Tree");
+            tree17.LoadContent(-290, 3910, "WorldSprites/Tree");
+            tree18.LoadContent(280, 3440, "WorldSprites/Tree");
+            tree19.LoadContent(1980, 3240, "WorldSprites/Tree");
+            tree20.LoadContent(1900, 3450, "WorldSprites/Tree");
+            tree21.LoadContent(1850, 4000, "WorldSprites/Tree");
+            tree22.LoadContent(700, 4400, "WorldSprites/Tree");
+            tree23.LoadContent(-1300, 3570, "WorldSprites/Tree");
+
             stump1.LoadContent(1900, 1500, "WorldSprites/stump");
             stump2.LoadContent(1200, 2400, "WorldSprites/stump");
             stump3.LoadContent(3000, 1000, "WorldSprites/stump");
@@ -131,6 +160,10 @@ namespace TwinStick
             stump9.LoadContent(3950, 2290, "WorldSprites/stump");
             stump10.LoadContent(4400, 1900, "WorldSprites/stump");
             stump11.LoadContent(2770, 2550, "WorldSprites/stump");
+            stump12.LoadContent(3606, 2950, "WorldSprites/stump");
+            stump14.LoadContent(3500, 4100, "WorldSprites/stump");
+            stump15.LoadContent(4070, 3700, "WorldSprites/stump");
+            stump16.LoadContent(-950, 2960, "WorldSprites/stump");
 
             bonzia1.LoadContent(500, -100, "Bonzai");
             bonzia2.LoadContent(500, 100, "Bonzai");
@@ -260,6 +293,7 @@ namespace TwinStick
             well = CreateShape("well");
             tavern1 = CreateShape("tavern1");
             tavern2 = CreateShape("tavern2");
+
             tree1 = CreateShape("tree");
             tree2 = CreateShape("tree");
             tree3 = CreateShape("tree");
@@ -273,6 +307,17 @@ namespace TwinStick
             tree11 = CreateShape("tree");
             tree12 = CreateShape("tree");
             tree13 = CreateShape("tree");
+            tree14 = CreateShape("tree");
+            tree15 = CreateShape("tree");
+            tree16 = CreateShape("tree");
+            tree17 = CreateShape("tree");
+            tree18 = CreateShape("tree");
+            tree19 = CreateShape("tree");
+            tree20 = CreateShape("tree");
+            tree21 = CreateShape("tree");
+            tree22 = CreateShape("tree");
+            tree23 = CreateShape("tree");
+
             stump1 = CreateShape("stump");
             stump2 = CreateShape("stump");
             stump3 = CreateShape("stump");
@@ -284,6 +329,11 @@ namespace TwinStick
             stump9 = CreateShape("stump");
             stump10 = CreateShape("stump");
             stump11 = CreateShape("stump");
+            stump12 = CreateShape("stump");
+            stump14 = CreateShape("stump");
+            stump15 = CreateShape("stump");
+            stump16 = CreateShape("stump");
+
             bonzia1 = CreateEnemy("bonzaienemy");
             bonzia2 = CreateEnemy("bonzaienemy");
             bonzia3 = CreateEnemy("bonzaienemy");
