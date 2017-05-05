@@ -21,6 +21,7 @@ namespace TwinStick
         Polygons Triangle1;
         private List<Bullets> bulletsList = new List<Bullets>();
         private List<Enemy> enemyList = new List<Enemy>();
+        public List<Bullets> enemyBullets = new List<Bullets>();
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
@@ -28,10 +29,12 @@ namespace TwinStick
         Enemy Bonzai;
         Enemy Assassin;
         Enemy AngryJosh;
+        int oldcount;
 
         public override void Initialize()
         {
             TimerSetUp();
+            enemyTimerSetUp();
         }
 
 
@@ -41,16 +44,16 @@ namespace TwinStick
 
             MakeShapes();
             #region Add Enemies to List
-            //enemyList.Add(Bonzai);
-            //enemyList.Add(Assassin);
+            enemyList.Add(Bonzai);
+            enemyList.Add(Assassin);
             enemyList.Add(AngryJosh);
             #endregion
-
+        
             #region LoadContents
             player.LoadContent(100,500);
             Triangle1.LoadContent(100, 100, "Triangle");
-            //Bonzai.LoadContent(150, 150, "Bonzai");
-            //Assassin.LoadContent(0, 300, "Assassin");
+            Bonzai.LoadContent(150, 150, "Bonzai");
+            Assassin.LoadContent(0, 300, "Assassin");
             AngryJosh.LoadContent(300, 300, "Rambo");
 
             #endregion
@@ -93,12 +96,20 @@ namespace TwinStick
                     {
                         enemy.MoveEnemy(player.getRealPos(2));
                     }
-                    else if(Distance(enemy.Placement, player.Placement) < 600)
+                    else if (Distance(enemy.Placement, player.Placement) < 600)
                     {
-                        enemy.Retreat(enemy.Placement, player.Placement);
+                        enemy.Retreat(player.getRealPos(2));
                     }
-                    EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref bulletsList, "Red");
-                    //Have Josh show you where getRealPos and [Index] from error is to try to fix "Out of Range" exception
+                    EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets, "Red");
+
+                    if (oldcount != enemyBullets.Count)
+                    {
+                        if (enemyBullets.Count > 0)
+                        {
+                            enemyBullets[enemyBullets.Count - 1].damage = enemy.GetDamage();
+                        }
+                    }
+                    oldcount += enemyBullets.Count;
                 }
                 if (enemy.aiType == "Stupid")
                 {
@@ -129,17 +140,18 @@ namespace TwinStick
                         }
                     }
                 }
-                foreach(Bullets bullet in enemyBullets.ToList())
+            }
+            foreach (Bullets bullet in enemyBullets.ToList())
+            {
+                bullet.RealPos();
+                bullet.MoveBullet(camera);
+                bool collide = Collision(player, bullet);
+                if (collide)
                 {
-                    collide = Collision(player, bullet);
-                    if (collide)
-                    {
-                        bulletsList.Remove(bullet);
-                        player.removeHP(enemy.GetDamage());
-                    }
+                    enemyBullets.Remove(bullet);
+                    player.removeHP(bullet.damage);
                 }
-
-            } 
+            }
             player.MovePlayer(Key);
         }
 
@@ -155,6 +167,10 @@ namespace TwinStick
             }
 
             foreach (Bullets bullet in bulletsList)
+            {
+                bullet.Draw(spriteBatch);
+            }
+            foreach (Bullets bullet in enemyBullets)
             {
                 bullet.Draw(spriteBatch);
             }

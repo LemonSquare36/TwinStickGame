@@ -19,10 +19,6 @@ namespace TwinStick
         protected Vector2 velocity;
         public string enemyType;
         public string aiType;
-        bool agro;
-        Timer enemybulletaddtime = new Timer();
-        bool enemyelapsed = true;
-        bool enemycanfire = true;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
@@ -101,7 +97,7 @@ namespace TwinStick
             Vector2 direction =  placement - Placement;
             rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
         }
-        public void Retreat(Vector2 placement, Vector2 playerPosition)
+        public void Retreat(Vector2 placement)
         {
             MoveEnemyPlacement(placement);
             OldPosition = Placement;
@@ -113,7 +109,7 @@ namespace TwinStick
             velocity.X = placement.X - Placement.X;
             velocity.Y = placement.Y - Placement.Y;
             velocity.Normalize();
-            velocity *= 8;
+            velocity *= 4;
         }
     }
 }

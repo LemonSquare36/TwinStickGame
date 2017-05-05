@@ -20,6 +20,7 @@ namespace TwinStick
         protected Vector2 velocity;
         protected bool isVisible;
         public string type;
+        public int damage;
         
 
         public Bullets(List<Vector2> bullets) : base(bullets)
