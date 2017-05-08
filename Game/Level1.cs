@@ -29,7 +29,7 @@ namespace TwinStick
         Enemy bonzia1, bonzia2, bonzia3, bonzia4;
         Texture2D singlebrush, groundtex;
 
-        bool cavecollide;
+        bool cavecollide = false;
 
 
         public override void Initialize()
@@ -138,7 +138,7 @@ namespace TwinStick
             tree8.LoadContent(-1150, 950, "WorldSprites/Tree");
             tree9.LoadContent(875, 1200, "WorldSprites/Tree");
             tree10.LoadContent(2290, - 794, "WorldSprites/Tree");
-            tree11.LoadContent(3200, -1170, "WorldSprites/Tree");
+            tree11.LoadContent(3400, -1170, "WorldSprites/Tree");
             tree12.LoadContent(3750, -70, "WorldSprites/Tree");
             tree13.LoadContent(4745, 1820, "WorldSprites/Tree");
             tree14.LoadContent(-1140, 2490, "WorldSprites/Tree");
@@ -248,6 +248,7 @@ namespace TwinStick
                     enemy.Stop();
                 }            
             }
+            caveEntrance.RealPos();
             cavecollide = Collision(player, caveEntrance);
             if (cavecollide)
             {
@@ -277,7 +278,7 @@ namespace TwinStick
 
             if (cavecollide)
             {
-
+                player.LevelEnd(false, spriteBatch);
             }
             caveEntrance.Draw(spriteBatch);
             player.DrawHud(spriteBatch);

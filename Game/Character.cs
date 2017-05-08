@@ -116,5 +116,16 @@ namespace TwinStick
             spriteBatch.DrawString(font, "YOU HAVE DIED", Placement + new Vector2(-765, -315), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
             spriteBatch.End();
         }
+        public void LevelEnd(bool end, SpriteBatch spriteBatch)
+        {
+            if (end)
+            {
+
+            }
+            if (!end)
+            {
+                spriteBatch.DrawString(font, "You must kill all the enemies first", Placement, Color.Red, 0, Vector2.Zero, 2, SpriteEffects.None, 0);
+            }
+        }
     }
 }
