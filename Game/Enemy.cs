@@ -50,7 +50,7 @@ namespace TwinStick
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Gun");
                 aiType = "Ranged";
-                HP = 2;
+                HP = 3;
                 Damage = 8;
                 enemyInterval = 500;
             }
@@ -59,14 +59,14 @@ namespace TwinStick
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Knife");
                 aiType = "Stupid";
                 HP = 2;
-                Damage = 4;
+                Damage = 3;
             }
             if(enemytype == "Angry Josh")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Minigun");
                 aiType = "Ranged";
                 enemyInterval = 50;
-                HP = 8;
+                HP = 3;
                 Damage = 6;
             }
             if(enemytype == "Rambo")

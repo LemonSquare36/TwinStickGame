@@ -29,6 +29,8 @@ namespace TwinStick
         Enemy Bonzai;
         Enemy Assassin;
         Enemy AngryJosh;
+        Enemy Goon;
+        Enemy Rambo;
         int oldcount;
 
         public override void Initialize()
@@ -52,9 +54,11 @@ namespace TwinStick
             #region LoadContents
             player.LoadContent(100, 500);
             Triangle1.LoadContent(100, 100, "Triangle");
-            Bonzai.LoadContent(150, 150, "Bonzai");
-            Assassin.LoadContent(0, 300, "Assassin");
+            Bonzai.LoadContent(-500, 500, "Bonzai");
+            Assassin.LoadContent(-500, 800, "Assassin");
             AngryJosh.LoadContent(300, 300, "Angry Josh");
+            //Goon.LoadContent(600, 600), "Goon");
+
 
             #endregion
 
