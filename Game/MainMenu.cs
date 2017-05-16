@@ -35,9 +35,9 @@ namespace TwinStick
             FullScreenUnpressed = Main.GameContent.Load<Texture2D>("Buttons/FullScreen");
             FullScreenPressed = Main.GameContent.Load<Texture2D>("Buttons/Fullscreen Highlight");
 
-            Play = new Button(new Vector2(500, 350), 600, 220, PlayUnpressed, PlayPressed, "Play");
-            Exit = new Button(new Vector2(500, 700), 600, 220, ExitUnpressed, ExitPressed, "Exit");
-            FullScreen = new Button(new Vector2(500, 50), 600, 220, FullScreenUnpressed, FullScreenPressed, "FullScreen");
+            Play = new Button(new Vector2(900, 350), 600, 220, PlayUnpressed, PlayPressed, "Play");
+            Exit = new Button(new Vector2(900, 700), 600, 220, ExitUnpressed, ExitPressed, "Exit");
+            FullScreen = new Button(new Vector2(900, 50), 600, 220, FullScreenUnpressed, FullScreenPressed, "FullScreen");
 
             Play.ButtonClicked += ButtonClicked;
             Exit.ButtonClicked += ButtonClicked;
@@ -63,11 +63,11 @@ namespace TwinStick
 
         public override void Draw()
         {
-            spriteBatch.Draw(Background, new Vector2(0, 0), Color.White);
+            spriteBatch.Draw(Background2, new Vector2(0, 0), Color.White);
             Play.Draw(spriteBatch);
             Exit.Draw(spriteBatch);
             FullScreen.Draw(spriteBatch);
-           // spriteBatch.Draw(Background2, new Vector2(0, 0), Color.White);
+            //spriteBatch.Draw(Background, new Vector2(0, 0), Color.White * .62f);
         }
 
         //Used for edge detection

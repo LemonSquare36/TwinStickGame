@@ -19,6 +19,7 @@ namespace TwinStick
         private List<Bullets> bulletsList = new List<Bullets>();
         private List<Polygons> polyList = new List<Polygons>();
         private List<Enemy> enemyList = new List<Enemy>();
+        private List<Bullets> enemyBullets = new List<Bullets>();
         private Character player;
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
@@ -27,14 +28,18 @@ namespace TwinStick
         Polygons stump1, stump2, stump3, stump4, stump5, stump6, stump7, stump8, stump9, stump10, stump11, stump12, stump14, stump15, stump16;
         Polygons caveEntrance;
         Enemy bonzia1, bonzia2, bonzia3, bonzia4;
+        Enemy Assassin;
+        Enemy AngryJosh;
         Texture2D singlebrush, groundtex;
 
         bool cavecollide = false;
+        int oldcount;
 
 
         public override void Initialize()
         {
             TimerSetUp();
+            enemyTimerSetUp();
         }
 
         public override void LoadContent(SpriteBatch spriteBatchmain)
@@ -103,10 +108,12 @@ namespace TwinStick
 
             #endregion
             #region enemyListAdd
-            /*enemyList.Add(bonzia1);
+            enemyList.Add(bonzia1);
             enemyList.Add(bonzia2);
             enemyList.Add(bonzia3);
-            enemyList.Add(bonzia4);*/
+            enemyList.Add(bonzia4);
+            enemyList.Add(Assassin);
+            enemyList.Add(AngryJosh);
             #endregion
 
             player.LoadContent(100, 300);
@@ -170,10 +177,12 @@ namespace TwinStick
 
             caveEntrance.LoadContent(3120, -1400, "WorldSprites/Cave Entrance");
 
-            bonzia1.LoadContent(500, -100, "Bonzai");
-            bonzia2.LoadContent(500, 100, "Bonzai");
-            bonzia3.LoadContent(100, 100, "Bonzai");
-            bonzia4.LoadContent(100, -100, "Bonzai");
+            bonzia1.LoadContent(1000, -100, "Bonzai");
+            bonzia2.LoadContent(1000, 100, "Bonzai");
+            bonzia3.LoadContent(600, 100, "Bonzai");
+            bonzia4.LoadContent(600, -100, "Bonzai");
+            Assassin.LoadContent(-500, 800, "Assassin");
+            AngryJosh.LoadContent(1300, 300, "Angry Josh");
 
             singlebrush = Main.GameContent.Load<Texture2D>("Sprites/WorldSprites/Extended brush");
             groundtex = Main.GameContent.Load<Texture2D>("Sprites/WorldSprites/GroundTexture1");
@@ -237,17 +246,62 @@ namespace TwinStick
             }
             foreach (Enemy enemy in enemyList.ToList())
             {
-                if (Distance(enemy.Placement, player.Placement) < 800)
+                if (enemy.aiType == "Ranged")
                 {
-                    enemy.MoveEnemy(player.getRealPos(2));
+                    if (Distance(enemy.Placement, player.Placement) < 1200)
+                    {
+                        enemy.MoveEnemy(player.getRealPos(2));
+                        EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets, enemy.enemyInterval, "Red");
+                    }
+
+                    if (Distance(enemy.Placement, player.Placement) < 600)
+                    {
+                        enemy.Retreat(player.getRealPos(2));
+                    }
+                    if (oldcount != enemyBullets.Count)
+                    {
+                        if (enemyBullets.Count > 0)
+                        {
+                            enemyBullets[enemyBullets.Count - 1].damage = enemy.GetDamage();
+                        }
+                    }
+                    oldcount += enemyBullets.Count;
                 }
+                if (enemy.aiType == "Stupid")
+                {
+                    if (Distance(enemy.Placement, player.Placement) < 1200)
+                    {
+                        enemy.MoveEnemy(player.getRealPos(2));
+                    }
+                }
+
                 bool collide = Collision(enemy, player);
                 if(collide)
                 {
-                    player.removeHP(enemy.GetDamage());
+                    player.removeHP(enemy.GetDamage()); 
                     enemy.Stop();
                 }            
             }
+            foreach (Bullets bullet in enemyBullets.ToList())
+            {
+                bullet.RealPos();
+                bullet.MoveBullet(camera);
+                bool collide = Collision(player, bullet);
+                if (collide)
+                {
+                    enemyBullets.Remove(bullet);
+                    player.removeHP(bullet.damage);
+                }
+                foreach (Polygons poly in polyList)
+                {
+                    collide = Collision(bullet, poly);
+                    if (collide)
+                    {
+                        enemyBullets.Remove(bullet);
+                    }
+                }
+            }
+
             caveEntrance.RealPos();
             cavecollide = Collision(player, caveEntrance);
             if (cavecollide)
@@ -264,6 +318,10 @@ namespace TwinStick
             player.Draw(spriteBatch);
 
             foreach (Bullets bullet in bulletsList)
+            {
+                bullet.Draw(spriteBatch);
+            }
+            foreach (Bullets bullet in enemyBullets)
             {
                 bullet.Draw(spriteBatch);
             }
@@ -357,6 +415,8 @@ namespace TwinStick
             bonzia2 = CreateEnemy("bonzaienemy");
             bonzia3 = CreateEnemy("bonzaienemy");
             bonzia4 = CreateEnemy("bonzaienemy");
+            Assassin = CreateEnemy("assassinenemy");
+            AngryJosh = CreateEnemy("angryjosh");
         }
     }
 }

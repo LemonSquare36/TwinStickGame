@@ -20,6 +20,7 @@ namespace TwinStick
         public string enemyType;
         public string aiType;
         public int enemyInterval;
+        int enemySpeed;
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
@@ -34,6 +35,7 @@ namespace TwinStick
         public override void LoadContent(float X, float Y, string enemytype)
         {
             enemyType = enemytype;
+            enemySpeed = 6;
 
             Placement.X = X;
             Placement.Y = Y;
@@ -43,8 +45,9 @@ namespace TwinStick
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Claymore");
                 aiType = "Stupid";
-                HP = 4;
+                HP = 5;
                 Damage = 2;
+                enemySpeed = 6;
             }
             if(enemytype == "Goon")
             {
@@ -53,21 +56,24 @@ namespace TwinStick
                 HP = 3;
                 Damage = 8;
                 enemyInterval = 500;
+                enemySpeed = 7;
             }
             if(enemytype == "Assassin")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Knife");
                 aiType = "Stupid";
-                HP = 2;
+                HP = 3;
                 Damage = 3;
+                enemySpeed = 10;
             }
             if(enemytype == "Angry Josh")
             {
                 texture = Main.GameContent.Load<Texture2D>("Sprites/Enemies/Enemy Minigun");
                 aiType = "Ranged";
                 enemyInterval = 50;
-                HP = 3;
+                HP = 12;
                 Damage = 6;
+                enemySpeed = 6;
             }
             if(enemytype == "Rambo")
             {
@@ -76,6 +82,7 @@ namespace TwinStick
                 HP = 5;
                 enemyInterval = 150;
                 Damage = 10;
+                enemySpeed = 10;
             }
         }
 
@@ -113,7 +120,7 @@ namespace TwinStick
             velocity.X = placement.X - Placement.X;
             velocity.Y = placement.Y - Placement.Y;
             velocity.Normalize();
-            velocity *= 4;
+            velocity *= enemySpeed;
         }
         public int GetEnemyInterval()
         {

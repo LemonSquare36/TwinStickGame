@@ -99,7 +99,7 @@ namespace TwinStick
                     if (Distance(enemy.Placement, player.Placement) < 1200)
                     {
                         enemy.MoveEnemy(player.getRealPos(2));
-                        EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets,enemy.enemyInterval, "Red");
+                        EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets, enemy.enemyInterval, "Red");
                     }
 
                     if (Distance(enemy.Placement, player.Placement) < 600)
@@ -126,8 +126,6 @@ namespace TwinStick
                         enemy.MoveEnemy(player.getRealPos(2));
                     }
                 }
-
-
 
                 bool collide = Collision(player, enemy);
                 if (collide)
