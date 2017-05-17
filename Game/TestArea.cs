@@ -36,7 +36,6 @@ namespace TwinStick
         public override void Initialize()
         {
             TimerSetUp();
-            enemyTimerSetUp();
         }
 
 
@@ -75,7 +74,7 @@ namespace TwinStick
             getKey();
             player.Rotate(Key, camera);
             mouse = Mouse.GetState();
-            ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList, "Blue");
+            ShootBullet(mouse, cam, player.getRealPos(1), ref bulletsList, "Blue", player);
 
             foreach (Bullets bullet in bulletsList.ToList())
             {
@@ -99,7 +98,7 @@ namespace TwinStick
                     if (Distance(enemy.Placement, player.Placement) < 1200)
                     {
                         enemy.MoveEnemy(player.getRealPos(2));
-                        EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets, enemy.enemyInterval, "Red");
+                        EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets, enemy, "Red");
                     }
 
                     if (Distance(enemy.Placement, player.Placement) < 600)

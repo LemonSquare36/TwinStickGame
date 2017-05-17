@@ -21,10 +21,19 @@ namespace TwinStick
         public string aiType;
         public int enemyInterval;
         int enemySpeed;
+        public bool enemyelasped = false;
+
+        public Timer enemybulletaddtime = new Timer(150);
 
         public Enemy(List<Vector2> numbers) : base(numbers)
         {
 
+        }
+        public void enemyTimerSetUp()
+        {
+            enemybulletaddtime.Elapsed += enemyBulletTimerElasped;
+            enemybulletaddtime.Interval = enemyInterval;
+            enemybulletaddtime.Start();
         }
 
         public void Initialize()
@@ -32,6 +41,10 @@ namespace TwinStick
 
         }
 
+        public void enemyBulletTimerElasped(object source, ElapsedEventArgs e)
+        {
+            enemyelasped = true;
+        }
         public override void LoadContent(float X, float Y, string enemytype)
         {
             enemyType = enemytype;
@@ -47,7 +60,7 @@ namespace TwinStick
                 aiType = "Stupid";
                 HP = 5;
                 Damage = 2;
-                enemySpeed = 6;
+                enemySpeed = 7;
             }
             if(enemytype == "Goon")
             {

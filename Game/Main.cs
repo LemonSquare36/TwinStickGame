@@ -18,7 +18,6 @@ namespace TwinStick
 {
     public class Main : Game
     {
-        Global global = new Global();
         GameState gameState = new GameState();
 
         SpriteBatch spriteBatch;
@@ -78,6 +77,7 @@ namespace TwinStick
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
+                gameState.CurrentScreen.ThreadOff();
                 Exit();
             }
             gameState.Update();

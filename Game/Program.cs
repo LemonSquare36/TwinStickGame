@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace TwinStick
 {
 #if WINDOWS || LINUX
@@ -8,7 +9,6 @@ namespace TwinStick
     /// </summary>
     public static class Program
     {
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

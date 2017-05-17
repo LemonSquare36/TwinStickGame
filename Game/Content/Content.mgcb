@@ -523,3 +523,15 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/WorldSprites/GroundTexture1.png
 
+#begin ToBeBackAgain.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ToBeBackAgain.wav
+
+#begin ToBeBackAgainLoop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ToBeBackAgainLoop.wav
+

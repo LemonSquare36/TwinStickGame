@@ -11,11 +11,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
+using System.Media;
+using System.IO;
+using System.Threading;
 
 namespace TwinStick
 {
     class Level1 : AreaManager
     {
+        SoundPlayer MusicBox = new SoundPlayer();
+
         private List<Bullets> bulletsList = new List<Bullets>();
         private List<Polygons> polyList = new List<Polygons>();
         private List<Enemy> enemyList = new List<Enemy>();
@@ -24,22 +29,24 @@ namespace TwinStick
         MouseState mouse = new MouseState();
         Camera cam = new Camera();
         Polygons treeborderB, treeborderB2, treeborderB3, treeborderT, treeborderL, treeborderL2, treeborderR, treeborderR2, mountain, destroyedCabin, burnedRemains, wallTop, wallBottom, well, tavern1, tavern2, tower;
-        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12, tree13, tree14, tree15, tree16, tree17, tree18, tree19,tree20, tree21, tree22, tree23;
+        Polygons tree1, tree2, tree3, tree4, tree5, tree6, tree7, tree8, tree9, tree10, tree11, tree12, tree13, tree14, tree15, tree16, tree17, tree18, tree19, tree20, tree21, tree22, tree23;
         Polygons stump1, stump2, stump3, stump4, stump5, stump6, stump7, stump8, stump9, stump10, stump11, stump12, stump14, stump15, stump16;
         Polygons caveEntrance;
-        Enemy bonzia1, bonzia2, bonzia3, bonzia4;
-        Enemy Assassin;
+        Enemy bonzia1, bonzia2, bonzia3, bonzia4, bonzia5, bonzia6, bonzia7, bonzia8, bonzia9, bonzia10, bonzia11, bonzia12;
+        Enemy Assassin, Assassin2, Assassin3, Assassin4, Assassin5, Assassin6;
         Enemy AngryJosh;
+        Enemy Rambo, Rambo2, Rambo3, Rambo4, Rambo5, Rambo6, Rambo7, Rambo8;
+        Enemy goon, goon2, goon3, goon4, goon5, goon6, goon7, goon8, goon9;
         Texture2D singlebrush, groundtex;
 
         bool cavecollide = false;
+        bool started = false;
         int oldcount;
-
 
         public override void Initialize()
         {
             TimerSetUp();
-            enemyTimerSetUp();
+            MusicBox.SoundLocation = "C:/Users/jglover/Source/Repos/TwinStickGame/Game/Content/DarudeSandstorm.wav";
         }
 
         public override void LoadContent(SpriteBatch spriteBatchmain)
@@ -59,7 +66,7 @@ namespace TwinStick
             polyList.Add(treeborderL2);
             polyList.Add(mountain);
             polyList.Add(treeborderR);
-            polyList.Add(treeborderR2);          
+            polyList.Add(treeborderR2);
             polyList.Add(burnedRemains);
             polyList.Add(destroyedCabin);
             polyList.Add(well);
@@ -112,11 +119,41 @@ namespace TwinStick
             enemyList.Add(bonzia2);
             enemyList.Add(bonzia3);
             enemyList.Add(bonzia4);
+            enemyList.Add(bonzia5);
+            enemyList.Add(bonzia6);
+            enemyList.Add(bonzia7);
+            enemyList.Add(bonzia8);
+            enemyList.Add(bonzia9);
+            enemyList.Add(bonzia10);
+            enemyList.Add(bonzia11);
+            enemyList.Add(bonzia12);
             enemyList.Add(Assassin);
+            enemyList.Add(Assassin2);
+            enemyList.Add(Assassin3);
+            enemyList.Add(Assassin4);
+            enemyList.Add(Assassin5);
+            enemyList.Add(Assassin6);
             enemyList.Add(AngryJosh);
+            enemyList.Add(Rambo);
+            enemyList.Add(Rambo2);
+            enemyList.Add(Rambo3);
+            enemyList.Add(Rambo4);
+            enemyList.Add(Rambo5);
+            enemyList.Add(Rambo6);
+            enemyList.Add(Rambo7);
+            enemyList.Add(Rambo8);
+            enemyList.Add(goon);
+            enemyList.Add(goon2);
+            enemyList.Add(goon3);
+            enemyList.Add(goon4);
+            enemyList.Add(goon5);
+            enemyList.Add(goon6);
+            enemyList.Add(goon7);
+            enemyList.Add(goon8);
+            enemyList.Add(goon9);
             #endregion
 
-            player.LoadContent(100, 300);
+            player.LoadContent(-1500, -1200);
             wallTop.LoadContent(1375, -710, "WorldSprites/Wall Top");
             wallBottom.LoadContent(1375, 1100, "WorldSprites/wall bottom");
             tower.LoadContent(2100, 1010, "WorldSprites/destroyedtower");
@@ -144,7 +181,7 @@ namespace TwinStick
             tree7.LoadContent(-1050, 550, "WorldSprites/Tree");
             tree8.LoadContent(-1150, 950, "WorldSprites/Tree");
             tree9.LoadContent(875, 1200, "WorldSprites/Tree");
-            tree10.LoadContent(2290, - 794, "WorldSprites/Tree");
+            tree10.LoadContent(2290, -794, "WorldSprites/Tree");
             tree11.LoadContent(3400, -1170, "WorldSprites/Tree");
             tree12.LoadContent(3750, -70, "WorldSprites/Tree");
             tree13.LoadContent(4745, 1820, "WorldSprites/Tree");
@@ -177,19 +214,66 @@ namespace TwinStick
 
             caveEntrance.LoadContent(3120, -1400, "WorldSprites/Cave Entrance");
 
-            bonzia1.LoadContent(1000, -100, "Bonzai");
-            bonzia2.LoadContent(1000, 100, "Bonzai");
-            bonzia3.LoadContent(600, 100, "Bonzai");
-            bonzia4.LoadContent(600, -100, "Bonzai");
-            Assassin.LoadContent(-500, 800, "Assassin");
-            AngryJosh.LoadContent(1300, 300, "Angry Josh");
+            bonzia1.LoadContent(514, 1100, "Bonzai");
+            bonzia2.LoadContent(480, 422, "Bonzai");
+            bonzia3.LoadContent(-874, 1146, "Bonzai");
+            bonzia4.LoadContent(70, -714, "Bonzai");
+            bonzia5.LoadContent(3734, -364, "Bonzai");
+            bonzia6.LoadContent(4000, 1333, "Bonzai");
+            bonzia7.LoadContent(2214, 1738, "Bonzai");
+            bonzia8.LoadContent(-1400, 3800, "Bonzai");
+            bonzia9.LoadContent(-1400, 4050, "Bonzai");
+            bonzia10.LoadContent(-1400, 4250, "Bonzai");
+            bonzia11.LoadContent(2668, 4314, "Bonzai");
+            bonzia12.LoadContent(3278, 4650, "Bonzai");
+
+            Assassin.LoadContent(-1500, 230, "Assassin");
+            Assassin2.LoadContent(-600, -362, "Assassin");
+            Assassin3.LoadContent(2290, -1034, "Assassin");
+            Assassin4.LoadContent(4250, 1148, "Assassin");
+            Assassin5.LoadContent(26, 4300, "Assassin");
+            Assassin6.LoadContent(3762, 3886, "Assassin");
+
+            AngryJosh.LoadContent(-1690, 4062, "Angry Josh");
+
+            Rambo.LoadContent(1386, 244, "Rambo");
+            Rambo2.LoadContent(300, 1200, "Rambo");
+            Rambo3.LoadContent(3700, -726, "Rambo");
+            Rambo4.LoadContent(2420, 2000, "Rambo");
+            Rambo5.LoadContent(1152, 2166, "Rambo");
+            Rambo6.LoadContent(-1732, 4300, "Rambo");
+            Rambo7.LoadContent(2370, 4600, "Rambo");
+            Rambo8.LoadContent(4256, 3024, "Rambo");
+
+            goon.LoadContent(1100, 432, "Goon");
+            goon2.LoadContent(1100, -10, "Goon");
+            goon3.LoadContent(-666, -555, "Goon");
+            goon4.LoadContent(2880, 18, "Goon");
+            goon5.LoadContent(3144, 196, "Goon");
+            goon6.LoadContent(3160, 464, "Goon");
+            goon7.LoadContent(4200, 1400, "Goon");
+            goon8.LoadContent(-226, 2320, "Goon");
+            goon9.LoadContent(-22, 4600, "Goon");
 
             singlebrush = Main.GameContent.Load<Texture2D>("Sprites/WorldSprites/Extended brush");
             groundtex = Main.GameContent.Load<Texture2D>("Sprites/WorldSprites/GroundTexture1");
+
+            foreach (Enemy enemy in enemyList)
+            {
+                if (enemy.aiType == "Ranged")
+                    enemy.enemyTimerSetUp();
+            }
+            player.ChangeScreen += OnScreenChanged;
         }
 
         public override void Update(Camera camera, GraphicsDeviceManager graphicsManager)
         {
+            if (!started)
+            {
+                started = true;
+                MusicBox.PlayLooping();
+            }
+           
             player.RealPos();
             cam = camera;
             camera.Follow(new Vector2(-player.Placement.X, -player.Placement.Y));
@@ -197,7 +281,7 @@ namespace TwinStick
             player.Rotate(Key, camera);
             mouse = Mouse.GetState();
 
-            ShootBullet(mouse, cam, player.Placement, ref bulletsList, "Blue");
+            ShootBullet(mouse, cam, player.Placement, ref bulletsList, "Blue", player);
 
             foreach (Polygons poly in polyList)
             {
@@ -251,7 +335,7 @@ namespace TwinStick
                     if (Distance(enemy.Placement, player.Placement) < 1200)
                     {
                         enemy.MoveEnemy(player.getRealPos(2));
-                        EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets, enemy.enemyInterval, "Red");
+                        EnemyShootBullet(player.Placement, cam, enemy.getRealPos(0), ref enemyBullets, enemy, "Red");
                     }
 
                     if (Distance(enemy.Placement, player.Placement) < 600)
@@ -276,11 +360,11 @@ namespace TwinStick
                 }
 
                 bool collide = Collision(enemy, player);
-                if(collide)
+                if (collide)
                 {
-                    player.removeHP(enemy.GetDamage()); 
+                    player.removeHP(enemy.GetDamage());
                     enemy.Stop();
-                }            
+                }
             }
             foreach (Bullets bullet in enemyBullets.ToList())
             {
@@ -331,7 +415,7 @@ namespace TwinStick
             }
             foreach (Enemy enemy in enemyList.ToList())
             {
-                enemy.Draw(spriteBatch);           
+                enemy.Draw(spriteBatch);
             }
 
             if (cavecollide)
@@ -343,7 +427,9 @@ namespace TwinStick
             spriteBatch.Draw(singlebrush, new Vector2(1150, 1700), Color.White);
             spriteBatch.Draw(singlebrush, new Vector2(1150, 4910), Color.White);
             spriteBatch.Draw(singlebrush, new Vector2(4600, 1650), Color.White);
-            
+
+            player.Died(spriteBatch);
+
         }
 
         private void MakeShapes()
@@ -415,8 +501,42 @@ namespace TwinStick
             bonzia2 = CreateEnemy("bonzaienemy");
             bonzia3 = CreateEnemy("bonzaienemy");
             bonzia4 = CreateEnemy("bonzaienemy");
+            bonzia5 = CreateEnemy("bonzaienemy");
+            bonzia6 = CreateEnemy("bonzaienemy");
+            bonzia7 = CreateEnemy("bonzaienemy");
+            bonzia8 = CreateEnemy("bonzaienemy");
+            bonzia9 = CreateEnemy("bonzaienemy");
+            bonzia10 = CreateEnemy("bonzaienemy");
+            bonzia11 = CreateEnemy("bonzaienemy");
+            bonzia12 = CreateEnemy("bonzaienemy");
+
             Assassin = CreateEnemy("assassinenemy");
+            Assassin2 = CreateEnemy("assassinenemy");
+            Assassin3 = CreateEnemy("assassinenemy");
+            Assassin4 = CreateEnemy("assassinenemy");
+            Assassin5 = CreateEnemy("assassinenemy");
+            Assassin6 = CreateEnemy("assassinenemy");
+
             AngryJosh = CreateEnemy("angryjosh");
+
+            goon = CreateEnemy("goon");
+            goon2 = CreateEnemy("goon");
+            goon3 = CreateEnemy("goon");
+            goon4 = CreateEnemy("goon");
+            goon5 = CreateEnemy("goon");
+            goon6 = CreateEnemy("goon");
+            goon7 = CreateEnemy("goon");
+            goon8 = CreateEnemy("goon");
+            goon9 = CreateEnemy("goon");
+
+            Rambo = CreateEnemy("Rambo");
+            Rambo2 = CreateEnemy("Rambo");
+            Rambo3 = CreateEnemy("Rambo");
+            Rambo4 = CreateEnemy("Rambo");
+            Rambo5 = CreateEnemy("Rambo");
+            Rambo6 = CreateEnemy("Rambo");
+            Rambo7 = CreateEnemy("Rambo");
+            Rambo8 = CreateEnemy("Rambo");
         }
     }
 }

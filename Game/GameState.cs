@@ -33,7 +33,7 @@ namespace TwinStick
         int loadingInterval;
 
         #region Declare the Screens
-        ScreenManager CurrentScreen;
+        public ScreenManager CurrentScreen;
 
         //areas
         TestArea Test;
@@ -54,6 +54,7 @@ namespace TwinStick
             #endregion
 
             MainMenu.ChangeScreen += HandleScreenChanged;
+            LevelOne.changeScreen += PlayerChangeScreen;
         }
 
         public void Initialize()
@@ -131,5 +132,10 @@ namespace TwinStick
                 LoadContent(spriteBatch, graphicsManager);
             }
         }
+        public void PlayerChangeScreen(object sender, EventArgs eventArgs)
+        {
+            Environment.Exit(0);
+        }
+       
     }
 }

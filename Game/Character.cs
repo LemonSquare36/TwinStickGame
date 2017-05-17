@@ -21,6 +21,9 @@ namespace TwinStick
         Texture2D cube;
         SpriteFont font;
         Color clr = new Color(198, 34, 5);
+        public bool dead = false;
+        Timer deadTime = new Timer(2000);
+        bool done = false;
         //Constructor
         public Character(List<Vector2> numbers) : base(numbers)
         {
@@ -56,19 +59,22 @@ namespace TwinStick
         //Roatates the Shape
         public void Rotate(KeyboardState keyState, Camera camera)
         {
-            Vector2 worldPosition = Vector2.Zero;
-            MouseState curMouse = Mouse.GetState();
-            try
+            if (!dead)
             {
-                worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600f);
-                worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960f);
-            }
-            catch { }
+                Vector2 worldPosition = Vector2.Zero;
+                MouseState curMouse = Mouse.GetState();
+                try
+                {
+                    worldPosition.X = curMouse.X / (float)(Main.gameWindow.ClientBounds.Width / 1600f);
+                    worldPosition.Y = curMouse.Y / (float)(Main.gameWindow.ClientBounds.Height / 960f);
+                }
+                catch { }
 
-            Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
-            GetMousePosWorld(camera, ref mouseLoc);
-            Vector2 direction = mouseLoc - Placement;
-            rotation = (float)(Math.Atan2(direction.Y, direction.X))+(float)Math.PI/2;
+                Vector2 mouseLoc = new Vector2(worldPosition.X, worldPosition.Y);
+                GetMousePosWorld(camera, ref mouseLoc);
+                Vector2 direction = mouseLoc - Placement;
+                rotation = (float)(Math.Atan2(direction.Y, direction.X)) + (float)Math.PI / 2;
+            }
         }  
         private void GetMousePosWorld(Camera camera, ref Vector2 mouseLoc)
         {
@@ -106,15 +112,24 @@ namespace TwinStick
             HPbar.Width = HP;
             HPbar.Height = 50;
             spritebatch.Draw(cube, new Vector2(-650, -300) + Placement, HPbar, clr);
+            if (!dead)
             spritebatch.DrawString(font, "HP", Placement + new Vector2(-765, -315), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
 
         }
         public void Died(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            Placement = OldPosition;
-            spriteBatch.DrawString(font, "YOU HAVE DIED", Placement + new Vector2(-765, -315), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
-            spriteBatch.End();
+            if (HP <= 0)
+            {
+                if (!done)
+                {
+                    deadTime.Elapsed += deadTimeEvent;
+                    deadTime.Start();
+                    done = true;
+                }
+                Placement = OldPosition;
+                spriteBatch.DrawString(font, "YOU HAVE DIED", Placement + new Vector2(-765, -315), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
+                dead = true;
+            }
         }
         public void LevelEnd(bool end, SpriteBatch spriteBatch)
         {
@@ -124,8 +139,14 @@ namespace TwinStick
             }
             if (!end)
             {
-                spriteBatch.DrawString(font, "You must kill all the enemies first", Placement, Color.Red, 0, Vector2.Zero, 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(font, "Level 2 would be here if we had more time (^:P", Placement + new Vector2(-500, 300), Color.Red, 0, Vector2.Zero, 2, SpriteEffects.None, 0);
             }
+        }
+        public event EventHandler ChangeScreen;
+        private void deadTimeEvent(object source, ElapsedEventArgs e)
+        {
+            deadTime.Stop();
+            ChangeScreen?.Invoke(this, EventArgs.Empty);
         }
     }
 }

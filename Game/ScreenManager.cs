@@ -55,5 +55,10 @@ namespace TwinStick
         {
             return nextScreen;
         }
+
+        public virtual void ThreadOff()
+        {
+
+        }
     }
 }

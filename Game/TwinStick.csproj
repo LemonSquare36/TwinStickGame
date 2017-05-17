@@ -76,7 +76,6 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="GameState.cs" />
-    <Compile Include="Global.cs" />
     <Compile Include="HighScores.cs" />
     <Compile Include="Level1.cs" />
     <Compile Include="Main.cs" />
@@ -108,6 +107,7 @@
     <Content Include="Content\Buttons\FullScreen.png" />
     <Content Include="Content\Buttons\Play Highlight.png" />
     <Content Include="Content\Buttons\Play.png" />
+    <Content Include="Content\DarudeSandstorm.wav" />
     <Content Include="Content\Hold the Usings.txt" />
     <Content Include="Content\Sprites\Bullets\Enemy Bullet.png" />
     <Content Include="Content\Sprites\Bullets\Player Bullet.png" />
@@ -143,6 +143,9 @@
     <Content Include="Content\Sprites\WorldSprites\wall bottom.png" />
     <Content Include="Content\Sprites\WorldSprites\Wall Top.png" />
     <Content Include="Content\Sprites\WorldSprites\well.png" />
+    <Content Include="Content\ToBeBackAgain.wav" />
+    <Content Include="Content\ToBeBackAgainLoop.wav" />
+    <Content Include="Content\ToBeBackAgainStart.wav" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

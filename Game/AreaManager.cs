@@ -22,7 +22,6 @@ namespace TwinStick
         Timer bulletaddtime = new Timer();
         bool elapsed = true;
         bool canfire = true;
-        Timer enemybulletaddtime = new Timer();
         bool enemyelapsed = true;
 
 
@@ -160,25 +159,28 @@ namespace TwinStick
             Debug.WriteLine("mouse1: " + mouseLoc.X + " " + mouseLoc.Y);
         }
         //add a bullet to the list
-        protected void ShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, string type)
+        protected void ShootBullet(MouseState mouse, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, string type, Character player)
         {
-            if (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
+            if (!player.dead)
             {
-                canfire = true;
-            }
-            else
-            {
-                canfire = false;
-            }
+                if (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
+                {
+                    canfire = true;
+                }
+                else
+                {
+                    canfire = false;
+                }
 
-            if (elapsed == true && canfire == true)
-            {
-                addnewbullet(cam, startpoint, ref bulletList, type);
-                elapsed = false;
-                bulletaddtime.Stop();
-                bulletaddtime.Start();
+                if (elapsed == true && canfire == true)
+                {
+                    addnewbullet(cam, startpoint, ref bulletList, type);
+                    elapsed = false;
+                    bulletaddtime.Stop();
+                    bulletaddtime.Start();
+                }
+                oldMouse = mouse;
             }
-            oldMouse = mouse;
         }
         //Timer code
         protected void TimerSetUp()
@@ -205,28 +207,19 @@ namespace TwinStick
             enemyBullets.Add(newBullet);
         }
 
-        protected void EnemyShootBullet(Vector2 shootat, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, int enemyInterval,string type)
+        protected void EnemyShootBullet(Vector2 shootat, Camera cam, Vector2 startpoint, ref List<Bullets> bulletList, Enemy enemy,string type)
         {
             type = "Red";
 
-            if (enemyelapsed == true)
+            if (enemy.enemyelasped == true)
             {
                 AddNewEnemyBullet(cam, startpoint, ref bulletList, type, shootat);
-                enemyelapsed = false;
-                enemybulletaddtime.Stop();
-                enemybulletaddtime.Interval = enemyInterval;
-                enemybulletaddtime.Start();
+                enemy.enemyelasped = false;
+                enemy.enemybulletaddtime.Stop();
+                enemy.enemybulletaddtime.Start();
             }
         }
-        protected void enemyTimerSetUp()
-        {
-            enemybulletaddtime.Elapsed += enemyBulletTimerElasped;
-            enemybulletaddtime.Interval = 150;
-        }
-        private void enemyBulletTimerElasped(object source, ElapsedEventArgs e)
-        {
-            enemyelapsed = true;
-        }
+
         #endregion
         //Creates the Shapes of Polygon Class
         protected Polygons CreateShape(string shapeName)
@@ -256,6 +249,12 @@ namespace TwinStick
             List<Vector2> NewList = (List<Vector2>)shapeVerts[shapeName];
             Enemy myPolygon = new Enemy(NewList);
             return myPolygon;
+        }
+
+        public event EventHandler changeScreen;
+        protected void OnScreenChanged(object sender, EventArgs eventArgs)
+        {
+            changeScreen?.Invoke(this, EventArgs.Empty);
         }
     }
 }
